@@ -16,17 +16,37 @@ public enum ResultStatusEnum implements ResultStatus {
     /**
      * 成功状态
      */
-    SUCCESS(1, "请求成功"),
-
-    /**
-     * 系统未知错误
-     */
-    UNKNOWN_ERROR(-1, "未知异常"),
+    SUCCESS(200, "请求成功"),
 
     /**
      * 业务通用异常
      */
-    BIZ_ERROR(-10, "处理失败"),
+    BIZ_ERROR(300, "处理失败"),
+
+    /**
+     * 重复的请求
+     */
+    DUPLICATE_REQ(401, "不可重复的请求"),
+
+    /**
+     * 参数校验失败
+     */
+    CHECK_FAIL(402, "参数校验失败"),
+
+    /**
+     * 认证失败
+     */
+    AUTH_FAIL(403, "认证失败"),
+
+    /**
+     * 系统未知错误
+     */
+    SERVER_ERROR(500, "服务器内部错误"),
+
+    /**
+     * 服务器繁忙
+     */
+    SERVER_BUSY(511, "服务器繁忙，请稍后再试"),
 
     ;
 
