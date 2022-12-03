@@ -1,0 +1,10 @@
+rootProject.name = 'miemiemie'
+
+void includePath(String path) {
+    include path
+    findProject(path)?.name = path.substring(path.lastIndexOf(':') >= 0 ? path.lastIndexOf(':') : 0)
+}
+
+
+include 'miemiemie-starter-web'
+

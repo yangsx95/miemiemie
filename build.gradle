@@ -1,0 +1,102 @@
+description "微服务网约车项目父工程"
+
+// buildScript必须在build.gradle文件的最顶端，因为需要为执行脚本做准备
+// 通常是构建脚本中某些任务或者插件的依赖相关信息
+buildscript {
+    // 应用所有的依赖版本信息的脚本
+    apply from: 'version.gradle'
+
+    repositories {
+        gradlePluginPortal()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://repo.spring.io/milestone' }
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${rootProject.ext.versions.springBoot}"
+    }
+}
+
+// 所有项目都生效的配置
+allprojects {
+    group 'com.miemiemie'
+    version rootProject.ext.projectVersion
+
+    apply plugin: 'idea'
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://repo.spring.io/milestone' }
+        mavenCentral()
+    }
+}
+
+ext {
+    javaProjects = subprojects.findAll { it.file("build.gradle").exists() }
+}
+
+configure(javaProjects) { project ->
+
+    // 配置java编译器属性，同类型的还有groovy编译器属性、scala编译器属性、c编译器属性等
+    tasks.withType(JavaCompile).tap {
+        configureEach {
+            // 编码
+            options.encoding = "UTF-8"
+            // 在单独的守护进程中编译
+            options.fork = true
+            // source、target的java版本，默认值为 project.sourceCompatibility 以及 project.targetCompatibility
+            // 所以可以给project直接设置sourceCompatibility以及targetCompatibility
+            sourceCompatibility = rootProject.ext.jdkVersion
+            targetCompatibility = rootProject.ext.jdkVersion
+        }
+    }
+
+    // 公共插件
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    // 公共插件配置
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(rootProject.ext.jdkVersion)
+        }
+    }
+
+    bootJar {
+        enabled = false
+    }
+
+    // spring dependency-management 插件提供的功能
+    // dependencyManagement版本统一管理，类似于父maven的dependencyManagement
+    dependencyManagement {
+        // 定义依赖版本
+        dependencies {
+            for (depJar in rootProject.ext.dependencies) {
+                dependency depJar.value
+            }
+        }
+
+        // 类似maven的import，可以导入依赖的版本
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${rootProject.ext.versions.springCloud}"
+            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${rootProject.ext.versions.springCloudAlibaba}"
+        }
+    }
+
+    // 公共依赖
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
