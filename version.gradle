@@ -1,21 +1,23 @@
 // 依赖版本管理
 ext {
-    jdkVersion = 17
+    jdkVersion = 8
     projectVersion = '1.0.0-SNAPSHOT'
 
     versions = [
-            "springBoot"        : "2.6.3",
-            "springCloud"       : "2021.0.1",
-            "springCloudAlibaba": "2021.0.1.0",
-            "junitJupiter"      : "5.8.1",
-            "lombok"            : "1.18.22",
-            "servlet"           : "4.0.1",
+            "springBoot"           : "2.6.3",
+            "springCloud"          : "2021.0.1",
+            "springCloudAlibaba"   : "2021.0.1.0",
+            "junitJupiter"         : "5.8.1",
+            "lombok"               : "1.18.22",
+            "springBootMybatis"    : "2.3.0",
+            "springBootMybatisplus": "3.5.2",
     ]
 
     dependencies = [
             "junitJupiterApi"   : "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}",
             "junitJupiterEngine": "org.junit.jupiter:junit-jupiter-engine:${versions.junitJupiter}",
             "lombok"            : "org.projectlombok:lombok:${versions.lombok}",
-            "servlet"           : "compileOnly 'javax.servlet:javax.servlet-api:${versions.servlet}",
+            "mybatis"           : "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.springBootMybatis}",
+            "mybatisPlus"       : "com.baomidou:mybatis-plus-boot-starter:${versions.springBootMybatisplus}"
     ]
 }

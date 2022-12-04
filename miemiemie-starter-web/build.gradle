@@ -3,9 +3,10 @@ web项目相关封装
 '''
 
 dependencies {
-    compileOnly 'javax.servlet:javax.servlet-api'
-    compileOnly 'org.springframework:spring-webmvc'
-    compileOnly 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    compileOnly 'org.springframework.boot:spring-boot-autoconfigure'
-    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation project(":miemiemie-core")
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    implementation 'org.springframework.boot:spring-boot-configuration-processor'
 }

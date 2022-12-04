@@ -1,6 +1,6 @@
 package com.miemiemie.starter.web.result;
 
-import com.miemiemie.starter.web.enums.IntegerCodeEnum;
+import com.miemiemie.core.enums.CommonEnum;
 
 /**
  * 响应状态枚举抽象
@@ -8,7 +8,7 @@ import com.miemiemie.starter.web.enums.IntegerCodeEnum;
  * @author 杨顺翔
  * @since 2022/07/23
  */
-public interface ResultStatus extends IntegerCodeEnum {
+public interface ResultStatus extends CommonEnum<Integer> {
 
     /**
      * 响应码

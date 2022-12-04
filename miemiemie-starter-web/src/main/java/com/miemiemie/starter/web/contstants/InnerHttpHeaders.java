@@ -1,7 +1,7 @@
 package com.miemiemie.starter.web.contstants;
 
-import com.miemiemie.starter.web.enums.CommonEnum;
-import com.miemiemie.starter.web.enums.NameCodeEnum;
+import com.miemiemie.core.enums.CommonEnum;
+import com.miemiemie.core.enums.NameCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;

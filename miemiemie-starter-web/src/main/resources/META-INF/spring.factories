@@ -1,5 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.yangsx95.onlinetaxi.jupiter.web.result.ResultPackageHandler,\
-  com.yangsx95.onlinetaxi.jupiter.web.WebAutoConfiguration,\
-  com.yangsx95.onlinetaxi.jupiter.feign.FeignAutoConfiguration,\
-  com.yangsx95.onlinetaxi.jupiter.exception.GlobalExceptionHandler
+  com.miemiemie.starter.web.WebAutoConfig

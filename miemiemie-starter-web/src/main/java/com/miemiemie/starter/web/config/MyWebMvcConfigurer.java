@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web;
+package com.miemiemie.starter.web.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ import static org.springframework.boot.autoconfigure.condition.ConditionalOnWebA
  */
 @Configuration
 @ConditionalOnWebApplication(type = Type.SERVLET)
-public class WebAutoConfiguration implements WebMvcConfigurer {
+public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     // 如果目标controller的返回值为string类型，ResultPackageHandler（ResponseAdvice）在包装返回对象时会发生类型转换异常
     // 这是因为StringHttpMessageConverter的优先级要比Object类型的HttpMessageConverter（MappingJackson2HttpMessageConverter）更高

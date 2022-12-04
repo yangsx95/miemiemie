@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web.enums;
+package com.miemiemie.core.enums;
 
 /**
  * code 为name的Enum
