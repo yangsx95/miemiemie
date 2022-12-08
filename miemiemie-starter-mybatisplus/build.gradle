@@ -3,10 +3,10 @@ mybatis相关封装
 '''
 
 dependencies {
-    implementation project(":miemiemie-core")
+    api project(":miemiemie-core")
 
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
-    implementation 'com.baomidou:mybatis-plus-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-autoconfigure'
-    implementation 'org.springframework.boot:spring-boot-configuration-processor'
+    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
+    api 'com.baomidou:mybatis-plus-boot-starter'
+    api 'org.springframework.boot:spring-boot-autoconfigure'
+    api 'org.springframework.boot:spring-boot-configuration-processor'
 }

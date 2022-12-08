@@ -31,7 +31,13 @@ public class LogAspect {
 
     public static final String TRACE_ID = "trace-id";
 
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.RestController)")
+    /**
+     * 拥有RestController注解的所有方法
+     */
+    @Pointcut(" @within(org.springframework.stereotype.Controller) " +
+            "|| @within(com.miemiemie.starter.web.annotation.PathRestController)" +
+            "|| @within(org.springframework.web.bind.annotation.RestController) "
+    )
     public void restLog() {
     }
 

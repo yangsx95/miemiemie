@@ -1,0 +1,7 @@
+description '''
+样例项目
+'''
+
+dependencies {
+    implementation project(":miemiemie-starter-web")
+}

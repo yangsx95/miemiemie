@@ -1,7 +1,9 @@
 package com.miemiemie.starter.web.annotation;
 
 import org.springframework.core.annotation.AliasFor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.annotation.*;
@@ -16,7 +18,8 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@RestController
+@Controller
+@ResponseBody
 @RequestMapping
 public @interface PathRestController {
 
