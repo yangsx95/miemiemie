@@ -61,10 +61,9 @@ public interface CommonEnum<C> {
      * @param code      唯一编码
      * @param enumClass 枚举类型
      * @param <T>       枚举类型
-     * @param <C>       枚举code类型
      * @return 枚举对象
      */
-    static <T extends Enum<T> & CommonEnum<C>, C> T getEnum(C code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<?>> T getEnum(Object code, Class<T> enumClass) {
         for (T item : enumClass.getEnumConstants()) {
             if (item.getCode().equals(code)) {
                 return item;

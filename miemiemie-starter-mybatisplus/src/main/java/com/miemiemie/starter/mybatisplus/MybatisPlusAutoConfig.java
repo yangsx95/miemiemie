@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.miemiemie.starter.mybatisplus.config.GenericEnumTypeHandler;
 import com.miemiemie.starter.mybatisplus.config.MyMetaObjectHandler;
 import com.miemiemie.starter.mybatisplus.config.MySqlInjector;
 import com.miemiemie.starter.mybatisplus.enums.DeletedEnum;
@@ -90,7 +91,7 @@ public class MybatisPlusAutoConfig {
             globalConfig.getDbConfig().setLogicDeleteValue(DeletedEnum.DELETED.getCode().toString());
 
             MybatisConfiguration configuration = new MybatisConfiguration();
-            configuration.setDefaultEnumTypeHandler(MybatisEnumTypeHandler.class);
+            configuration.setDefaultEnumTypeHandler(GenericEnumTypeHandler.class);
             properties.setConfiguration(configuration);
         };
     }
