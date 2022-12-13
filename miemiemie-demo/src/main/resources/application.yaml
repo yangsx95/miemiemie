@@ -1,0 +1,16 @@
+spring:
+  flyway:
+    enabled: true
+    encoding: utf-8
+    # 迁移sql脚本文件的路径
+    locations: db/migration
+    # 迁移sql脚本文件名称的前缀
+    sql-migration-prefix: V
+    # 迁移sql脚本文件名称的后缀
+    sql-migration-suffixes: .sql
+    # 迁移sql脚本文件名称的分隔符
+    sql-migration-separator: __
+    # 迁移时是否进行校验
+    validate-on-migrate: true
+    # 迁移时数据库非空且存在没有元数据的表时，自动执行基准迁移，新建schema_version表
+    baseline-on-migrate: true
