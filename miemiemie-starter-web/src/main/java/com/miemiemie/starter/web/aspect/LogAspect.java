@@ -14,6 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -51,13 +52,22 @@ public class LogAspect {
         String params = Arrays.stream(joinPoint.getArgs())
                 .filter(arg -> arg instanceof ServletRequest || arg instanceof ServletResponse)
                 .map(Objects::toString)
-                .collect(Collectors.joining(" "));
-        log.info("receive request: {} , params: {}", attributes.getRequest().getRequestURI(), params);
+                .collect(Collectors.joining(" "))
+                .trim();
+        HttpServletRequest request = attributes.getRequest();
+        log.info("http request\t[{}] {} => {}", request.getMethod(), request.getRequestURI(), params);
     }
 
     @AfterReturning(value = "restLog()", returning = "returnObject")
     public void afterReturning(Object returnObject) {
-        log.info("return response: {}", returnObject);
+        long time = 0;
+        try {
+            time = System.currentTimeMillis() - Ulid.getTime(MDC.get(TRACE_ID));
+        } catch (Exception e) {
+            log.error("日志打印出错，解析TRACE_ID失败", e);
+        }
+
+        log.info("http response\t{}ms => {}", time, returnObject);
         MDC.remove(TRACE_ID);
     }
 
