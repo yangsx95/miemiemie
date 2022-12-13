@@ -5,5 +5,5 @@ description '''
 dependencies {
     implementation project(":miemiemie-starter-web")
     implementation project(":miemiemie-starter-mybatisplus")
-    implementation 'org.flywaydb:flyway-core:9.10.0'
+    implementation 'mysql:mysql-connector-java:8.0.31'
 }
