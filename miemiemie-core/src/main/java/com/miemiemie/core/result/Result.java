@@ -1,8 +1,9 @@
-package com.miemiemie.starter.web.result;
+package com.miemiemie.core.result;
 
+import com.miemiemie.core.enums.ResultStatus;
+import com.miemiemie.core.enums.ResultStatusEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.lang.NonNull;
 
 /**
  * 通用响应对象
@@ -61,7 +62,7 @@ public class Result<T> {
      * @param <T>          数据对象类型
      * @return 结果对象
      */
-    public static <T> Result<T> build(@NonNull ResultStatus resultStatus, T data) {
+    public static <T> Result<T> build(ResultStatus resultStatus, T data) {
         return build(resultStatus.getCode(), resultStatus.getMessage(), data);
     }
 
@@ -71,7 +72,7 @@ public class Result<T> {
      * @param resultStatus 响应状态对象
      * @return 结果对象
      */
-    public static Result<Void> build(@NonNull ResultStatus resultStatus) {
+    public static Result<Void> build(ResultStatus resultStatus) {
         return build(resultStatus, null);
     }
 

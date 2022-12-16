@@ -1,6 +1,6 @@
-package com.miemiemie.starter.web.exception;
+package com.miemiemie.core.exception;
 
-import com.miemiemie.starter.web.result.ResultStatus;
+import com.miemiemie.core.enums.ResultStatus;
 import lombok.Getter;
 
 /**

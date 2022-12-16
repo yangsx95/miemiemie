@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web.result;
+package com.miemiemie.core.enums;
 
 import com.miemiemie.core.enums.CommonEnum;
 

@@ -1,0 +1,11 @@
+description '''
+阿里云oss工具
+'''
+
+dependencies {
+    api project(":miemiemie-core")
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    api 'com.aliyun.oss:aliyun-sdk-oss:3.15.2'
+    compileOnly 'org.projectlombok:lombok'
+}

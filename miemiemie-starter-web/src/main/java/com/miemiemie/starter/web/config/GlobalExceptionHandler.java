@@ -1,7 +1,8 @@
-package com.miemiemie.starter.web.exception;
+package com.miemiemie.starter.web.config;
 
-import com.miemiemie.starter.web.result.ResultStatusEnum;
-import com.miemiemie.starter.web.result.Result;
+import com.miemiemie.core.exception.BizException;
+import com.miemiemie.core.enums.ResultStatusEnum;
+import com.miemiemie.core.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;

@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web.result;
+package com.miemiemie.core.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,6 +47,13 @@ public enum ResultStatusEnum implements ResultStatus {
      * 服务器繁忙
      */
     SERVER_BUSY(511, "服务器繁忙，请稍后再试"),
+
+    /**
+     * 上传文件失败
+     */
+    FILE_UPLOAD_ERROR(515, "文件上传失败"),
+
+    FILE_UPLAOD
 
     ;
 

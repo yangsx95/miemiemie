@@ -1,6 +1,6 @@
 package com.miemiemie.starter.web.annotation;
 
-import com.miemiemie.starter.web.result.Result;
+import com.miemiemie.core.result.Result;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
