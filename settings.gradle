@@ -9,6 +9,6 @@ void includePath(String path) {
 includePath 'miemiemie-core'
 includePath 'miemiemie-starter-web'
 includePath 'miemiemie-starter-mybatisplus'
-include 'miemiemie-demo'
-include 'miemiemie-starter-aliyunoss'
+includePath 'miemiemie-starter-aliyunoss'
+includePath 'miemiemie-demo'
 

@@ -1,6 +1,7 @@
 package com.miemiemie.starter.aliyunoss;
 
 import com.miemiemie.starter.aliyunoss.config.AliyunOssConfig;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2022/12/16
  */
 @Configuration
+@EnableConfigurationProperties(AliyunOssConfig.class)
 @ComponentScan(basePackageClasses = AliyunOssAutoConfig.class)
 public class AliyunOssAutoConfig {
 

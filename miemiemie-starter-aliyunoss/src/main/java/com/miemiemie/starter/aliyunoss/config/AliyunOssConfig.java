@@ -3,7 +3,6 @@ package com.miemiemie.starter.aliyunoss.config;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * oss 配置
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Component;
  */
 @Getter
 @Setter
-@Component
 @ConfigurationProperties(prefix = "oss")
 public class AliyunOssConfig {
 

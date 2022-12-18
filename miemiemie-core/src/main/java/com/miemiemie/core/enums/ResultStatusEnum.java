@@ -53,7 +53,10 @@ public enum ResultStatusEnum implements ResultStatus {
      */
     FILE_UPLOAD_ERROR(515, "文件上传失败"),
 
-    FILE_UPLAOD
+    /**
+     * 文件下载失败
+     */
+    FILE_DOWNLOAD_ERROR(516, "文件下载失败"),
 
     ;
 

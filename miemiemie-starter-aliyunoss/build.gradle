@@ -8,4 +8,5 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     api 'com.aliyun.oss:aliyun-sdk-oss:3.15.2'
     compileOnly 'org.projectlombok:lombok'
+    api 'com.github.f4b6a3:ulid-creator'
 }
