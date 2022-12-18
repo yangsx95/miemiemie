@@ -1,6 +1,5 @@
 package com.miemiemie.starter.aliyunoss;
 
-
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.model.OSSObject;
 import com.aliyun.oss.model.OSSObjectSummary;
@@ -50,7 +49,7 @@ public class AliyunOssUtil {
         return objectKey(dir, file.getName());
     }
 
-    public static @NonNull String randomObjectKey(String dir, String fileExtension) {
+    public static @NonNull String randomObjectKeyByExt(String dir, String fileExtension) {
         if (!StringUtils.hasText(fileExtension)) {
             return objectKey(dir, Ulid.fast().toString());
         }
@@ -62,12 +61,21 @@ public class AliyunOssUtil {
         return objectKey(dir, Ulid.fast() + fileExtension);
     }
 
+    public static @NonNull String randomObjectKeyByFilename(String dir, String filename) {
+        Assert.isTrue(StringUtils.hasText(filename), "文件名称不能为空");
+        String fileExt = null;
+        if (filename.contains(".")) {
+            fileExt = filename.substring(filename.lastIndexOf("."));
+        }
+        return randomObjectKeyByExt(dir, fileExt);
+    }
+
     public static @NonNull String randomObjectKey(String dir, File file) {
         Assert.notNull(file, "文件不能为空");
         String fileName = file.getName();
         String fileExtension = null;
         if (fileName.contains(".")) {
-            fileExtension = fileName.substring(fileName.indexOf("."));
+            fileExtension = fileName.substring(fileName.lastIndexOf("."));
         }
         return objectKey(dir, fileExtension);
     }
