@@ -8,21 +8,21 @@ import java.util.Optional;
  * @author 杨顺翔
  * @since 2022/07/31
  */
-public interface CommonEnum<C> {
+public interface CommonEnum<K, V> {
 
     /**
      * 枚举唯一编码
      *
      * @return 唯一编码
      */
-    C getCode();
+    K getCode();
 
     /**
      * 枚举描述
      *
      * @return 描述信息
      */
-    String getMessage();
+    V getDesc();
 
     /**
      * 根据枚举的code获取message
@@ -30,13 +30,14 @@ public interface CommonEnum<C> {
      * @param code      唯一编码
      * @param enumClass 枚举类型
      * @param <T>       枚举类型
-     * @param <C>       枚举code类型
+     * @param <K>       枚举code类型
+     * @param <V>       枚举desc类型
      * @return 枚举的描述
      */
-    static <T extends Enum<T> & CommonEnum<C>, C> String getMessage(C code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<K, V>, K, V> V getDesc(K code, Class<T> enumClass) {
         for (T item : enumClass.getEnumConstants()) {
             if (item.getCode().equals(code)) {
-                return item.getMessage();
+                return item.getDesc();
             }
         }
         return null;
@@ -48,11 +49,12 @@ public interface CommonEnum<C> {
      * @param code      唯一编码
      * @param enumClass 枚举类型
      * @param <T>       枚举类型
-     * @param <C>       枚举code类型
+     * @param <K>       枚举code类型
+     * @param <V>       枚举desc类型
      * @return 使用Optional包装枚举的描述
      */
-    static <T extends Enum<T> & CommonEnum<C>, C> Optional<String> getOptionalMessage(C code, Class<T> enumClass) {
-        return Optional.ofNullable(getMessage(code, enumClass));
+    static <T extends Enum<T> & CommonEnum<K, V>, K, V> Optional<V> getOptionalDesc(K code, Class<T> enumClass) {
+        return Optional.ofNullable(getDesc(code, enumClass));
     }
 
     /**
@@ -61,9 +63,11 @@ public interface CommonEnum<C> {
      * @param code      唯一编码
      * @param enumClass 枚举类型
      * @param <T>       枚举类型
+     * @param <K>       枚举code类型
+     * @param <V>       枚举desc类型
      * @return 枚举对象
      */
-    static <T extends Enum<T> & CommonEnum<?>> T getEnum(Object code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<K, V> , K, V> T getEnum(K code, Class<T> enumClass) {
         for (T item : enumClass.getEnumConstants()) {
             if (item.getCode().equals(code)) {
                 return item;
@@ -78,10 +82,11 @@ public interface CommonEnum<C> {
      * @param code      唯一编码
      * @param enumClass 枚举类型
      * @param <T>       枚举类型
-     * @param <C>       枚举code类型
+     * @param <K>       枚举code类型
+     * @param <V>       枚举desc类型
      * @return 使用Optional包装的枚举对象
      */
-    static <T extends Enum<T> & CommonEnum<C>, C> Optional<T> getOptionalEnum(C code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<K, V>, K, V> Optional<T> getOptionalEnum(K code, Class<T> enumClass) {
         return Optional.ofNullable(getEnum(code, enumClass));
     }
 

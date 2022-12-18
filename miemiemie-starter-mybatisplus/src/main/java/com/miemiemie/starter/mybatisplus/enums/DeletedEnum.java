@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum DeletedEnum implements CommonEnum<Integer> {
+public enum DeletedEnum implements CommonEnum<Integer, String> {
     /**
      * 未删除
      */
@@ -20,6 +20,6 @@ public enum DeletedEnum implements CommonEnum<Integer> {
 
     private final Integer code;
 
-    private final String message;
+    private final String desc;
 
 }

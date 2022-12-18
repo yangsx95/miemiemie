@@ -63,5 +63,5 @@ public enum ResultStatusEnum implements ResultStatus {
     private final Integer code;
 
 
-    private final String message;
+    private final String desc;
 }

@@ -63,7 +63,7 @@ public class Result<T> {
      * @return 结果对象
      */
     public static <T> Result<T> build(ResultStatus resultStatus, T data) {
-        return build(resultStatus.getCode(), resultStatus.getMessage(), data);
+        return build(resultStatus.getCode(), resultStatus.getDesc(), data);
     }
 
     /**

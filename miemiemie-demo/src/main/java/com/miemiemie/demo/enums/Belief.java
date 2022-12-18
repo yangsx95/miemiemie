@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Belief implements CommonEnum<Integer> {
+public enum Belief implements CommonEnum<Integer, String> {
 
     NONE(0, "无"),
     CHRISTIANITY(1, "基督"),
@@ -18,5 +18,5 @@ public enum Belief implements CommonEnum<Integer> {
 
     private final Integer code;
 
-    private final String message;
+    private final String desc;
 }

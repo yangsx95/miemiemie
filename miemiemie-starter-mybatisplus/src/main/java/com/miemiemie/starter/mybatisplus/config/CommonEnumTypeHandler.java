@@ -17,7 +17,7 @@ import java.sql.SQLException;
  * @since 2022/12/8
  */
 @SuppressWarnings("unchecked")
-public class CommonEnumTypeHandler<E extends Enum<E> & CommonEnum<?>> extends BaseTypeHandler<E> {
+public class CommonEnumTypeHandler<E extends Enum<E> & CommonEnum<?, ?>> extends BaseTypeHandler<E> {
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, E parameter, JdbcType jdbcType) throws SQLException {
@@ -29,17 +29,26 @@ public class CommonEnumTypeHandler<E extends Enum<E> & CommonEnum<?>> extends Ba
 
     @Override
     public E getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        return CommonEnum.getEnum(rs.getObject(columnName), (Class<E>) this.getRawType());
+        return getCommonEnumByCode(rs.getObject(columnName), (Class<E>) this.getRawType());
     }
 
     @Override
     public E getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        return CommonEnum.getEnum(rs.getObject(columnIndex), (Class<E>) this.getRawType());
+        return getCommonEnumByCode(rs.getObject(columnIndex), (Class<E>) this.getRawType());
     }
 
     @Override
     public E getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        return CommonEnum.getEnum(cs.getObject(columnIndex), (Class<E>) this.getRawType());
+        return getCommonEnumByCode(cs.getObject(columnIndex), (Class<E>) this.getRawType());
+    }
+
+    private E getCommonEnumByCode(Object code, Class<E> enumClass) {
+        for (E item : enumClass.getEnumConstants()) {
+            if (item.getCode().equals(code)) {
+                return item;
+            }
+        }
+        return null;
     }
 
 }

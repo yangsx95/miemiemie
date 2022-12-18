@@ -1,14 +1,12 @@
 package com.miemiemie.core.enums;
 
-import com.miemiemie.core.enums.CommonEnum;
-
 /**
  * 响应状态枚举抽象
  *
  * @author 杨顺翔
  * @since 2022/07/23
  */
-public interface ResultStatus extends CommonEnum<Integer> {
+public interface ResultStatus extends CommonEnum<Integer, String> {
 
     /**
      * 响应码
@@ -22,5 +20,5 @@ public interface ResultStatus extends CommonEnum<Integer> {
      *
      * @return 响应描述
      */
-    String getMessage();
+    String getDesc();
 }
