@@ -113,7 +113,7 @@ public class MimeTypes {
     public static final String MIME_VIDEO_X_SGI_MOVIE = "video/x-sgi-movie";
     public static final String MIME_X_CONFERENCE_X_COOLTALK = "x-conference/x-cooltalk";
 
-    private static HashMap<String, String> mimeTypeMapping;
+    private static final HashMap<String, String> mimeTypeMapping;
 
     static {
         mimeTypeMapping = new HashMap<String, String>(200) {
