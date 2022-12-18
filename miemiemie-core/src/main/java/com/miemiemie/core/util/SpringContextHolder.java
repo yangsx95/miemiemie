@@ -8,6 +8,9 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+/**
+ * @author yangshunxiang
+ */
 @Component
 public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
 
