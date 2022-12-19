@@ -1,0 +1,4 @@
+oss:
+  endpoint: oss-cn-shanghai.aliyuncs.com
+  accessKeyId: xxxxxxxxxxxxxxxxx
+  accessKeySecret: xxxxxxxxxxxxxxxxx

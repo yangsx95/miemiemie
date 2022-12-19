@@ -12,6 +12,7 @@ ext {
             "springBootMybatis"    : "2.3.0",
             "springBootMybatisplus": "3.5.2",
             "ulidCreator"          : "5.1.0",
+            "aliyunOss"            : "3.15.2",
     ]
 
     dependencies = [
@@ -21,5 +22,6 @@ ext {
             "mybatis"           : "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.springBootMybatis}",
             "mybatisPlus"       : "com.baomidou:mybatis-plus-boot-starter:${versions.springBootMybatisplus}",
             "ulidCreator"       : "com.github.f4b6a3:ulid-creator:${versions.ulidCreator}",
+            "aliyunOss"         : "com.aliyun.oss:aliyun-sdk-oss:${versions.aliyunOss}",
     ]
 }

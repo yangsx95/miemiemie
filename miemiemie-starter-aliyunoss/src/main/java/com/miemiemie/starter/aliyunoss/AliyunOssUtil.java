@@ -137,14 +137,14 @@ public class AliyunOssUtil {
         if (url.contains("internal")) {
             return url;
         } else {
-            return url.replace(".aliyun.com", "-internal.aliyun.com");
+            return url.replace(".aliyuncs.com", "-internal.aliyuncs.com");
         }
     }
 
     public static String openUrl(String bucketName, String objectKey) {
         String url = url(bucketName, objectKey);
         if (url.contains("internal")) {
-            return url.replace("-internal.aliyun.com", ".aliyun.com");
+            return url.replace("-internal.aliyuncs.com", ".aliyuncs.com");
         } else {
             return url;
         }
