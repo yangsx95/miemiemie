@@ -8,5 +8,5 @@ dependencies {
     api 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
     api 'com.baomidou:mybatis-plus-boot-starter'
     api 'org.springframework.boot:spring-boot-autoconfigure'
-    api 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }

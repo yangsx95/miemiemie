@@ -5,7 +5,7 @@ xxl-job封装
 dependencies {
     api project(":miemiemie-core")
     api 'org.springframework.boot:spring-boot-autoconfigure'
-    api 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     api 'com.xuxueli:xxl-job-core'
     compileOnly 'org.springframework.cloud:spring-cloud-commons'
 }
