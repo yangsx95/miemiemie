@@ -6,6 +6,7 @@ dependencies {
     api project(":miemiemie-core")
 
     api 'org.springframework.boot:spring-boot-starter-web'
+    api 'org.springframework.boot:spring-boot-starter-aop'
     api 'org.springframework.boot:spring-boot-autoconfigure'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     api 'com.github.f4b6a3:ulid-creator'

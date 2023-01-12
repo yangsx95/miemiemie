@@ -1,19 +1,16 @@
 package com.miemiemie.starter.aliyunoss;
 
+import com.github.f4b6a3.ulid.Ulid;
 import com.miemiemie.core.exception.BizException;
-import com.miemiemie.core.util.SpringContextHolder;
-import org.springframework.lang.NonNull;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
-
-import java.io.File;
 
 /**
  * 阿里云oss文件对象建造器
+ *
  * @author yangshunxiang
  * @since 2023/1/12
  */
-public final class AliyunOssFileBuilder {
+public class AliyunOssFileBuilder {
 
     private final AliyunOssFile aliyunOssFile = new AliyunOssFile();
 
@@ -21,28 +18,38 @@ public final class AliyunOssFileBuilder {
         return new AliyunOssFileBuilder();
     }
 
-    public AliyunOssFileBuilder endpoint(@NonNull String endpoint) {
-        this.aliyunOssFile.setEndpoint(endpoint);
+    public AliyunOssFileBuilder bucketName(String bucketName) {
+        this.aliyunOssFile.setBucketName(bucketName);
         return this;
     }
 
-    public AliyunOssFileBuilder bucketName(@NonNull String bucketName) {
-        this.aliyunOssFile.setBucket(bucketName);
+    public AliyunOssFileBuilder baseDir(String baseDir) {
+        this.aliyunOssFile.setBaseDir(baseDir);
         return this;
     }
 
-    public AliyunOssFileBuilder dir(@NonNull String dir) {
+    public AliyunOssFileBuilder dir(String dir) {
         this.aliyunOssFile.setDir(dir);
         return this;
     }
 
-    public AliyunOssFileBuilder filename(@NonNull String filename) {
+    public AliyunOssFileBuilder randomDir() {
+        this.aliyunOssFile.setDir(Ulid.fast().toString());
+        return this;
+    }
+
+    public AliyunOssFileBuilder filename(String filename) {
         this.aliyunOssFile.setFilename(filename);
         return this;
     }
 
-    public AliyunOssFileBuilder file(@NonNull File file) {
-        this.aliyunOssFile.setFilename(file.getName());
+    public AliyunOssFileBuilder randomFilename(String fileExtension) {
+        if (!StringUtils.hasText(fileExtension)) {
+            this.aliyunOssFile.setFilename(Ulid.fast().toString());
+            return this;
+        }
+        fileExtension = fileExtension.trim().replaceAll("^\\.+", "");
+        this.aliyunOssFile.setFilename(Ulid.fast() + "." + fileExtension);
         return this;
     }
 

@@ -1,4 +1,6 @@
 oss:
-  endpoint: oss-cn-shanghai.aliyuncs.com
-  accessKeyId: xxxxxxxxxxxxxxxxx
-  accessKeySecret: xxxxxxxxxxxxxxxxx
+  endpoint: oss-cn-hongkong.aliyuncs.com
+  accessKeyId: xxxxxxxxxx
+  accessKeySecret: xxxxxxxx
+  defaultBucketName: file-bed
+  defaultBaseDir: public

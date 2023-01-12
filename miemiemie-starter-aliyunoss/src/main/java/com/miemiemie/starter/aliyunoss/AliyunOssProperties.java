@@ -21,8 +21,8 @@ public class AliyunOssProperties {
 
     private String accessKeySecret;
 
-    private String defaultBucket;
+    private String defaultBucketName;
 
-    private String defaultDir;
+    private String defaultBaseDir;
 
 }
