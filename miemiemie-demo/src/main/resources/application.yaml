@@ -1,5 +1,16 @@
+server:
+  port: 7777
+
 spring:
+  application:
+    name: miemiemie-demo
   datasource:
     url: jdbc:mysql://localhost:3306/miemiemie
     username: root
     password: miemiemie
+
+xxl:
+  job:
+    admin:
+      addresses: http://127.0.0.1:8080/xxl-job-admin
+    access-token: default_token

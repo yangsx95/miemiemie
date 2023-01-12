@@ -15,8 +15,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "xxl.job")
-public class XxlJobConfig {
-
+public class XxlJobProperties {
 
     private String accessToken;
 

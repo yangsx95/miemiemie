@@ -6,4 +6,5 @@ dependencies {
     implementation project(":miemiemie-starter-web")
     implementation project(":miemiemie-starter-mybatisplus")
     implementation 'mysql:mysql-connector-java:8.0.31'
+    implementation project(":miemiemie-starter-xxljob")
 }

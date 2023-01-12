@@ -13,6 +13,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -23,36 +24,37 @@ import java.util.stream.Collectors;
  */
 @Configuration
 @ComponentScan(basePackageClasses = XxlJobAutoConfig.class)
-@EnableConfigurationProperties(XxlJobConfig.class)
+@EnableConfigurationProperties(XxlJobProperties.class)
 public class XxlJobAutoConfig {
 
     /**
      * xxl-job执行器，spring boot 环境
      *
-     * @param xxlJobConfig xxl-job配置对象
-     * @param environment  环境对象
+     * @param xxlJobProperties xxl-job配置对象
+     * @param environment      环境对象
      * @return xxl-job执行器
      */
     @ConditionalOnMissingBean(DiscoveryClient.class)
     @Bean
-    public XxlJobSpringExecutor xxlJobSpringBootExecutor(XxlJobConfig xxlJobConfig, Environment environment) {
-        return genXxlJobSpringExecutor(xxlJobConfig, environment);
+    public XxlJobSpringExecutor xxlJobSpringBootExecutor(XxlJobProperties xxlJobProperties, Environment environment) {
+        return genXxlJobSpringExecutor(xxlJobProperties, environment);
     }
 
     /**
      * xxl-job执行器，spring-cloud 环境
-     * @param discoveryClient 服务发现
-     * @param xxlJobConfig xxl-job配置对象
-     * @param environment 环境对象
+     *
+     * @param discoveryClient  服务发现
+     * @param xxlJobProperties xxl-job配置对象
+     * @param environment      环境对象
      * @return xxl-job 执行器
      */
     @ConditionalOnBean(DiscoveryClient.class)
     @Bean
-    public XxlJobSpringExecutor xxlJobSpringCloudExecutor(DiscoveryClient discoveryClient, XxlJobConfig xxlJobConfig, Environment environment) {
-        XxlJobSpringExecutor executor = genXxlJobSpringExecutor(xxlJobConfig, environment);
+    public XxlJobSpringExecutor xxlJobSpringCloudExecutor(DiscoveryClient discoveryClient, XxlJobProperties xxlJobProperties, Environment environment) {
+        XxlJobSpringExecutor executor = genXxlJobSpringExecutor(xxlJobProperties, environment);
         // spring cloud 环境下，address配置优先作为注册中心的服务名称，而不是调度中心的url
         // 如果没有找到对应名称的服务，则会作为调度中心的url直接使用
-        String addresses = xxlJobConfig.getAdmin().getAddresses();
+        String addresses = xxlJobProperties.getAdmin().getAddresses();
         String jobServer = getAdminAddressFromDiscovery(discoveryClient, addresses);
         if (StringUtils.hasText(jobServer)) {
             executor.setAdminAddresses(jobServer);
@@ -62,15 +64,15 @@ public class XxlJobAutoConfig {
         return executor;
     }
 
-    private XxlJobSpringExecutor genXxlJobSpringExecutor(XxlJobConfig xxlJobConfig, Environment environment) {
+    private XxlJobSpringExecutor genXxlJobSpringExecutor(XxlJobProperties xxlJobProperties, Environment environment) {
         XxlJobSpringExecutor executor = new XxlJobSpringExecutor();
-        XxlJobConfig.AdminConfig adminConfig = xxlJobConfig.getAdmin();
-        XxlJobConfig.ExecutorConfig executorConfig = xxlJobConfig.getExecutor();
-        executor.setAccessToken(xxlJobConfig.getAccessToken());
+        XxlJobProperties.AdminConfig adminConfig = xxlJobProperties.getAdmin();
+        XxlJobProperties.ExecutorConfig executorConfig = xxlJobProperties.getExecutor();
+        executor.setAccessToken(xxlJobProperties.getAccessToken());
         executor.setAdminAddresses(adminConfig.getAddresses());
         executor.setAddress(executorConfig.getAddress());
         executor.setIp(executorConfig.getIp());
-        executor.setPort(executorConfig.getPort());
+        Optional.ofNullable(executorConfig.getPort()).ifPresent(executor::setPort);
         // 应用名称默认为程序名称
         if (!StringUtils.hasText(executorConfig.getAppname())) {
             executor.setAppname(environment.getProperty("spring.application.name"));
@@ -78,7 +80,7 @@ public class XxlJobAutoConfig {
             executor.setAppname(executorConfig.getAppname());
         }
         executor.setLogPath(executorConfig.getLogpath());
-        executor.setLogRetentionDays(executorConfig.getLogretentiondays());
+        Optional.ofNullable(executorConfig.getLogretentiondays()).ifPresent(executor::setLogRetentionDays);
         return executor;
     }
 
