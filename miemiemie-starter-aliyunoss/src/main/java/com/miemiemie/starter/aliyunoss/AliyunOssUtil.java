@@ -8,7 +8,6 @@ import com.github.f4b6a3.ulid.Ulid;
 import com.miemiemie.core.enums.ResultStatusEnum;
 import com.miemiemie.core.exception.BizException;
 import com.miemiemie.core.util.SpringContextHolder;
-import com.miemiemie.starter.aliyunoss.config.AliyunOssConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
@@ -42,11 +41,6 @@ public class AliyunOssUtil {
                 .map(e -> e.replace("\\", "/"))
                 .orElse("/");
         return dir + "/" + fileName;
-    }
-
-    public static @NonNull String objectKey(String dir, File file) {
-        Assert.notNull(file, "文件不能为空");
-        return objectKey(dir, file.getName());
     }
 
     public static @NonNull String randomObjectKeyByExt(String dir, String fileExtension) {
@@ -87,11 +81,14 @@ public class AliyunOssUtil {
      * @param bucketName bucket名称
      * @param objectName 上传文件目录和（包括文件名）例如“test/index.html”
      */
-    public static void upload(URL url, String bucketName, String objectName) {
+    public static AliyunOssFile upload(URL url, String bucketName, String objectName) {
         OSS ossClient = getOSSClient();
         try {
             InputStream inputStream = url.openStream();
             ossClient.putObject(bucketName, objectName, inputStream);
+            return AliyunOssFileBuilder.builder()
+                    .bucketName(bucketName)
+                    .build();
         } catch (Exception e) {
             log.error("上传文件到oss失败", e);
             throw new BizException(ResultStatusEnum.FILE_UPLOAD_ERROR);
@@ -132,31 +129,7 @@ public class AliyunOssUtil {
         }
     }
 
-    public static String internalUrl(String bucketName, String objectKey) {
-        String url = url(bucketName, objectKey);
-        if (url.contains("internal")) {
-            return url;
-        } else {
-            return url.replace(".aliyuncs.com", "-internal.aliyuncs.com");
-        }
-    }
 
-    public static String openUrl(String bucketName, String objectKey) {
-        String url = url(bucketName, objectKey);
-        if (url.contains("internal")) {
-            return url.replace("-internal.aliyuncs.com", ".aliyuncs.com");
-        } else {
-            return url;
-        }
-    }
-
-    public static String url(String bucketName, String objectKey) {
-        Assert.isTrue(StringUtils.hasText(bucketName), "bucketName不能为空");
-        Assert.isTrue(StringUtils.hasText(objectKey), "objectKey不能为空");
-        AliyunOssConfig config = SpringContextHolder.getBean(AliyunOssConfig.class);
-        Assert.notNull(config, "未找到oss配置");
-        return bucketName.trim() + "." + config.getEndpoint() + "/" + objectKey.trim();
-    }
 
     /**
      * 删除文件

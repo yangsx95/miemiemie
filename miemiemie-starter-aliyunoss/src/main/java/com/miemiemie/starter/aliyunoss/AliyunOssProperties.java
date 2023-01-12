@@ -1,4 +1,4 @@
-package com.miemiemie.starter.aliyunoss.config;
+package com.miemiemie.starter.aliyunoss;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,12 +13,16 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "oss")
-public class AliyunOssConfig {
+public class AliyunOssProperties {
 
     private String endpoint;
 
     private String accessKeyId;
 
     private String accessKeySecret;
+
+    private String defaultBucket;
+
+    private String defaultDir;
 
 }

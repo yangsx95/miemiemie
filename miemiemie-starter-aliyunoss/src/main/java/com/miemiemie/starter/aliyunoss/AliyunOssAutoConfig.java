@@ -1,6 +1,5 @@
 package com.miemiemie.starter.aliyunoss;
 
-import com.miemiemie.starter.aliyunoss.config.AliyunOssConfig;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,22 +12,22 @@ import org.springframework.context.annotation.Configuration;
  * @since 2022/12/16
  */
 @Configuration
-@EnableConfigurationProperties(AliyunOssConfig.class)
+@EnableConfigurationProperties(AliyunOssProperties.class)
 @ComponentScan(basePackageClasses = AliyunOssAutoConfig.class)
 public class AliyunOssAutoConfig {
 
-    private final AliyunOssConfig aliyunOssConfig;
+    private final AliyunOssProperties aliyunOssProperties;
 
-    public AliyunOssAutoConfig(final AliyunOssConfig aliyunOssConfig) {
-        this.aliyunOssConfig = aliyunOssConfig;
+    public AliyunOssAutoConfig(final AliyunOssProperties aliyunOssProperties) {
+        this.aliyunOssProperties = aliyunOssProperties;
     }
 
     @Bean
     public AliyunOssClientFactoryBean ossClientFactoryBean() {
         final AliyunOssClientFactoryBean factoryBean = new AliyunOssClientFactoryBean();
-        factoryBean.setEndpoint(this.aliyunOssConfig.getEndpoint());
-        factoryBean.setAccessKeyId(this.aliyunOssConfig.getAccessKeyId());
-        factoryBean.setAccessKeySecret(this.aliyunOssConfig.getAccessKeySecret());
+        factoryBean.setEndpoint(this.aliyunOssProperties.getEndpoint());
+        factoryBean.setAccessKeyId(this.aliyunOssProperties.getAccessKeyId());
+        factoryBean.setAccessKeySecret(this.aliyunOssProperties.getAccessKeySecret());
         return factoryBean;
     }
 }

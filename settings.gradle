@@ -12,4 +12,4 @@ includePath 'miemiemie-starter-mybatisplus'
 includePath 'miemiemie-starter-aliyunoss'
 includePath 'miemiemie-demo'
 includePath 'miemiemie-starter-xxljob'
-
+includePath 'miemiemie-starter-feign'

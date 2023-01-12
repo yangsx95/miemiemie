@@ -1,8 +1,8 @@
 package com.miemiemie.starter.web.result;
 
+import com.miemiemie.core.constants.InnerHttpHeaders;
 import com.miemiemie.core.result.Result;
 import com.miemiemie.starter.web.annotation.NoPackage;
-import com.miemiemie.starter.web.contstants.InnerHttpHeaders;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -12,7 +12,6 @@ import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 
@@ -47,7 +46,7 @@ public class ResultPackageHandler implements ResponseBodyAdvice<Object> {
             return body;
         }
 
-        InnerHttpHeaders innerHttpHeaders = InnerHttpHeaders.build(request.getHeaders());
+        InnerHttpHeaders innerHttpHeaders = InnerHttpHeaders.build(request.getHeaders().toSingleValueMap());
         // 内部服务不包装Result
         if (innerHttpHeaders.getServiceTypeEnum() == InnerHttpHeaders.ServiceTypeEnum.SERVICE) {
             return body;

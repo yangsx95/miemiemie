@@ -1,10 +1,8 @@
-package com.miemiemie.starter.web.feign;
+package com.miemiemie.starter.feign;
 
-import com.miemiemie.starter.web.contstants.InnerHttpHeaders;
-import feign.Feign;
+import com.miemiemie.core.constants.InnerHttpHeaders;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @since 2022/07/31
  */
 @Configuration
-@ConditionalOnClass(Feign.class)
 public class FeignAutoConfiguration implements RequestInterceptor {
 
     @Override

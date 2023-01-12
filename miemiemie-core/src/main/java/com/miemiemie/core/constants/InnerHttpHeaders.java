@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web.contstants;
+package com.miemiemie.core.constants;
 
 import com.miemiemie.core.enums.CommonEnum;
 import com.miemiemie.core.enums.NameCodeEnum;
@@ -7,13 +7,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldNameConstants;
-import org.springframework.http.HttpHeaders;
 
+import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
 /**
- * 内部请求头对象
+ * 服务内部请求头对象
  *
  * @author 杨顺翔
  * @since 2022/07/31
@@ -32,13 +31,13 @@ public class InnerHttpHeaders {
         return CommonEnum.getEnum(this._MMM_SERVICE_TYPE, ServiceTypeEnum.class);
     }
 
-    public static InnerHttpHeaders build(HttpHeaders httpHeaders) {
+    public static InnerHttpHeaders build(Map<String, String> httpHeaders) {
         InnerHttpHeaders innerHttpHeaders = new InnerHttpHeaders();
         if (Objects.isNull(httpHeaders) || httpHeaders.isEmpty()) {
             return innerHttpHeaders;
         }
 
-        innerHttpHeaders._MMM_SERVICE_TYPE = Optional.ofNullable(httpHeaders.get(Fields._MMM_SERVICE_TYPE)).map(e -> e.get(0)).orElse(null);
+        innerHttpHeaders._MMM_SERVICE_TYPE = httpHeaders.get(Fields._MMM_SERVICE_TYPE);
         return innerHttpHeaders;
     }
 
