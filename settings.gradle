@@ -12,6 +12,6 @@ includePath 'miemiemie-starter-feign'
 includePath 'miemiemie-starter-mybatisplus'
 includePath 'miemiemie-starter-aliyunoss'
 includePath 'miemiemie-starter-xxljob'
+includePath 'miemiemie-starter-validation'
 
 includePath 'miemiemie-demo'
-

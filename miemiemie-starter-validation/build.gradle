@@ -1,13 +1,13 @@
 description '''
-阿里云oss工具
+validation相关封装
 '''
 
 dependencies {
     api project(":miemiemie-core")
-    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'org.springframework.boot:spring-boot-autoconfigure'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    api 'com.aliyun.oss:aliyun-sdk-oss'
-    api 'com.github.f4b6a3:ulid-creator'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

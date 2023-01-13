@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web.config;
+package com.miemiemie.starter.web.exception.handler;
 
 import com.miemiemie.core.enums.ResultStatusEnum;
 import com.miemiemie.core.exception.BizException;

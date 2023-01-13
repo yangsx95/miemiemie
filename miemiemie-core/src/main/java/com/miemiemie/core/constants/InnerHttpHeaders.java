@@ -48,7 +48,7 @@ public class InnerHttpHeaders {
         WEB("web发送"),
         ;
 
-        private final String desc;
+        private final String message;
     }
 
 
