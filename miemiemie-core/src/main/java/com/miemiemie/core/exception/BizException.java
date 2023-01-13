@@ -25,13 +25,13 @@ public class BizException extends RuntimeException {
     public BizException(ResultStatus resultStatus) {
         super(resultStatus.getCode().toString());
         this.errorCode = resultStatus.getCode();
-        this.errorMsg = resultStatus.getDesc();
+        this.errorMsg = resultStatus.getMessage();
     }
 
     public BizException(ResultStatus errorInfoInterface, Throwable cause) {
         super(errorInfoInterface.getCode().toString(), cause);
         this.errorCode = errorInfoInterface.getCode();
-        this.errorMsg = errorInfoInterface.getDesc();
+        this.errorMsg = errorInfoInterface.getMessage();
     }
 
     public BizException(String errorMsg) {

@@ -22,7 +22,7 @@ public interface CommonEnum<K, V> {
      *
      * @return 描述信息
      */
-    V getDesc();
+    V getMessage();
 
     /**
      * 根据枚举的code获取message
@@ -34,10 +34,10 @@ public interface CommonEnum<K, V> {
      * @param <V>       枚举desc类型
      * @return 枚举的描述
      */
-    static <T extends Enum<T> & CommonEnum<K, V>, K, V> V getDesc(K code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<K, V>, K, V> V getMessage(K code, Class<T> enumClass) {
         for (T item : enumClass.getEnumConstants()) {
             if (item.getCode().equals(code)) {
-                return item.getDesc();
+                return item.getMessage();
             }
         }
         return null;
@@ -54,7 +54,7 @@ public interface CommonEnum<K, V> {
      * @return 使用Optional包装枚举的描述
      */
     static <T extends Enum<T> & CommonEnum<K, V>, K, V> Optional<V> getOptionalDesc(K code, Class<T> enumClass) {
-        return Optional.ofNullable(getDesc(code, enumClass));
+        return Optional.ofNullable(getMessage(code, enumClass));
     }
 
     /**

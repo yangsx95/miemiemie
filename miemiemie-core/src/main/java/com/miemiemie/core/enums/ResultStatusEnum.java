@@ -31,7 +31,7 @@ public enum ResultStatusEnum implements ResultStatus {
     /**
      * 参数校验失败
      */
-    CHECK_FAIL(402, "参数校验失败"),
+    PARAMETER_CHECK_FAIL(402, "参数校验失败"),
 
     /**
      * 认证失败
@@ -58,10 +58,15 @@ public enum ResultStatusEnum implements ResultStatus {
      */
     FILE_DOWNLOAD_ERROR(516, "文件下载失败"),
 
+    /**
+     * 调用内部服务失败
+     */
+    INVOKE_INTERNAL_SERVICE_FAIL(601, "服务调用失败"),
+
     ;
 
     private final Integer code;
 
 
-    private final String desc;
+    private final String message;
 }

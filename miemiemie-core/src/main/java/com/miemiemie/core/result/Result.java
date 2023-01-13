@@ -4,6 +4,7 @@ import com.miemiemie.core.enums.ResultStatus;
 import com.miemiemie.core.enums.ResultStatusEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import lombok.experimental.FieldNameConstants;
 
 /**
  * 通用响应对象
@@ -13,6 +14,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
+@FieldNameConstants
 public class Result<T> {
 
     /**
@@ -63,7 +65,7 @@ public class Result<T> {
      * @return 结果对象
      */
     public static <T> Result<T> build(ResultStatus resultStatus, T data) {
-        return build(resultStatus.getCode(), resultStatus.getDesc(), data);
+        return build(resultStatus.getCode(), resultStatus.getMessage(), data);
     }
 
     /**

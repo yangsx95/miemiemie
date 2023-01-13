@@ -20,5 +20,5 @@ public interface ResultStatus extends CommonEnum<Integer, String> {
      *
      * @return 响应描述
      */
-    String getDesc();
+    String getMessage();
 }
