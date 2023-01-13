@@ -53,7 +53,7 @@ public interface CommonEnum<K, V> {
      * @param <V>       枚举desc类型
      * @return 使用Optional包装枚举的描述
      */
-    static <T extends Enum<T> & CommonEnum<K, V>, K, V> Optional<V> getOptionalDesc(K code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<K, V>, K, V> Optional<V> getOptionalMessage(K code, Class<T> enumClass) {
         return Optional.ofNullable(getMessage(code, enumClass));
     }
 

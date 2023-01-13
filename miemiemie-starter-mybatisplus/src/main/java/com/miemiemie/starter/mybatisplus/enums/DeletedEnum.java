@@ -20,6 +20,6 @@ public enum DeletedEnum implements CommonEnum<Integer, String> {
 
     private final Integer code;
 
-    private final String desc;
+    private final String message;
 
 }

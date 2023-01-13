@@ -18,5 +18,5 @@ public enum Belief implements CommonEnum<Integer, String> {
 
     private final Integer code;
 
-    private final String desc;
+    private final String message;
 }
