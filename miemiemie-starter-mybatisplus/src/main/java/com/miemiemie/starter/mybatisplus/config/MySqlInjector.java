@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.extension.injector.methods.AlwaysUpdateSomeColumnById;
 import com.baomidou.mybatisplus.extension.injector.methods.InsertBatchSomeColumn;
+import com.miemiemie.starter.mybatisplus.method.UpdateBatchByIdMethod;
 
 import java.util.List;
 
@@ -19,10 +20,10 @@ public class MySqlInjector extends DefaultSqlInjector {
     @Override
     public List<AbstractMethod> getMethodList(Class<?> mapperClass, TableInfo tableInfo) {
         List<AbstractMethod> methodList = super.getMethodList(mapperClass, tableInfo);
-        // 批量插入多条数据，并且指定插入时什么字段需要填充
+        // 批量插入数据，并且指定插入时什么字段需要填充
         methodList.add(new InsertBatchSomeColumn("insertBatch", i -> i.getFieldFill() != FieldFill.UPDATE && !i.isLogicDelete()));
-        // 根据id批量更新某些字段，并且更新时不更新策略为INSERT的字段
-        methodList.add(new AlwaysUpdateSomeColumnById(i -> i.getFieldFill() != FieldFill.INSERT));
+        // 批量更新数据
+        methodList.add(new UpdateBatchByIdMethod("updateBatch"));
         return methodList;
     }
 }
