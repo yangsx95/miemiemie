@@ -15,18 +15,18 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         LocalDateTime now = LocalDateTime.now();
-        if (Objects.isNull(getFieldValByName(BaseEntity.Fields.createName, metaObject))) {
-            setFieldValByName(BaseEntity.Fields.createName, now, metaObject);
+        if (Objects.isNull(getFieldValByName("createTime", metaObject))) {
+            setFieldValByName("createTime", now, metaObject);
         }
-        if (Objects.isNull(getFieldValByName(BaseEntity.Fields.updateTime, metaObject))) {
-            setFieldValByName(BaseEntity.Fields.updateTime, now, metaObject);
+        if (Objects.isNull(getFieldValByName("updateTime", metaObject))) {
+            setFieldValByName("updateTime", now, metaObject);
         }
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        if (Objects.isNull(getFieldValByName(BaseEntity.Fields.updateTime, metaObject))) {
-            setFieldValByName(BaseEntity.Fields.updateTime, LocalDateTime.now(), metaObject);
+        if (Objects.isNull(getFieldValByName("updateTime", metaObject))) {
+            setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
         }
     }
 }

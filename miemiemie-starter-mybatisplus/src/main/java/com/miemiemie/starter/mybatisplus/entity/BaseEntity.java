@@ -28,40 +28,10 @@ public abstract class BaseEntity implements Serializable {
     private Integer deleted;
 
     /**
-     * 创建人
-     */
-    @TableField(updateStrategy = FieldStrategy.NEVER)
-    private String createBy;
-
-    /**
-     * 创建人名称
-     */
-    @TableField(updateStrategy = FieldStrategy.NEVER)
-    private String createName;
-
-    /**
-     * 创建人所属组织代码
-     */
-    @TableField(updateStrategy = FieldStrategy.NEVER)
-    private String createOrgCode;
-
-    /**
      * 创建时间
      */
     @TableField(updateStrategy = FieldStrategy.NEVER)
     private LocalDateTime createTime;
-
-    /**
-     * 最后更新人
-     */
-    @TableField
-    private String updateBy;
-
-    /**
-     * 最后更新人名称
-     */
-    @TableField
-    private String updateName;
 
     /**
      * 更新时间
