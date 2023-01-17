@@ -17,7 +17,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
+    @TableId(type = IdType.ASSIGN_ID)
     private Long id;
 
     /**
@@ -30,20 +30,13 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(updateStrategy = FieldStrategy.NEVER)
+    @TableField(updateStrategy = FieldStrategy.NEVER, fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @TableField
+    @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
-
-    /**
-     * 乐观锁
-     */
-    @Version
-    @TableField
-    private Integer version;
 
 }

@@ -10,6 +10,8 @@ import java.util.Optional;
  */
 public interface CommonEnum<K, V> {
 
+    String METHOD_NAME_CODE_GETTER = "getCode";
+
     /**
      * 枚举唯一编码
      *

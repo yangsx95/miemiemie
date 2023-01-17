@@ -42,7 +42,7 @@ public class GenericEnumTypeHandler<E extends Enum<E>> implements TypeHandler<E>
     private TypeHandler<E> getTypeHandlerByEnumClazz(Class<E> type) {
         if (CommonEnum.class.isAssignableFrom(type)) {
             //noinspection rawtypes,unchecked
-            return new CommonEnumTypeHandler();
+            return new CommonEnumTypeHandler(type);
         }
         // 不是自定义的枚举类型，交给mybaitsplus处理
         return new MybatisEnumTypeHandler<>(type);
