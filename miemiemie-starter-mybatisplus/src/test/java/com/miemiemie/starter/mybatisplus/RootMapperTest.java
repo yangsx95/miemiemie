@@ -55,4 +55,9 @@ public class RootMapperTest{
         System.out.println(personMap);
     }
 
+    @Test
+    public void testUpdateBatchById() {
+
+    }
+
 }

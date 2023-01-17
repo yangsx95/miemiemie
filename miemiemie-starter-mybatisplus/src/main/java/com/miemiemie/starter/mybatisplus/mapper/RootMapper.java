@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.miemiemie.starter.mybatisplus.util.MybatisUtil;
 
 import javax.xml.ws.Holder;
@@ -88,10 +87,9 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * 通过id批量更新实体
      *
      * @param entityList    实体列表
-     * @param updateWrapper 更新的目标字段
      * @return 更新的条数
      */
-    int updateBatchById(Collection<T> entityList, Wrapper<T> updateWrapper);
+    int updateBatchById(Collection<T> entityList);
 
     /**
      * 计算需要批量更新列表数据的每条数据所要的操作
@@ -161,9 +159,9 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * @param curList 要修改的 entity list
      * @return 分组结果
      */
-    default OprDataGroupList<T> updateList(List<T> preList, List<T> curList) {
+    default OprDataGroupList<T> autoUpdateBatch(List<T> preList, List<T> curList) {
         OprDataGroupList<T> groupList = groupList(preList, curList);
-        updateList(groupList);
+        autoUpdateBatch(groupList);
         return groupList;
     }
 
@@ -176,8 +174,8 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * @param curList 新的数据
      * @return 分组结果
      */
-    default OprDataGroupList<T> updateList(Wrapper<T> wrapper, List<T> curList) {
-        return updateList(selectList(wrapper), curList);
+    default OprDataGroupList<T> autoUpdateBatch(Wrapper<T> wrapper, List<T> curList) {
+        return autoUpdateBatch(selectList(wrapper), curList);
     }
 
     /**
@@ -187,12 +185,12 @@ public interface RootMapper<T> extends BaseMapper<T> {
      *
      * @param groupList 已经分组的数据
      */
-    default void updateList(OprDataGroupList<T> groupList) {
+    default void autoUpdateBatch(OprDataGroupList<T> groupList) {
         if (Objects.isNull(groupList)) {
             return;
         }
         insertBatch(groupList.getNeedAdd());
-        updateBatchById(groupList.getNeedUpdate(), Wrappers.lambdaUpdate());
+        updateBatchById(groupList.getNeedUpdate());
         deleteBatchIds(groupList.getNeedDelete());
     }
 

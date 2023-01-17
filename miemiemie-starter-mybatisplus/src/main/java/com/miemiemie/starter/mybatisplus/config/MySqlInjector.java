@@ -23,7 +23,7 @@ public class MySqlInjector extends DefaultSqlInjector {
         // 批量插入数据，并且指定插入时什么字段需要填充
         methodList.add(new InsertBatchSomeColumn("insertBatch", i -> i.getFieldFill() != FieldFill.UPDATE && !i.isLogicDelete()));
         // 批量更新数据
-        methodList.add(new UpdateBatchByIdMethod("updateBatch"));
+        methodList.add(new UpdateBatchByIdMethod());
         return methodList;
     }
 }
