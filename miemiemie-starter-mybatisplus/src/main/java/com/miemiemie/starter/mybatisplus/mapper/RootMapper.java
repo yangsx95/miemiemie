@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.miemiemie.starter.mybatisplus.util.MybatisUtil;
+import org.apache.ibatis.annotations.Param;
 
 import javax.xml.ws.Holder;
 import java.util.*;
@@ -89,7 +91,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * @param entityList    实体列表
      * @return 更新的条数
      */
-    int updateBatchById(Collection<T> entityList);
+    int updateBatchById(@Param(Constants.LIST) Collection<T> entityList);
 
     /**
      * 计算需要批量更新列表数据的每条数据所要的操作

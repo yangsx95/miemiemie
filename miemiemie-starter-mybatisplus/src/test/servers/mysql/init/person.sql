@@ -1,7 +1,7 @@
 create table miemiemie.person
 (
     id          bigint not null,
-    name        varchar(20) not null comment '姓名',
+    pname        varchar(20) not null comment '姓名',
     gender      tinyint(1) null comment '性别(0 男 1 女)',
     belief      tinyint(1) null comment '信仰类型（0 无  1 基督  2 佛教 3 伊斯兰教 4 道教 5 其他）',
     create_time datetime null comment '创建时间',

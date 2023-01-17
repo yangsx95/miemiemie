@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Person extends BaseEntity {
 
-    private String name;
+    private String pname;
 
     private Gender gender;
 
