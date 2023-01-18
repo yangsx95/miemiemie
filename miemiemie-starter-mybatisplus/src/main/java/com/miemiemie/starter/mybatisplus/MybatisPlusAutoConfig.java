@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.miemiemie.starter.mybatisplus.config.GenericEnumTypeHandler;
+import com.miemiemie.starter.mybatisplus.config.MyBatisLogInterceptor;
 import com.miemiemie.starter.mybatisplus.config.MyMetaObjectHandler;
 import com.miemiemie.starter.mybatisplus.config.MySqlInjector;
 import com.miemiemie.starter.mybatisplus.enums.DeletedEnum;
@@ -92,5 +93,10 @@ public class MybatisPlusAutoConfig {
             configuration.setDefaultEnumTypeHandler(GenericEnumTypeHandler.class);
             properties.setConfiguration(configuration);
         };
+    }
+
+    @Bean
+    MyBatisLogInterceptor myBatisLogInterceptor() {
+        return new MyBatisLogInterceptor();
     }
 }

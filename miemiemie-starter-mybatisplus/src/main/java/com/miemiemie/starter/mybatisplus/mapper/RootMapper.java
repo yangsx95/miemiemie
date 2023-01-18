@@ -100,7 +100,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * @param curList 要更新新的列表数据
      * @return 按照要进行操作进行分类的数据列表
      */
-    default OprDataGroupList<T> groupList(List<T> preList, List<T> curList) {
+    default OprDataGroupList<T> autoGroupBatch(List<T> preList, List<T> curList) {
 
         OprDataGroupList<T> res = new OprDataGroupList<>();
         if (CollectionUtils.isEmpty(preList) && CollectionUtils.isEmpty(curList)) {
@@ -162,7 +162,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * @return 分组结果
      */
     default OprDataGroupList<T> autoUpdateBatch(List<T> preList, List<T> curList) {
-        OprDataGroupList<T> groupList = groupList(preList, curList);
+        OprDataGroupList<T> groupList = autoGroupBatch(preList, curList);
         autoUpdateBatch(groupList);
         return groupList;
     }

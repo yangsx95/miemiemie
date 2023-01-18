@@ -59,7 +59,6 @@ public class RootMapperTest{
     @Test
     public void testUpdateBatchById() {
         List<Person> people = personMapper.selectList(Wrappers.lambdaQuery());
-        people = people.subList(0, 5);
         people.forEach(e -> {e.setGender(Gender.MAN); e.setUpdateTime(LocalDateTime.now());});
         personMapper.updateBatchById(people);
     }

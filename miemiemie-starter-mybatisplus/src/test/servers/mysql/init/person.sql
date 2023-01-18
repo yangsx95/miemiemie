@@ -1,3 +1,6 @@
+/*!40101 SET NAMES utf8 */;
+# 告诉mysql使用utf8字符集处理这些脚本而不是系统默认字符集
+
 create table miemiemie.person
 (
     id          bigint not null,
