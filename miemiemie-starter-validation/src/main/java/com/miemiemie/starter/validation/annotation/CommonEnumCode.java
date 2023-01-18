@@ -1,7 +1,7 @@
 package com.miemiemie.starter.validation.annotation;
 
-import com.miemiemie.starter.validation.validator.CommonEnumValidatorForInteger;
-import com.miemiemie.starter.validation.validator.CommonEnumValidatorForString;
+import com.miemiemie.starter.validation.validator.CommonEnumCodeValidatorForInteger;
+import com.miemiemie.starter.validation.validator.CommonEnumCodeValidatorForString;
 import org.apache.logging.log4j.util.Strings;
 
 import javax.validation.Constraint;
@@ -17,16 +17,16 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 // 指定关联的校验器
-@Constraint(validatedBy = {CommonEnumValidatorForString.class, CommonEnumValidatorForInteger.class})
+@Constraint(validatedBy = {CommonEnumCodeValidatorForString.class, CommonEnumCodeValidatorForInteger.class})
 @Documented
-public @interface CommonEnum {
+public @interface CommonEnumCode {
 
     /**
      * 提示消息
      *
      * @return 提示消息
      */
-    String message() default Strings.EMPTY;
+    String message() default "{javax.validation.constraints.CommonEnum.message}";
 
     /**
      * 对应的枚举类

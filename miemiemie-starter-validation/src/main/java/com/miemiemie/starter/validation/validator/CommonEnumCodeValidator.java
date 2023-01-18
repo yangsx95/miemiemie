@@ -1,6 +1,6 @@
 package com.miemiemie.starter.validation.validator;
 
-import com.miemiemie.starter.validation.annotation.CommonEnum;
+import com.miemiemie.starter.validation.annotation.CommonEnumCode;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author yangshunxiang
  * @since 2023/1/13
  */
-public class CommonEnumValidator<C> implements ConstraintValidator<CommonEnum, C> {
+public class CommonEnumCodeValidator<C> implements ConstraintValidator<CommonEnumCode, C> {
 
     /**
      * 枚举类
@@ -25,7 +25,7 @@ public class CommonEnumValidator<C> implements ConstraintValidator<CommonEnum, C
     Class<?> targetEnumClass;
 
     @Override
-    public void initialize(CommonEnum constraintAnnotation) {
+    public void initialize(CommonEnumCode constraintAnnotation) {
         targetEnumClass = constraintAnnotation.target();
     }
 
