@@ -8,6 +8,7 @@ void includePath(String path) {
 
 includePath 'miemiemie-core'
 includePath 'miemiemie-starter-web'
+includePath 'miemiemie-starter-swagger'
 includePath 'miemiemie-starter-feign'
 includePath 'miemiemie-starter-mybatisplus'
 includePath 'miemiemie-starter-aliyunoss'
@@ -15,3 +16,4 @@ includePath 'miemiemie-starter-xxljob'
 includePath 'miemiemie-starter-validation'
 
 includePath 'miemiemie-demo'
+

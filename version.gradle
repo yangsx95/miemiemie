@@ -13,17 +13,19 @@ ext {
             "springBootMybatisplus": "3.5.2",
             "ulidCreator"          : "5.1.0",
             "aliyunOss"            : "3.15.2",
-            "xxlJobCore"            : "2.3.1",
+            "xxlJobCore"           : "2.3.1",
+            "springfox"            : "3.0.0",
     ]
 
     dependencies = [
-            "junitJupiterApi": "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}",
+            "junitJupiterApi"   : "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}",
             "junitJupiterEngine": "org.junit.jupiter:junit-jupiter-engine:${versions.junitJupiter}",
             "lombok"            : "org.projectlombok:lombok:${versions.lombok}",
             "mybatis"           : "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.springBootMybatis}",
             "mybatisPlus"       : "com.baomidou:mybatis-plus-boot-starter:${versions.springBootMybatisplus}",
             "ulidCreator"       : "com.github.f4b6a3:ulid-creator:${versions.ulidCreator}",
             "aliyunOss"         : "com.aliyun.oss:aliyun-sdk-oss:${versions.aliyunOss}",
-            "xxlJobCore"         : "com.xuxueli:xxl-job-core:${versions.xxlJobCore}",
+            "xxlJobCore"        : "com.xuxueli:xxl-job-core:${versions.xxlJobCore}",
+            "springfox"         : "io.springfox:springfox-boot-starter:${versions.springfox}",
     ]
 }

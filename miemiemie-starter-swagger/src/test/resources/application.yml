@@ -1,0 +1,6 @@
+miemiemie:
+  swagger:
+    dockets:
+      - group-name: "里斯"
+        global-request-parameters:
+          - des

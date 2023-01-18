@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "oss")
+@ConfigurationProperties(prefix = "miemiemie.oss")
 public class AliyunOssProperties {
 
     private String endpoint;
