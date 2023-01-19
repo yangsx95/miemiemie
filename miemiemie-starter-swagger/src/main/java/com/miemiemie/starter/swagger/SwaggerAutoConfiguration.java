@@ -1,15 +1,10 @@
 package com.miemiemie.starter.swagger;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -18,12 +13,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author yangshunxiang
  * @since 2023/1/18
  */
+@ConditionalOnWebApplication
 @EnableSwagger2
 @EnableOpenApi
 @EnableConfigurationProperties
 @Configuration
 @ComponentScan(basePackageClasses = SwaggerAutoConfiguration.class)
-@Import(SwaggerConfigRegistrar.class)
 public class SwaggerAutoConfiguration {
 
 }

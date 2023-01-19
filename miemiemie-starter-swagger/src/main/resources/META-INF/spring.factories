@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.miemiemie.starter.mybatisplus.MybatisPlusAutoConfig
+  com.miemiemie.starter.swagger.SwaggerAutoConfiguration
