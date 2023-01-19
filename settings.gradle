@@ -12,6 +12,7 @@ includePath 'miemiemie-starter-swagger'
 includePath 'miemiemie-starter-feign'
 includePath 'miemiemie-starter-mybatisplus'
 includePath 'miemiemie-starter-aliyunoss'
+includePath 'miemiemie-starter-excel'
 includePath 'miemiemie-starter-xxljob'
 includePath 'miemiemie-starter-validation'
 

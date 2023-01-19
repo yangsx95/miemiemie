@@ -1,6 +1,7 @@
 package com.miemiemie.starter.validation;
 
 import org.hibernate.validator.BaseHibernateValidatorConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.validation.MessageInterpolatorFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,6 +19,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 public class ValidationAutoConfiguration {
 
     @Bean
+    @ConditionalOnMissingBean(LocalValidatorFactoryBean.class)
     public LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean factoryBean = new LocalValidatorFactoryBean();
         MessageInterpolatorFactory interpolatorFactory = new MessageInterpolatorFactory();
