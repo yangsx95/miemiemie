@@ -1,12 +1,12 @@
 package com.miemiemie.starter.swagger.controller;
 
+import com.miemiemie.starter.swagger.enums.TypeEnum;
+import com.miemiemie.starter.swagger.request.PeopleSayHelloRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 /**
  * @author yangshunxiang
@@ -16,14 +16,15 @@ import javax.annotation.Resource;
 @RestController
 public class HelloController {
 
-    @Resource
-    private ApplicationContext context;
-
     @ApiOperation("说hello")
     @GetMapping("/sayHello")
-    public String sayHello() {
-        System.out.println();
-        return "hello";
+    public String sayHello(TypeEnum typeEnum) {
+        return "hello " + typeEnum;
     }
 
+    @ApiOperation("说hello2")
+    @GetMapping("/sayHello2")
+    public String peopleSayHello (@RequestBody PeopleSayHelloRequest request) {
+        return request.getTypeEnum().getMessage() + "  " + request.getName();
+    }
 }
