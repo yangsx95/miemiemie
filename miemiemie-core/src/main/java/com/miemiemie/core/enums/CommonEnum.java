@@ -1,5 +1,6 @@
 package com.miemiemie.core.enums;
 
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -60,7 +61,7 @@ public interface CommonEnum<K, V> {
     }
 
     /**
-     * 根据枚举的code获取枚举对象
+     * 根据枚举的code获取枚举对象。
      *
      * @param code      唯一编码
      * @param enumClass 枚举类型
@@ -69,9 +70,15 @@ public interface CommonEnum<K, V> {
      * @param <V>       枚举desc类型
      * @return 枚举对象
      */
-    static <T extends Enum<T> & CommonEnum<K, V> , K, V> T getEnum(K code, Class<T> enumClass) {
+    static <T extends Enum<T> & CommonEnum<K, V> , K, V> T getEnum(Object code, Class<T> enumClass) {
         for (T item : enumClass.getEnumConstants()) {
-            if (item.getCode().equals(code)) {
+            if (Objects.equals(item.getCode(), code)) {
+                return item;
+            }
+            if (Objects.isNull(item.getCode()) || Objects.isNull(code)) {
+                continue;
+            }
+            if (String.valueOf(item.getCode()).equals(String.valueOf(code))) {
                 return item;
             }
         }
