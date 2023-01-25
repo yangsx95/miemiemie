@@ -28,7 +28,7 @@ public final class Pages {
     @SuppressWarnings({"unchecked", "unused"})
     public static <D> Page<D> toPage(Object page, Class<D> recordClass) {
         if (Objects.isNull(page)) {
-            return null;
+            return emptyPage();
         }
         if (page instanceof Page) {
             return (Page<D>) page;
