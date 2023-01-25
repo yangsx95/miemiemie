@@ -3,10 +3,13 @@ package com.miemiemie.starter.mybatisplus.mapper;
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.miemiemie.core.page.Page;
+import com.miemiemie.core.page.Pages;
 import com.miemiemie.starter.mybatisplus.util.MybatisUtil;
 import org.apache.ibatis.annotations.Param;
 
@@ -78,6 +81,27 @@ public interface RootMapper<T> extends BaseMapper<T> {
     }
 
     /**
+     * 分页查询，使用miemiemie自带的Page对象
+     *
+     * @param page         分页信息
+     * @param queryWrapper 查询条件
+     * @param <P>          分页对象
+     * @return 查询结果
+     */
+    @SuppressWarnings("unchecked")
+    default <P extends Page<T>> P selectPageAndConvert(P page, Wrapper<T> queryWrapper) {
+        ;
+        if (page == null) {
+            return (P) Pages.toPage(selectPage(null, queryWrapper), null);
+        } else {
+            return (P) Pages.toPage(
+                    selectPage(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getCurrentPage(), page.getPageSize()), queryWrapper),
+                    null
+            );
+        }
+    }
+
+    /**
      * 批量插入实体
      *
      * @param entityList 实体列表
@@ -88,7 +112,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
     /**
      * 通过id批量更新实体
      *
-     * @param entityList    实体列表
+     * @param entityList 实体列表
      * @return 更新的条数
      */
     int updateBatchById(@Param(Constants.LIST) Collection<T> entityList);
