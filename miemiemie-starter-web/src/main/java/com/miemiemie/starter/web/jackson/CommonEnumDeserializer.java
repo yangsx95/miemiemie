@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
 import com.miemiemie.core.enums.CommonEnum;
-import lombok.Setter;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * jackson CommonEnum枚举类型返序列化处理
@@ -19,39 +19,45 @@ import java.io.IOException;
  */
 public class CommonEnumDeserializer extends JsonDeserializer<CommonEnum<?, ?>> implements ContextualDeserializer {
 
-    @Setter
-    private Class<?> target;
+    private Class<? extends CommonEnum<?, ?>> propertyClass;
+
+    public CommonEnumDeserializer() {
+    }
+
+    public CommonEnumDeserializer(Class<? extends CommonEnum<?, ?>> propertyClass) {
+        this.propertyClass = propertyClass;
+    }
 
     @Override
     public CommonEnum<?, ?> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         if (!StringUtils.hasText(jsonParser.getText())) {
             return null;
         }
-        if (!CommonEnum.class.isAssignableFrom(target)) {
+        if (!CommonEnum.class.isAssignableFrom(propertyClass)) {
             return null;
         }
-        if (!Enum.class.isAssignableFrom(target)) {
+        if (!Enum.class.isAssignableFrom(propertyClass)) {
             return null;
         }
         if (!StringUtils.hasText(jsonParser.getText())) {
             return null;
         }
-        Object[] enumConstants = target.getEnumConstants();
+        Object[] enumConstants = propertyClass.getEnumConstants();
         for (Object enumConstant : enumConstants) {
             CommonEnum<?, ?> commonEnum = (CommonEnum<?, ?>) enumConstant;
-            if (jsonParser.getText().equals(commonEnum.getCode())) {
+            if (Objects.equals(commonEnum.getCode(), jsonParser.getText())) {
+                return commonEnum;
+            }
+            if (jsonParser.getText().equals(String.valueOf(commonEnum.getCode()))) {
                 return commonEnum;
             }
         }
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public JsonDeserializer<?> createContextual(DeserializationContext deserializationContext,
-                                                BeanProperty beanProperty) {
-        Class<?> rawCls = deserializationContext.getContextualType().getRawClass();
-        CommonEnumDeserializer enumDeserializer = new CommonEnumDeserializer();
-        enumDeserializer.setTarget(rawCls);
-        return enumDeserializer;
+    public JsonDeserializer<?> createContextual(DeserializationContext deserializationContext, BeanProperty beanProperty) {
+        return new CommonEnumDeserializer((Class<? extends CommonEnum<?, ?>>) beanProperty.getType().getRawClass());
     }
 }

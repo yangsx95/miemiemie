@@ -3,7 +3,6 @@ package com.miemiemie.starter.mybatisplus.mapper;
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
@@ -90,7 +89,6 @@ public interface RootMapper<T> extends BaseMapper<T> {
      */
     @SuppressWarnings("unchecked")
     default <P extends Page<T>> P selectPageAndConvert(P page, Wrapper<T> queryWrapper) {
-        ;
         if (page == null) {
             return (P) Pages.toPage(selectPage(null, queryWrapper), null);
         } else {

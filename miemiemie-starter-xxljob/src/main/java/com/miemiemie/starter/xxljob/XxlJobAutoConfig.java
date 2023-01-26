@@ -49,8 +49,8 @@ public class XxlJobAutoConfig {
      * @return xxl-job 执行器
      */
     @Bean
-    @ConditionalOnBean({DiscoveryClient.class})
-    @ConditionalOnMissingBean(XxlJobSpringExecutor.class)
+    @ConditionalOnBean(DiscoveryClient.class)
+    @ConditionalOnMissingBean(XxlJobProperties.class)
     public XxlJobSpringExecutor xxlJobSpringCloudExecutor(DiscoveryClient discoveryClient, XxlJobProperties xxlJobProperties, Environment environment) {
         XxlJobSpringExecutor executor = genXxlJobSpringExecutor(xxlJobProperties, environment);
         // spring cloud 环境下，address配置优先作为注册中心的服务名称，而不是调度中心的url

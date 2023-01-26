@@ -2,14 +2,18 @@ package com.miemiemie.starter.web.jackson;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.miemiemie.core.enums.CommonEnum;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.SmartInitializingSingleton;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 /**
  * jackson相关配置
@@ -18,23 +22,38 @@ import java.text.SimpleDateFormat;
  * @author yangshunxiang
  * @since 2023/01/24
  */
-@RequiredArgsConstructor
 @Configuration
-public class JacksonConfig implements SmartInitializingSingleton {
+public class JacksonConfig {
 
-    private final ObjectMapper objectMapper;
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String TIME_FORMAT = "HH:mm:ss";
 
-    @Override
-    public void afterSingletonsInstantiated() {
-        SimpleModule simpleModule = new SimpleModule();
-        simpleModule.addSerializer(CommonEnum.class, new CommonEnumSerializer());
-        simpleModule.addDeserializer(CommonEnum.class, new CommonEnumDeserializer());
-        objectMapper.registerModule(simpleModule);
-        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-        // 默认情况下，解析json为对象时，如果json中的某个属性在对象中不存在，会引发报错
-        // 使用disable禁用此特性
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        // 设置不忽略空的字段
-        objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
+        return builder -> {
+            // 设置不忽略null的字段
+            builder.serializationInclusion(JsonInclude.Include.ALWAYS);
+            builder.featuresToDisable(
+                    // 默认情况下，解析json为对象时，如果json中的某个属性在对象中不存在，会引发报错；使用disable禁用此特性
+                    DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                    // 时间不作为timestamp输出
+                    SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
+            );
+            builder.simpleDateFormat(DATE_TIME_FORMAT);
+            builder.serializers(
+                    new LocalDateSerializer(DateTimeFormatter.ofPattern(DATE_FORMAT)),
+                    new LocalTimeSerializer(DateTimeFormatter.ofPattern(TIME_FORMAT)),
+                    new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))
+            );
+            builder.deserializers(
+                    new LocalDateDeserializer(DateTimeFormatter.ofPattern(DATE_FORMAT)),
+                    new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(TIME_FORMAT)),
+                    new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))
+            );
+            builder.serializerByType(CommonEnum.class, new CommonEnumSerializer());
+            builder.deserializerByType(CommonEnum.class, new CommonEnumDeserializer());
+        };
     }
+
 }
