@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
@@ -48,7 +49,7 @@ public class JacksonConfig {
             );
             builder.deserializers(
                     new LocalDateDeserializer(DateTimeFormatter.ofPattern(DATE_FORMAT)),
-                    new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(TIME_FORMAT)),
+                    new LocalTimeDeserializer(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                     new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT))
             );
             builder.serializerByType(CommonEnum.class, new CommonEnumSerializer());
