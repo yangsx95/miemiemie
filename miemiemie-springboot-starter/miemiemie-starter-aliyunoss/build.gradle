@@ -3,7 +3,7 @@ description '''
 '''
 
 dependencies {
-    api project(":miemiemie-core")
+    api project(":miemiemie-springboot-starter:miemiemie-starter-core")
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     api 'com.aliyun.oss:aliyun-sdk-oss'

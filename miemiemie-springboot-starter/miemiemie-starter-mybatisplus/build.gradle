@@ -3,7 +3,7 @@ mybatis相关封装
 '''
 
 dependencies {
-    api project(":miemiemie-core")
+    api project(":miemiemie-springboot-starter:miemiemie-starter-core")
 
     api 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
     api 'com.baomidou:mybatis-plus-boot-starter'

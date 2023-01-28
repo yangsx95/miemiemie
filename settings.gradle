@@ -5,16 +5,15 @@ void includePath(String path) {
     findProject(path)?.name = path.substring(path.lastIndexOf(':') >= 0 ? path.lastIndexOf(':') : 0)
 }
 
-
-includePath 'miemiemie-core'
-includePath 'miemiemie-starter-web'
-includePath 'miemiemie-starter-swagger'
-includePath 'miemiemie-starter-feign'
-includePath 'miemiemie-starter-mybatisplus'
-includePath 'miemiemie-starter-aliyunoss'
-includePath 'miemiemie-starter-excel'
-includePath 'miemiemie-starter-xxljob'
-includePath 'miemiemie-starter-validation'
+// spring boot starter
+includePath 'miemiemie-springboot-starter:miemiemie-starter-core'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-web'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-swagger'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-feign'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-mybatisplus'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-aliyunoss'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-excel'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-xxljob'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-validation'
 
 includePath 'miemiemie-demo'
-
