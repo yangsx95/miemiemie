@@ -1,10 +1,12 @@
 package com.miemiemie.starter.web.result;
 
 import com.miemiemie.core.constants.InnerHttpHeaders;
+import com.miemiemie.core.enums.ResultStatusEnum;
 import com.miemiemie.core.result.Result;
 import com.miemiemie.starter.web.annotation.NoPackage;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -13,6 +15,8 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import java.util.Objects;
 
 
 /**
@@ -43,6 +47,9 @@ public class ResultPackageHandler implements ResponseBodyAdvice<Object> {
                                   @NonNull ServerHttpRequest request,
                                   @NonNull ServerHttpResponse response) {
         if (body instanceof Result) {
+            if (!Objects.equals(ResultStatusEnum.SUCCESS.getCode(), ((Result<?>) body).getCode())) {
+                response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
             return body;
         }
 
