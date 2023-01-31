@@ -1,0 +1,9 @@
+description '''
+脱敏封装
+'''
+
+dependencies {
+    api project(":miemiemie-springboot-starter:miemiemie-starter-core")
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+}
