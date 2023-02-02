@@ -81,6 +81,12 @@ public class OssTemplateTest {
     }
 
     @Test
+    public void testGenerateObjectUrl() {
+        String s = ossTemplate.generateObjectUrl(BUCKET_NAME, "girl.jpg");
+        System.out.println(s);
+    }
+
+    @Test
     public void testGeneratePresignedUrl() {
         String url = ossTemplate.generatePresignedUrl(BUCKET_NAME, "girl.jpg", Duration.ofSeconds(30), HttpMethod.GET);
         System.out.println(url);

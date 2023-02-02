@@ -141,6 +141,27 @@ public class OssTemplate {
     }
 
     /**
+     * 生成文件链接，文件链接是否可以直接访问文件，取决于bucket的访问权限
+     *
+     * @param bucketName bucket名称
+     * @param objectKey 文件名称
+     * @return url
+     */
+    public String generateObjectUrl(String bucketName, String objectKey) {
+        return amazonS3.getUrl(bucketName, objectKey).toString();
+    }
+
+    /**
+     * 生成文件链接，文件链接是否可以直接访问文件，取决于bucket的访问权限
+     *
+     * @param objectKey 文件名称
+     * @return url
+     */
+    public String generateObjectUrl(String objectKey) {
+        return amazonS3.getUrl(ossProperties.getDefaultBucketName(), objectKey).toString();
+    }
+
+    /**
      * 生成文件外链
      *
      * @param bucketName bucket名称
