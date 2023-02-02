@@ -17,6 +17,7 @@ ext {
             "springfox"            : "3.0.0",
             "knife4j"              : "3.0.3",
             "easyExcel"            : "3.1.5",
+            "awsS3"                : "1.12.395",
     ]
 
     dependencies = [
@@ -31,5 +32,6 @@ ext {
             "springfox"         : "io.springfox:springfox-boot-starter:${versions.springfox}",
             "knife4j"           : "com.github.xiaoymin:knife4j-spring-boot-starter:${versions.knife4j}",
             "easyExcel"         : "com.alibaba:easyexcel:${versions.easyExcel}",
+            "awsS3"             : "com.amazonaws:aws-java-sdk-s3:${versions.awsS3}",
     ]
 }

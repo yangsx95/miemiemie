@@ -1,0 +1,7 @@
+miemiemie:
+  oss:
+    enable: true
+    endpoint: http://127.0.0.1:9000
+    access-key: YYivfo1qsjQpmaqz
+    secret-key: Dovfad-6sewna-midpog
+    path-style-access: true

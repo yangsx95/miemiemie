@@ -1,5 +1,5 @@
 description '''
-脱敏封装
+加密、解密、脱敏封装
 '''
 
 dependencies {

@@ -1,0 +1,7 @@
+miemiemie:
+  oss:
+    enable: true
+    endpoint: https://oss-cn-shanghai.aliyuncs.com
+    access-key: xxxxxxxxx
+    secret-key: xxxxxxxxx
+    path-style-access: false

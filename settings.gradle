@@ -7,7 +7,7 @@ void includePath(String path) {
 
 // spring boot starter
 includePath 'miemiemie-springboot-starter:miemiemie-starter-core'
-includePath 'miemiemie-springboot-starter:miemiemie-starter-desensitization'
+includePath 'miemiemie-springboot-starter:miemiemie-starter-encrypt'
 includePath 'miemiemie-springboot-starter:miemiemie-starter-web'
 includePath 'miemiemie-springboot-starter:miemiemie-starter-swagger'
 includePath 'miemiemie-springboot-starter:miemiemie-starter-feign'
