@@ -1,5 +1,5 @@
 description '''
-阿里云oss工具
+oss封装
 '''
 
 dependencies {

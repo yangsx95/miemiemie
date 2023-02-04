@@ -7,7 +7,7 @@ import org.springframework.util.StringUtils;
 import java.nio.file.Paths;
 
 /**
- * 阿里云oss文件对象建造器
+ * oss文件对象建造器
  *
  * @author yangshunxiang
  * @since 2023/1/12
