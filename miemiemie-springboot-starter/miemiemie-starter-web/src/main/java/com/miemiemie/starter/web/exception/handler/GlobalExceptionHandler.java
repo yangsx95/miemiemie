@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 全局异常处理器
+ * 待扩展-（如果是页面转发，需要返回ModelAndView 并且去除@ResponseBody注解的修饰）
  *
  * @author 杨顺翔
  * @since 2022/09/11

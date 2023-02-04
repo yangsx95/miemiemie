@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import springfox.documentation.builders.*;
-import springfox.documentation.schema.Example;
-import springfox.documentation.schema.ModelSpecification;
 import springfox.documentation.schema.ScalarType;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
