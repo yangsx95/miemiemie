@@ -1,19 +1,17 @@
-package com.miemiemie.starter.oss;
+package com.miemiemie.starter.file.support.s3;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * oss 配置
+ * s3文件客户端配置
  *
  * @author yangshunxiang
- * @since 2022/12/16
+ * @since 2023/2/23
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "miemiemie.oss")
-public class OssProperties {
+public class S3FileClientProperties {
 
     /**
      * 是否启用 oss，默认为：true
@@ -29,7 +27,7 @@ public class OssProperties {
      * 指定请求路径形式是否为 path-style。如果为false，那么路径形式为 virtual-hosted-style。阿里云需要配置为false。
      * 参考：<a href="https://stackoverflow.com/questions/46839596/generate-s3-url-in-path-style-format">stackoverflow Generate S3 URL in "path-style" format</a>
      */
-    private Boolean pathStyleAccess = true;
+    private boolean pathStyleAccess = true;
 
     /**
      * 区域
@@ -50,4 +48,5 @@ public class OssProperties {
      * 默认的bucket名称
      */
     private String defaultBucketName = "public";
+
 }

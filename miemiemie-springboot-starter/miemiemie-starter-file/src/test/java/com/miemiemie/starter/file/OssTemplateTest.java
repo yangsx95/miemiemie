@@ -1,4 +1,4 @@
-package com.miemiemie.starter.oss;
+package com.miemiemie.starter.file;
 
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.model.Bucket;

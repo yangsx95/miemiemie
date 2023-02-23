@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.miemiemie.starter.oss.OssAutoConfig
+  com.miemiemie.starter.file.OssAutoConfig

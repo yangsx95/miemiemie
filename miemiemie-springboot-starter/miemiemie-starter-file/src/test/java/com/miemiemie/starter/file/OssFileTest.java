@@ -1,4 +1,4 @@
-package com.miemiemie.starter.oss;
+package com.miemiemie.starter.file;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
