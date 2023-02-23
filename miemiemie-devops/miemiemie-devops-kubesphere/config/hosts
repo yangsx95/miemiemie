@@ -1,0 +1,17 @@
+192.168.2.24 dockerhub.kubekey.local
+
+192.168.2.22 kubesphere.cpirhzl.com
+192.168.2.23 kubesphere.cpirhzl.com
+192.168.2.24 kubesphere.cpirhzl.com
+
+192.168.2.22 sonarqube.cpirhzl.com
+192.168.2.23 sonarqube.cpirhzl.com
+192.168.2.24 sonarqube.cpirhzl.com
+
+192.168.2.22 jenkins.cpirhzl.com
+192.168.2.23 jenkins.cpirhzl.com
+192.168.2.24 jenkins.cpirhzl.com
+
+192.168.2.22 nexus.cpirhzl.com
+192.168.2.23 nexus.cpirhzl.com
+192.168.2.24 nexus.cpirhzl.com

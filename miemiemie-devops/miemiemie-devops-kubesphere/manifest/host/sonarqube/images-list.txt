@@ -1,0 +1,8 @@
+sonarqube:9.4.0-community
+bitnami/minideb:buster
+bitnami/postgresql:11.7.0-debian-10-r26
+bitnami/postgres-exporter:0.8.0-debian-10-r42
+rjkernick/alpine-wget:latest
+busybox:1.31
+adoptopenjdk/openjdk11:alpine
+dduportal/bats:0.4.0

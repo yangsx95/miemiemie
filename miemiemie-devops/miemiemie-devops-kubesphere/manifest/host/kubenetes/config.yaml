@@ -1,0 +1,56 @@
+apiVersion: kubekey.kubesphere.io/v1alpha2
+kind: Cluster
+metadata:
+  name: host-k8s-cluster-config
+spec:
+  hosts:
+    - {name: master1, address: 192.168.2.22, internalAddress: 192.168.2.22, user: root}
+    - {name: master2, address: 192.168.2.23, internalAddress: 192.168.2.23, user: root}
+    - {name: master3, address: 192.168.2.24, internalAddress: 192.168.2.24, user: root}
+
+  roleGroups:
+    etcd:
+      - master1
+      - master2
+      - master3
+    control-plane:
+      - master1
+      - master2
+      - master3
+#    worker:
+#      - node1
+    registry:
+      - master3
+  controlPlaneEndpoint:
+    internalLoadbalancer: haproxy
+
+    domain: lb.kubesphere.local
+    address: ""
+    port: 6443
+  kubernetes:
+    version: v1.22.10
+    clusterName: cluster.local
+    autoRenewCerts: true
+    containerManager: containerd
+  etcd:
+    type: kubekey
+  network:
+    plugin: calico
+    kubePodsCIDR: 10.233.64.0/18
+    kubeServiceCIDR: 10.233.0.0/18
+    multusCNI:
+      enabled: false
+  registry:
+    # 如需使用 kk 部署 harbor, 可将该参数设置为 harbor，不设置该参数且需使用 kk 创建容器镜像仓库，将默认使用docker registry。
+#    type: harbor
+    # 认证配置无效，配了也是默认的用户 admin 以及默认的密码 Harbor12345
+#    auths:
+#      "dockerhub.kubekey.local":
+#        username: admin
+#        password: Harbor12345
+    # 设置集群部署时使用的私有仓库
+    privateRegistry: "dockerhub.kubekey.local:5000"
+#    namespaceOverride: "kubesphereio"
+    registryMirrors: []
+    insecureRegistries: []
+  addons: []

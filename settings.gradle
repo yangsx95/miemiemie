@@ -17,4 +17,8 @@ includePath 'miemiemie-springboot-starter:miemiemie-starter-excel'
 includePath 'miemiemie-springboot-starter:miemiemie-starter-xxljob'
 includePath 'miemiemie-springboot-starter:miemiemie-starter-validation'
 
+// devops
+includePath 'miemiemie-devops'
+includePath 'miemiemie-devops:miemiemie-devops-kubesphere'
+
 includePath 'miemiemie-demo'

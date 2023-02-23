@@ -1,0 +1,27 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+
+# kubekey hosts BEGIN
+192.168.2.22  master1.cluster.local master1
+192.168.2.23  master2.cluster.local master2
+192.168.2.24  master3.cluster.local master3
+192.168.2.24  dockerhub.kubekey.local
+127.0.0.1 lb.kubesphere.local
+# kubekey hosts END
+
+192.168.2.22 kubesphere.cpirhzl.com
+192.168.2.23 kubesphere.cpirhzl.com
+192.168.2.24 kubesphere.cpirhzl.com
+
+192.168.2.22 sonarqube.cpirhzl.com
+192.168.2.23 sonarqube.cpirhzl.com
+192.168.2.24 sonarqube.cpirhzl.com
+
+192.168.2.22 jenkins.cpirhzl.com
+192.168.2.23 jenkins.cpirhzl.com
+192.168.2.24 jenkins.cpirhzl.com
+
+192.168.2.22 nexus.cpirhzl.com
+192.168.2.23 nexus.cpirhzl.com
+192.168.2.24 nexus.cpirhzl.com

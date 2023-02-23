@@ -1,0 +1,12 @@
+---
+- name: Config Kubelet
+  hosts: all
+  tasks:
+    - name: copy kubeadmin-flags.env file
+      "copy":
+        src: "{{ playbook_dir }}/resources/kubelet/kubeadm-flags.env"
+        dest: /var/lib/kubelet
+    - name: restart kubelet
+      "systemd":
+        name: kubelet
+        state: restarted

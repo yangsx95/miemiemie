@@ -1,0 +1,23 @@
+---
+- name: Install NFS
+  hosts: all
+  tasks:
+    - name: yum install nfs-utils
+      "yum":
+        name: nfs-utils
+        state: present
+- name: Start NFS Server
+  hosts: nfsser
+  tasks:
+    - name: make share dir
+      file:
+        path: /ifs/kubernetes
+        state: directory
+    - name: init config
+      copy:
+        src: "{{ playbook_dir }}/resources/nfs/exports"
+        dest: /etc/exports
+    - name: start nfs server
+      systemd:
+        name: nfs
+        state: started

@@ -1,0 +1,51 @@
+apiVersion: kubekey.kubesphere.io/v1alpha2
+kind: Manifest
+metadata:
+  name: sample
+spec:
+  arches:
+  - amd64
+  operatingSystems:
+  - arch: amd64
+    type: linux
+    id: centos
+    version: "7"
+    repository:
+      iso:
+        localPath:
+        url: https://ghproxy.com/https://github.com/kubesphere/kubekey/releases/download/v2.2.2/centos7-rpms-amd64.iso
+  kubernetesDistributions:
+  - type: kubernetes
+    version: v1.22.10
+  components:
+    helm:
+      version: v3.6.3
+    cni:
+      version: v0.9.1
+    etcd:
+      version: v3.4.13
+    containerRuntimes:
+    - type: containerd
+      version: 1.6.4
+    crictl:
+      version: v1.24.0
+    docker-compose:
+      version: v2.2.2
+    # 因为harbor占用80端口，所以使用docker registry替代harbor
+    # 如果内网中有需要部署harbor，则使用helm在kubernetes中单独部署
+    harbor:
+      version: v2.4.1
+    docker-registry:
+      version: "2"
+  images:
+    - docker.io/calico/cni:v3.23.2
+    - docker.io/calico/kube-controllers:v3.23.2
+    - docker.io/calico/node:v3.23.2
+    - docker.io/calico/pod2daemon-flexvol:v3.23.2
+    - docker.io/coredns/coredns:1.8.0
+    - docker.io/kubesphere/k8s-dns-node-cache:1.15.12
+    - docker.io/kubesphere/kube-apiserver:v1.22.10
+    - docker.io/kubesphere/kube-controller-manager:v1.22.10
+    - docker.io/kubesphere/kube-proxy:v1.22.10
+    - docker.io/kubesphere/kube-scheduler:v1.22.10
+    - docker.io/kubesphere/pause:3.5

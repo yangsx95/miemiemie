@@ -1,0 +1,54 @@
+---
+- name: Prepare Kubernetes Env
+  hosts: all
+  tasks:
+    - name: Disable Selinux
+      "selinux":
+        state: disabled
+    - name: Disable Selinux Now
+      "shell":
+        cmd: "setenforce 0"
+    - name: yum install socat
+      "yum":
+        name: socat
+        state: present
+    - name: yum install conntrack-tools
+      "yum":
+        name: conntrack-tools
+        state: present
+    - name: yum install ebtables
+      "yum":
+        name: ebtables
+        state: present
+    - name: yum install ipset
+      "yum":
+        name: ipset
+        state: present
+    - name: yum install ipvsadm
+      "yum":
+        name: ipvsadm
+        state: present
+    - name: mkdir
+      "file":
+        path: /src/www
+        state: directory
+    - name: Sync Docker Registry Cert
+      "ansible.builtin.copy":
+        src: /etc/docker/certs.d/dockerhub.kubekey.local:5000
+        dest: /etc/docker/certs.d
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+        force: true
+    - name: Sync Containerd Config
+      "copy":
+        src: "{{ playbook_dir }}/resources/containerd/config.toml"
+        dest: /etc/containerd/
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+        force: true
+    - name: Restart Containerd
+      systemd:
+        name: containerd
+        state: restarted
