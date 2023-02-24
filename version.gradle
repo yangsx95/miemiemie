@@ -18,6 +18,8 @@ ext {
             "knife4j"              : "3.0.3",
             "easyExcel"            : "3.1.5",
             "awsS3"                : "1.12.395",
+            "commonPool2"          : "2.11.1",
+            "commonNet"            : "3.6",
     ]
 
     dependencies = [
@@ -33,5 +35,7 @@ ext {
             "knife4j"           : "com.github.xiaoymin:knife4j-spring-boot-starter:${versions.knife4j}",
             "easyExcel"         : "com.alibaba:easyexcel:${versions.easyExcel}",
             "awsS3"             : "com.amazonaws:aws-java-sdk-s3:${versions.awsS3}",
+            "commonPool2"       : "org.apache.commons:commons-pool2:${versions.commonPool2}",
+            "commonNet"         : "commons-net:commons-net:${versions.commonNet}",
     ]
 }

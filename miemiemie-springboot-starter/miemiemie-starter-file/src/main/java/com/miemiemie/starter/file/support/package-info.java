@@ -1,5 +1,5 @@
 /**
- * 文件客户端支持
+ * 文件客户端支持包
  */
 @NonNullApi
 package com.miemiemie.starter.file.support;
