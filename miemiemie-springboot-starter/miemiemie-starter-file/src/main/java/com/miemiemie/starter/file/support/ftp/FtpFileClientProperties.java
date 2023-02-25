@@ -4,6 +4,8 @@ import com.miemiemie.starter.file.pool.FileClientPoolProperties;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.File;
+
 /**
  * ftp文件客户端配置类
  *
@@ -60,6 +62,10 @@ public class FtpFileClientProperties {
      */
     private boolean passiveMode = true;
 
+    /**
+     * 默认工作路径
+     */
+    private String baseDir = File.separator;
 
     /**
      * 连接池配置
