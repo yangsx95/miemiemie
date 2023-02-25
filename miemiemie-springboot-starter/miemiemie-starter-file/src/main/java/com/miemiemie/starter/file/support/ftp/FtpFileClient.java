@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.Optional;
 
+import static com.miemiemie.starter.file.util.Util.*;
+
 /**
  * ftp文件客户端
  *
@@ -120,32 +122,6 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
     @Override
     protected String getDefaultPart() {
         return properties.getBaseDir();
-    }
-
-    private String getAbsFilepath(String part, String filepath) {
-        part = part.replace("\\", "/").trim();
-        part = Util.trimLeftString(part, "/");
-        part = Util.trimRightString(part, "/");
-        filepath = filepath.replace("\\", "/").trim();
-        filepath = Util.trimLeftString(filepath, "/");
-        filepath = Util.trimRightString(filepath, "/");
-        if (!StringUtils.hasText(part)) {
-            return "/" + filepath;
-        }
-        return "/" + part + "/" + filepath;
-    }
-
-    private String getFileDirPath(String part, String filepath) {
-        String path = getAbsFilepath(part, filepath);
-        if (!path.contains("/")) {
-            return "/";
-        }
-        return path.substring(0, path.lastIndexOf("/"));
-    }
-
-    private String getFilename(String part, String filepath) {
-        String path = getAbsFilepath(part, filepath);
-        return path.substring(path.lastIndexOf("/") + 1);
     }
 
 }

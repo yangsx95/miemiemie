@@ -2,6 +2,7 @@ package com.miemiemie.starter.file.util;
 
 import com.miemiemie.starter.file.pool.FileClientPoolProperties;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.util.StringUtils;
 
 import java.util.Objects;
 
@@ -53,6 +54,32 @@ public class Util {
 
         str = str.substring(1);
         return trimRightString(str, rightStr);
+    }
+
+    public static String getAbsFilepath(String part, String filepath) {
+        part = part.replace("\\", "/").trim();
+        part = Util.trimLeftString(part, "/");
+        part = Util.trimRightString(part, "/");
+        filepath = filepath.replace("\\", "/").trim();
+        filepath = Util.trimLeftString(filepath, "/");
+        filepath = Util.trimRightString(filepath, "/");
+        if (!StringUtils.hasText(part)) {
+            return "/" + filepath;
+        }
+        return "/" + part + "/" + filepath;
+    }
+
+    public static String getFileDirPath(String part, String filepath) {
+        String path = getAbsFilepath(part, filepath);
+        if (!path.contains("/")) {
+            return "/";
+        }
+        return path.substring(0, path.lastIndexOf("/"));
+    }
+
+    public static String getFilename(String part, String filepath) {
+        String path = getAbsFilepath(part, filepath);
+        return path.substring(path.lastIndexOf("/") + 1);
     }
 
 }

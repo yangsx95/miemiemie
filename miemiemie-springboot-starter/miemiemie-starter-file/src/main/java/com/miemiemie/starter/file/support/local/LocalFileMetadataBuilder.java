@@ -30,12 +30,6 @@ public class LocalFileMetadataBuilder {
         return this;
     }
 
-    public LocalFileMetadataBuilder contentType(String contentType) {
-        Assert.hasText(contentType, "content-type 不可为空");
-        this.fileMetaData.setContentType(contentType);
-        return this;
-    }
-
     public LocalFileMetadataBuilder size(long size) {
         Assert.isTrue(size >= 0, "文件大小不能小于0");
         this.fileMetaData.setSize(size);

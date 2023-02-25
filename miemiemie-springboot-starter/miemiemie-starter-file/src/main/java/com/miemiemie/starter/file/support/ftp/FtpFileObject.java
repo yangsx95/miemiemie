@@ -2,7 +2,7 @@ package com.miemiemie.starter.file.support.ftp;
 
 import com.miemiemie.starter.file.FileMetadata;
 import com.miemiemie.starter.file.FileObject;
-import com.miemiemie.starter.file.support.local.LocalFileMetadataBuilder;
+import com.miemiemie.starter.file.util.Util;
 import lombok.Getter;
 
 import java.io.InputStream;
@@ -37,13 +37,12 @@ public class FtpFileObject implements FileObject {
 
     @Override
     public FileMetadata getMetaData() {
-        return new LocalFileMetadataBuilder().build();
+        return new FtpFileMetadataBuilder().fileName(Util.getFilename(getPart(), getFilePath())).build();
     }
 
     @Override
     public Supplier<InputStream> getContent() {
         return content;
     }
-
 
 }
