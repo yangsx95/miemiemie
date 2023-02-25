@@ -2,6 +2,7 @@ package com.miemiemie.starter.file.util;
 
 import com.miemiemie.starter.file.pool.FileClientPoolProperties;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
@@ -32,7 +33,8 @@ public class Util {
         return config;
     }
 
-    public static String trimLeftString(String str, String leftStr) {
+    @Nullable
+    public static String trimLeftString(@Nullable String str, @Nullable String leftStr) {
         if (Objects.isNull(str) || Objects.isNull(leftStr)) {
             return str;
         }
@@ -44,7 +46,8 @@ public class Util {
         return trimLeftString(str, leftStr);
     }
 
-    public static String trimRightString(String str, String rightStr) {
+    @Nullable
+    public static String trimRightString(@Nullable String str, @Nullable String rightStr) {
         if (Objects.isNull(str) || Objects.isNull(rightStr)) {
             return str;
         }

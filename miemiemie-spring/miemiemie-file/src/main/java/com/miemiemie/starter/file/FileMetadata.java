@@ -1,9 +1,12 @@
 package com.miemiemie.starter.file;
 
+import com.miemiemie.core.util.MimeTypes;
+import com.miemiemie.starter.file.util.Util;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
+import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,35 +18,89 @@ import java.util.TreeMap;
  */
 @Getter
 @Setter
-@FieldNameConstants
-public class FileMetadata {
+public class FileMetadata extends TreeMap<String, String> {
 
-    private Map<String, String> otherMetadata = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+    public static String FILE_NAME = "FileName";
 
-    /**
-     * 文件名
-     */
-    private String fileName;
+    public static String FILE_EXTENSION = "FileExtension";
 
-    /**
-     * 文件扩展名
-     */
-    private String fileExtension;
+    public static String FILE_SIZE_BYTE = "fileSizeByte";
 
-    /**
-     * 文件内容类型
-     */
-    private String contentType;
+    public static String CONTENT_TYPE = "ContentType";
 
-    /**
-     * 文件大小
-     */
-    private long size;
+    public FileMetadata() {
+        super(String.CASE_INSENSITIVE_ORDER);
+    }
 
-    /**
-     * 添加一个
-     */
-    public void put(String key, String value) {
-        otherMetadata.put(key, value);
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private final FileMetadata fileMetadata = new FileMetadata();
+
+        public Builder ofFilepath(String filepath) {
+            String filename = Util.getFilename("", filepath);
+            String fileExtension = Util.getFileExtension(filename);
+            fileMetadata.put(FILE_NAME, filename);
+            fileMetadata.put(FILE_EXTENSION, fileExtension);
+            fileMetadata.put(CONTENT_TYPE, MimeTypes.getMimeType(fileExtension));
+            return this;
+        }
+
+        public Builder filename(String filename) {
+            fileMetadata.put(FILE_NAME, filename);
+            return this;
+        }
+
+        public Builder ofFilename(String filename) {
+            String fileExtension = Util.getFileExtension(filename);
+            fileMetadata.put(FILE_NAME, filename);
+            fileMetadata.put(FILE_EXTENSION, fileExtension);
+            fileMetadata.put(CONTENT_TYPE, MimeTypes.getMimeType(fileExtension));
+            return this;
+        }
+
+        public Builder fileExtension(String extension) {
+            fileMetadata.put(FILE_EXTENSION, extension);
+            return this;
+        }
+
+        public Builder ofFileExtension(String extension) {
+            fileMetadata.put(FILE_EXTENSION, extension);
+            fileMetadata.put(CONTENT_TYPE, MimeTypes.getMimeType(extension));
+            return this;
+        }
+
+        public Builder fileSizeByte(long size) {
+            fileMetadata.put(FILE_SIZE_BYTE, String.valueOf(size));
+            return this;
+        }
+
+        public Builder contentType(String contentType) {
+            fileMetadata.put(CONTENT_TYPE, contentType);
+            return this;
+        }
+
+        public Builder ofFile(File file) {
+            String fileName = file.getName();
+            String fileExtension = Util.getFileExtension(fileName);
+            fileMetadata.put(FILE_NAME, fileName);
+            fileMetadata.put(FILE_EXTENSION, fileExtension);
+            fileMetadata.put(CONTENT_TYPE, MimeTypes.getMimeType(fileExtension));
+            fileMetadata.put(FILE_SIZE_BYTE, String.valueOf(file.length()));
+            return this;
+        }
+
+        public Builder putAll(Map<String, String> metadata) {
+            fileMetadata.putAll(metadata);
+            return this;
+        }
+
+        public FileMetadata build() {
+            return fileMetadata;
+        }
+
     }
 }

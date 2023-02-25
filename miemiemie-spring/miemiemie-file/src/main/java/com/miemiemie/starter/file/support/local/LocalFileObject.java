@@ -27,9 +27,13 @@ public class LocalFileObject implements FileObject {
     @Getter
     private final String filePath;
 
-    protected LocalFileObject(String baseDir, String filePath) {
+    @Getter
+    private final FileMetadata fileMetadata;
+
+    protected LocalFileObject(String baseDir, String filePath, FileMetadata fileMetadata) {
         this.baseDir = baseDir;
         this.filePath = filePath;
+        this.fileMetadata = fileMetadata;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class LocalFileObject implements FileObject {
 
     @Override
     public FileMetadata getMetaData() {
-        return new LocalFileMetadataBuilder().file(getFile()).build();
+        return FileMetadata.builder().ofFile(getFile()).build();
     }
 
     @Override

@@ -59,9 +59,8 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
                 continue;
             }
             if (!ftp.changeWorkingDirectory(str)) {
-                boolean makeDirectory = ftp.makeDirectory(str);
-                boolean changeWorkingDirectory = ftp.changeWorkingDirectory(str);
-                log.warn(str + "ftp client create dir success: {}; changeWorkDir：{}", makeDirectory, changeWorkingDirectory);
+                ftp.makeDirectory(str);
+                ftp.changeWorkingDirectory(str);
             }
         }
     }
@@ -71,10 +70,8 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
     protected FileObject doPutFile(FTPClient client, String part, InputStream content, String filepath, FileMetadata fileMetaData) throws Exception {
         String dir = getFileDirPath(part, filepath);
         createDirs(client, dir);
-        boolean changeR = client.changeWorkingDirectory(dir);
-        log.debug("change working dir result: {}", changeR);
-        boolean result = client.storeFile(getFilename(part, filepath), content);
-        log.debug("ftp upload result: {}", result);
+        client.changeWorkingDirectory(dir);
+        client.storeFile(getFilename(part, filepath), content);
         return new FtpFileObject(part, filepath, () -> {
             try {
                 return getFileInputStream(client, part, filepath);

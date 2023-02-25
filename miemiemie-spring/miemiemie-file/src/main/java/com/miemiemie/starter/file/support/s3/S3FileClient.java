@@ -75,7 +75,8 @@ public class S3FileClient extends AbstractFileClient {
     public FileObject putFile(String part, InputStream content, String filepath, FileMetadata fileMetaData) throws FileClientException {
         createBucket(part);
         ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setContentType(fileMetaData.getContentType());
+        objectMetadata.setContentType(fileMetaData.remove(FileMetadata.CONTENT_TYPE));
+        objectMetadata.setUserMetadata(fileMetaData);
         PutObjectRequest putObjectRequest = new PutObjectRequest(part, filepath, content, objectMetadata);
         amazonS3.putObject(putObjectRequest);
         return getFile(part, filepath).orElseThrow(() -> new FileClientException("file put error, can not get target file"));

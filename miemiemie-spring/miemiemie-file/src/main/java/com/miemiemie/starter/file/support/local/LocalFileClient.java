@@ -67,12 +67,18 @@ public class LocalFileClient extends AbstractFileClient {
         } catch (IOException e) {
             throw new FileClientException("file put failed", e);
         }
-        return new LocalFileObject(part, filepath);
+        fileMetaData = FileMetadata.builder().ofFile(file).build();
+        return new LocalFileObject(part, filepath, fileMetaData);
     }
 
     @Override
     public Optional<FileObject> getFile(String baseDir, String filepath) {
-        return Optional.of(new LocalFileObject(baseDir, filepath));
+        File file = Paths.get(baseDir, filepath).toFile();
+        if (!file.exists()) {
+            return Optional.empty();
+        }
+        FileMetadata fileMetadata = FileMetadata.builder().ofFile(file).build();
+        return Optional.of(new LocalFileObject(baseDir, filepath, fileMetadata));
     }
 
     @Override

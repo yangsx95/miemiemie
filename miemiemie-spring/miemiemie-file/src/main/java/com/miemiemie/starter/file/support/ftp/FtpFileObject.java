@@ -37,7 +37,9 @@ public class FtpFileObject implements FileObject {
 
     @Override
     public FileMetadata getMetaData() {
-        return new FtpFileMetadataBuilder().fileName(Util.getFilename(getPart(), getFilePath())).build();
+        return FileMetadata.builder()
+                .ofFilename(Util.getFilename(getPart(), getFilePath()))
+                .build();
     }
 
     @Override

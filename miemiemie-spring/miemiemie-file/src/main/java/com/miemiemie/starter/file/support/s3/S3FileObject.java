@@ -33,7 +33,11 @@ public class S3FileObject implements FileObject {
 
     @Override
     public FileMetadata getMetaData() {
-        return new S3FileMetadataBuilder().s3Object(s3Object).build();
+        return FileMetadata.builder()
+                .contentType(s3Object.getObjectMetadata().getContentType())
+                .fileSizeByte(s3Object.getObjectMetadata().getContentLength())
+                .putAll(s3Object.getObjectMetadata().getUserMetadata())
+                .build();
     }
 
     @Override
