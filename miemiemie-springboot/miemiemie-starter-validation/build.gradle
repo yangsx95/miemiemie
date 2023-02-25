@@ -1,0 +1,13 @@
+description '''
+validation相关封装
+'''
+
+dependencies {
+    api project(":miemiemie-spring:miemiemie-core")
+
+    api 'org.springframework.boot:spring-boot-starter-validation'
+    api 'org.springframework.boot:spring-boot-autoconfigure'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

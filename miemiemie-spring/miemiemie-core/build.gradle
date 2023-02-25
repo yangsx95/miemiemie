@@ -1,0 +1,9 @@
+description '''
+核心代码封装
+'''
+
+dependencies {
+    api 'org.springframework:spring-context'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

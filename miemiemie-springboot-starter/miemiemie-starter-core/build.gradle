@@ -1,9 +1,0 @@
-description '''
-核心代码封装
-'''
-
-dependencies {
-    api 'org.springframework.boot:spring-boot-starter'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
