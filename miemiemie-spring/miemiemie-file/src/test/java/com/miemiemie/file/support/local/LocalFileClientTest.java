@@ -1,6 +1,7 @@
 package com.miemiemie.file.support.local;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IoUtil;
 import com.miemiemie.file.FileMetadata;
 import com.miemiemie.file.FileObject;
 import com.miemiemie.file.FilePathGenerator;
@@ -29,6 +30,8 @@ class LocalFileClientTest {
     private static final String baseDir = Paths.get(rootDir, "attachment").toString();
 
     private static final String filepathNameTxt = "a/name.txt";
+
+    public static final String nameFileContent = "yangshunxiang";
 
     @BeforeAll
     public static void initFileClient() {
@@ -61,7 +64,7 @@ class LocalFileClientTest {
     @Order(1)
     void putFile() {
         FileObject fileObject = localFileClient.putFile(baseDir,
-                new ByteArrayInputStream("yangshunxiang".getBytes(StandardCharsets.UTF_8)),
+                new ByteArrayInputStream(nameFileContent.getBytes(StandardCharsets.UTF_8)),
                 filepathNameTxt,
                 FileMetadata.builder()
                         .ofFilename(filepathNameTxt)
@@ -69,6 +72,7 @@ class LocalFileClientTest {
         );
         assertEquals(fileObject.getPart(), baseDir);
         assertEquals(fileObject.getFilepath(), filepathNameTxt);
+        assertEquals(IoUtil.read(fileObject.getContent().get(), StandardCharsets.UTF_8), nameFileContent);
     }
 
     @Test
@@ -91,6 +95,7 @@ class LocalFileClientTest {
         FileObject fileObject = file.get();
         assertEquals(fileObject.getPart(), baseDir);
         assertEquals(fileObject.getFilepath(), filepathNameTxt);
+        assertEquals(IoUtil.read(fileObject.getContent().get(), StandardCharsets.UTF_8), nameFileContent);
     }
 
     @Test
