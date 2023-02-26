@@ -40,8 +40,21 @@ class LocalFileClientTest {
 
     @Test
     @Order(0)
+    void clientDefaultPart() {
+        LocalFileClient client = new LocalFileClient(metadata -> UUID.randomUUID().toString());
+        assertEquals(client.getDefaultPart(), LocalFileClientProperties.DEFAULT.getBaseDir());
+    }
+
+    @Test
+    @Order(0)
     void getLocalFileClientProperties() {
         assertEquals(localFileClient.getLocalFileClientProperties().getBaseDir(), baseDir);
+    }
+
+    @Test
+    @Order(0)
+    void getDefaultPart() {
+        assertEquals(localFileClient.getDefaultPart(), baseDir);
     }
 
     @Test
