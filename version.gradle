@@ -20,7 +20,8 @@ ext {
             "awsS3"                : "1.12.395",
             "commonPool2"          : "2.11.1",
             "commonNet"            : "3.6",
-            "fastDFS"              : "1.29",
+            "fastDFS"              : "1.27.0.0",
+            "hutool"              : "5.8.12",
     ]
 
     dependencies = [
@@ -38,7 +39,9 @@ ext {
             "awsS3"             : "com.amazonaws:aws-java-sdk-s3:${versions.awsS3}",
             "commonPool2"       : "org.apache.commons:commons-pool2:${versions.commonPool2}",
             "commonNet"         : "commons-net:commons-net:${versions.commonNet}",
-            "fastDFS"           : "org.csource:fastdfs-client-java:${versions.fastDFS}",
+            "fastDFS"           : "net.oschina.zcx7878:fastdfs-client-java:${versions.fastDFS}",
+            "hutool"            : "cn.hutool:hutool-all:${versions.hutool}",
+
 
     ]
 }

@@ -23,6 +23,10 @@ includePath 'miemiemie-springboot:miemiemie-starter-validation'
 
 // devops
 includePath 'miemiemie-devops'
+includePath 'miemiemie-devops:dockerfiles'
+includePath 'miemiemie-devops:docker-compose'
+includePath 'miemiemie-devops:helm-charts'
 includePath 'miemiemie-devops:miemiemie-devops-kubesphere'
 
 includePath 'miemiemie-demo'
+includePath 'miemiemie-doc'
