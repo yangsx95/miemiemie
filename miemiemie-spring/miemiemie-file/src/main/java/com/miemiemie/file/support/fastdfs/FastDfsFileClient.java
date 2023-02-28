@@ -5,7 +5,6 @@ import com.miemiemie.file.FileObject;
 import com.miemiemie.file.FilePathGenerator;
 import com.miemiemie.file.exception.FileClientException;
 import com.miemiemie.file.pool.AbstractPooledFileClient;
-import com.miemiemie.file.pool.FileClientPoolProperties;
 import com.miemiemie.file.util.Util;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.csource.common.NameValuePair;
@@ -35,13 +34,8 @@ public class FastDfsFileClient extends AbstractPooledFileClient<TrackerServer> {
     public FastDfsFileClient(FastDfsFileClientProperties fastDfsFileClientProperties,
                              FilePathGenerator filePathGenerator,
                              PooledObjectFactory<TrackerServer> factory) {
-        super(filePathGenerator, factory);
+        super(filePathGenerator, fastDfsFileClientProperties.getPool(), factory);
         this.fastDfsFileClientProperties = fastDfsFileClientProperties;
-    }
-
-    @Override
-    protected FileClientPoolProperties getPoolProperties() {
-        return fastDfsFileClientProperties.getPool();
     }
 
     @Override

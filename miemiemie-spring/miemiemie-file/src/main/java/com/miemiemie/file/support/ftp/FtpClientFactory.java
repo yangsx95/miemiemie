@@ -28,7 +28,7 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 
     @Nullable
     @Override
-    public FTPClient create() throws Exception {
+    public FTPClient create() {
         FTPClient ftpClient = new FTPClient();
         ftpClient.setConnectTimeout(ftpFileClientProperties.getConnectTimeOut());
         try {
@@ -55,6 +55,8 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
             ftpClient.setUseEPSVwithIPv4(ftpFileClientProperties.isUseEPSVwithIPv4());
             if (ftpFileClientProperties.isPassiveMode()) {
                 ftpClient.enterLocalPassiveMode();
+            } else {
+                ftpClient.enterLocalActiveMode();
             }
         } catch (IOException e) {
             throw new FileClientException("ftp connect error：", e);

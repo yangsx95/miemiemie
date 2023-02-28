@@ -20,7 +20,7 @@ public class FileClientPoolTemplate<T> {
     }
 
     @FunctionalInterface
-    protected interface OprSupplier<C, R> {
+    public interface OprSupplier<C, R> {
 
         R opr(C c) throws Exception;
 

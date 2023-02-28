@@ -25,21 +25,19 @@ public abstract class AbstractPooledFileClient<T> extends AbstractFileClient {
     private final FileClientPoolTemplate<T> poolTemplate;
 
     public AbstractPooledFileClient(FilePathGenerator filePathGenerator,
+                                    FileClientPoolProperties poolProperties,
                                     PooledObjectFactory<T> factory) {
         super(filePathGenerator);
-        poolTemplate = new FileClientPoolTemplate<>(factory, getPoolConfig());
+        poolTemplate = new FileClientPoolTemplate<>(factory, getPoolConfig(poolProperties));
     }
 
-    protected  GenericObjectPoolConfig<T> getPoolConfig() {
+    protected  GenericObjectPoolConfig<T> getPoolConfig(FileClientPoolProperties poolProperties) {
         GenericObjectPoolConfig<T> config = new GenericObjectPoolConfig<>();
-        FileClientPoolProperties properties = getPoolProperties();
-        config.setMaxIdle(properties.getMaxIdle());
-        config.setMaxTotal(properties.getMaxTotal());
-        config.setMinIdle(properties.getMinIdle());
+        config.setMaxIdle(poolProperties.getMaxIdle());
+        config.setMaxTotal(poolProperties.getMaxTotal());
+        config.setMinIdle(poolProperties.getMinIdle());
         return config;
     }
-
-    protected abstract FileClientPoolProperties getPoolProperties();
 
     @Override
     public FileObject putFile(String part, InputStream content, String filepath, FileMetadata fileMetaData) throws FileClientException {

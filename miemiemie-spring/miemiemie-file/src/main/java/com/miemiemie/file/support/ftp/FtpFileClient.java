@@ -1,12 +1,11 @@
 package com.miemiemie.file.support.ftp;
 
-import com.miemiemie.file.util.Util;
 import com.miemiemie.file.FileMetadata;
 import com.miemiemie.file.FileObject;
+import com.miemiemie.file.FilePathGenerator;
 import com.miemiemie.file.exception.FileClientException;
 import com.miemiemie.file.pool.AbstractPooledFileClient;
-import com.miemiemie.file.pool.FileClientPoolProperties;
-import com.miemiemie.file.FilePathGenerator;
+import com.miemiemie.file.util.Util;
 import lombok.Getter;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.PooledObjectFactory;
@@ -15,6 +14,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -25,6 +25,7 @@ import java.util.Optional;
  */
 public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
 
+    public static final String ROOT_PATH = "/";
     @Getter
     private final FtpFileClientProperties properties;
 
@@ -36,13 +37,8 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
     public FtpFileClient(FtpFileClientProperties properties,
                          FilePathGenerator filePathGenerator,
                          PooledObjectFactory<FTPClient> factory) {
-        super(filePathGenerator, factory);
+        super(filePathGenerator, properties.getPool(), factory);
         this.properties = properties;
-    }
-
-    @Override
-    protected FileClientPoolProperties getPoolProperties() {
-        return properties.getPool();
     }
 
     /**
@@ -73,15 +69,41 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
         createDirs(client, dir);
         client.changeWorkingDirectory(dir);
         client.storeFile(Util.getFilename(part, filepath), content);
-//        return new FtpFileObject(part, filepath, () -> getFileInputStream(client, part, filepath));
-        return null;
+
+        if (!doExists(client, part, filepath)) {
+            throw new FileClientException("file upload failed, uploaded file not exists");
+        }
+
+        FileMetadata metadata = FileMetadata.builder()
+                .ofFilepath(filepath)
+                .build();
+
+        return FileObject.builder()
+                .part(part)
+                .filepath(filepath)
+                .metadata(metadata)
+                .contentSupplier(() -> getPoolTemplate()
+                        .getClientAndOpr((c) -> getFileInputStream(c, part, filepath), "file get error"))
+                .build();
     }
 
     @Override
-    protected Optional<FileObject> doGetFile(FTPClient client, String part, String filepath) {
-//        return Optional.of(new FtpFileObject(part, filepath, () -> getFileInputStream(client, part, filepath)));
-        return Optional.empty();
+    protected Optional<FileObject> doGetFile(FTPClient client, String part, String filepath) throws Exception {
+        if (!doExists(client, part, filepath)) {
+            return Optional.empty();
+        }
+
+        FileMetadata metadata = FileMetadata.builder()
+                .ofFilepath(filepath)
+                .build();
+        return Optional.of(FileObject.builder()
+                .part(part)
+                .filepath(filepath)
+                .metadata(metadata)
+                .contentSupplier(() -> getFileInputStream(client, part, filepath))
+                .build());
     }
+
 
     private InputStream getFileInputStream(FTPClient client, String part, String filepath) {
         try {
@@ -94,8 +116,9 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
 
     @Override
     protected boolean doExists(FTPClient client, String part, String filepath) throws Exception {
+        client.changeWorkingDirectory(ROOT_PATH);
         String[] names = client.listNames(Util.getAbsFilepath(part, filepath));
-        return names.length > 0;
+        return Objects.nonNull(names) && names.length > 0;
     }
 
     @Override
@@ -103,13 +126,14 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
         return new URI("ftp",
                 properties.getUsername() + ":" + properties.getPassword(),
                 properties.getHost(), properties.getPort(),
-                Util.getAbsFilepath(part, part),
+                Util.getAbsFilepath(part, filepath),
                 null, null);
     }
 
     @Override
     protected Void doDelete(FTPClient client, String part, String filepath) throws Exception {
-        client.deleteFile(filepath);
+        client.changeWorkingDirectory(ROOT_PATH);
+        client.deleteFile(Util.getAbsFilepath(part, filepath));
         return null;
     }
 
