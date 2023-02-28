@@ -84,6 +84,9 @@ public class S3FileClient extends AbstractFileClient {
 
     @Override
     public Optional<FileObject> getFile(String part, String filepath) {
+        if (!amazonS3.doesBucketExistV2(part)) {
+            return Optional.empty();
+        }
         S3Object s3Object = amazonS3.getObject(part, filepath);
         FileMetadata metadata = FileMetadata.builder()
                 .contentType(s3Object.getObjectMetadata().getContentType())
