@@ -14,11 +14,6 @@ import lombok.Setter;
 public class S3FileClientProperties {
 
     /**
-     * 是否启用 oss，默认为：true
-     */
-    private boolean enable = true;
-
-    /**
      * oss 服务端点，也是url
      */
     private String endpoint;

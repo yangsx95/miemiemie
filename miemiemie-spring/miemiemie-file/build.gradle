@@ -16,4 +16,5 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'cn.hutool:hutool-all'
+    testImplementation 'com.amazonaws:aws-java-sdk-s3'
 }

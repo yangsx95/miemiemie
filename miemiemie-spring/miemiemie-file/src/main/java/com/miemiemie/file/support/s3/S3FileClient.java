@@ -13,9 +13,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.miemiemie.file.FileMetadata;
 import com.miemiemie.file.FileObject;
+import com.miemiemie.file.FilePathGenerator;
 import com.miemiemie.file.exception.FileClientException;
 import com.miemiemie.file.support.AbstractFileClient;
-import com.miemiemie.file.FilePathGenerator;
 import lombok.Getter;
 
 import java.io.InputStream;
@@ -37,7 +37,7 @@ public class S3FileClient extends AbstractFileClient {
     @Getter
     private final AmazonS3 amazonS3;
 
-    public S3FileClient(FilePathGenerator filePathGenerator, S3FileClientProperties s3FileClientProperties) {
+    public S3FileClient(S3FileClientProperties s3FileClientProperties, FilePathGenerator filePathGenerator) {
         super(filePathGenerator);
         this.s3FileClientProperties = s3FileClientProperties;
         amazonS3 = initAmazonS3(s3FileClientProperties);
@@ -84,9 +84,18 @@ public class S3FileClient extends AbstractFileClient {
 
     @Override
     public Optional<FileObject> getFile(String part, String filepath) {
-        S3Object object = amazonS3.getObject(part, filepath);
-//        return Optional.of(new S3FileObject(object));
-        return Optional.empty();
+        S3Object s3Object = amazonS3.getObject(part, filepath);
+        FileMetadata metadata = FileMetadata.builder()
+                .contentType(s3Object.getObjectMetadata().getContentType())
+                .putAll(s3Object.getObjectMetadata().getUserMetadata())
+                .build();
+        FileObject fileObject = FileObject.builder()
+                .part(s3Object.getBucketName())
+                .filepath(s3Object.getKey())
+                .contentSupplier(s3Object::getObjectContent)
+                .metadata(metadata)
+                .build();
+        return Optional.of(fileObject);
     }
 
     @Override
