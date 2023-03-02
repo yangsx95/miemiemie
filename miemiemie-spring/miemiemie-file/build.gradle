@@ -18,4 +18,6 @@ dependencies {
     testImplementation 'cn.hutool:hutool-all'
     testImplementation 'com.amazonaws:aws-java-sdk-s3'
     testImplementation 'commons-net:commons-net'
+    testImplementation 'net.oschina.zcx7878:fastdfs-client-java'
+
 }

@@ -41,12 +41,12 @@ public abstract class AbstractFileClient implements FileClient {
 
     @Override
     public FileObject putFile(InputStream content, String filepath, FileMetadata fileMetaData) throws FileClientException {
-        return putFile(getDefaultPart(), content, filepath, FileMetadata.EMPTY);
+        return putFile(getDefaultPart(), content, filepath, fileMetaData);
     }
 
     @Override
     public FileObject putFile(InputStream content, FileMetadata fileMetaData) throws FileClientException {
-        return putFile(getDefaultPart(), content, filePathGenerator.generate(fileMetaData), FileMetadata.EMPTY);
+        return putFile(getDefaultPart(), content, filePathGenerator.generate(fileMetaData), fileMetaData);
     }
 
     @Override

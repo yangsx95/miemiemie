@@ -18,13 +18,15 @@ public class FastDfsFileClientProperties {
 
     private String charset = "UTF-8";
 
-    private String httpAntiStealToken;
+    private String httpAntiStealToken = "";
 
     private String httpSecretKey = "";
 
     private int httpTrackerHttpPort = 8888;
 
-    private String trackerServers;
+    private String trackerServers = "127.0.0.1:22122";
 
-    private FileClientPoolProperties pool;
+    private String dataAccessHost = "http://127.0.0.1";
+
+    private FileClientPoolProperties pool = new FileClientPoolProperties();
 }
