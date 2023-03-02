@@ -4,9 +4,9 @@ oss封装
 
 dependencies {
 
-    implementation project(":miemiemie-spring:miemiemie-core")
+    api project(":miemiemie-spring:miemiemie-core")
     // 连接池
-    implementation 'org.apache.commons:commons-pool2'
+    api 'org.apache.commons:commons-pool2'
     // ftp
     compileOnly 'commons-net:commons-net'
     // 亚马逊s3 oss文件sdk，minio、阿里云、腾讯云、华为云等常见的云存储都兼容s3协议
