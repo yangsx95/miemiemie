@@ -5,21 +5,19 @@ void includePath(String path) {
     findProject(path)?.name = path.substring(path.lastIndexOf(':') >= 0 ? path.lastIndexOf(':') : 0)
 }
 
-// spring ext
-includePath 'miemiemie-spring:miemiemie-file'
-includePath 'miemiemie-spring:miemiemie-core'
+// java ext
+includePath 'miemiemie-projects:miemiemie-file'
+includePath 'miemiemie-projects:miemiemie-core'
+includePath 'miemiemie-projects:miemiemie-autoconfigure'
 
-// spring boot
-includePath 'miemiemie-springboot:miemiemie-autoconfigure'
-includePath 'miemiemie-springboot:miemiemie-starter-encrypt'
-includePath 'miemiemie-springboot:miemiemie-starter-web'
-includePath 'miemiemie-springboot:miemiemie-starter-swagger'
-includePath 'miemiemie-springboot:miemiemie-starter-feign'
-includePath 'miemiemie-springboot:miemiemie-starter-mybatisplus'
-includePath 'miemiemie-springboot:miemiemie-starter-file'
-includePath 'miemiemie-springboot:miemiemie-starter-excel'
-includePath 'miemiemie-springboot:miemiemie-starter-xxljob'
-includePath 'miemiemie-springboot:miemiemie-starter-validation'
+// spring boot starter
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-web'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-swagger'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-feign'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-mybatisplus'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-file'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-xxljob'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-validation'
 
 // devops
 includePath 'miemiemie-devops'

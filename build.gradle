@@ -23,6 +23,16 @@ allprojects {
     version rootProject.ext.projectVersion
 
     apply plugin: 'idea'
+}
+
+ext {
+    javaProjects = project(":miemiemie-projects").getSubprojects().findAll {
+        it.file("build.gradle").exists()
+    }
+    javaProjects.add(project(":miemiemie-demo"))
+}
+
+configure(javaProjects) { project ->
 
     repositories {
         mavenLocal()
@@ -30,13 +40,6 @@ allprojects {
         maven { url 'https://repo.spring.io/milestone' }
         mavenCentral()
     }
-}
-
-ext {
-    javaProjects = subprojects.findAll { it.file("build.gradle").exists() }
-}
-
-configure(javaProjects) { project ->
 
     // 配置java编译器属性，同类型的还有groovy编译器属性、scala编译器属性、c编译器属性等
     tasks.withType(JavaCompile).tap {

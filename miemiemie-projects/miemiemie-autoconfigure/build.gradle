@@ -1,0 +1,20 @@
+description '''
+自动配置
+'''
+
+dependencies {
+    api project(":miemiemie-projects:miemiemie-core")
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    compileOnly 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    compileOnly 'com.fasterxml.jackson.core:jackson-core'
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind'
+
+    compileOnly project(":miemiemie-projects:miemiemie-file")
+    compileOnly 'commons-net:commons-net'
+    compileOnly 'com.amazonaws:aws-java-sdk-s3'
+    compileOnly 'net.oschina.zcx7878:fastdfs-client-java'
+    compileOnly 'com.xuxueli:xxl-job-core'
+    compileOnly 'org.springframework.cloud:spring-cloud-commons'
+}

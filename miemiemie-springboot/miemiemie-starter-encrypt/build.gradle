@@ -1,9 +1,0 @@
-description '''
-加密、解密、脱敏封装
-'''
-
-dependencies {
-    api project(":miemiemie-spring:miemiemie-core")
-    implementation 'org.springframework.boot:spring-boot-autoconfigure'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-}

@@ -1,0 +1,8 @@
+description '''
+feign相关封装
+'''
+
+dependencies {
+    api project(':miemiemie-projects:miemiemie-autoconfigure')
+    api 'org.springframework.cloud:spring-cloud-starter-openfeign'
+}

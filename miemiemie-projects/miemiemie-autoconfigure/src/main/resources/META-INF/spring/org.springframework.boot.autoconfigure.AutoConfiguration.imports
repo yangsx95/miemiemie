@@ -1,0 +1,3 @@
+com.miemiemie.starter.feign.FeignAutoConfiguration
+com.miemiemie.starter.file.FileAutoConfiguration
+com.miemiemie.starter.xxljob.XxlJobAutoConfig
