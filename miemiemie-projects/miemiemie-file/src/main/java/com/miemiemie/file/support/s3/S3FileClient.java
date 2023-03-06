@@ -91,6 +91,7 @@ public class S3FileClient extends AbstractFileClient {
         FileMetadata metadata = FileMetadata.builder()
                 .contentType(s3Object.getObjectMetadata().getContentType())
                 .putAll(s3Object.getObjectMetadata().getUserMetadata())
+                .md5(s3Object.getObjectMetadata().getContentMD5())
                 .build();
         FileObject fileObject = FileObject.builder()
                 .part(s3Object.getBucketName())

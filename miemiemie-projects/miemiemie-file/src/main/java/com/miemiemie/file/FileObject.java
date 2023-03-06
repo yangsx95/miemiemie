@@ -17,6 +17,16 @@ import java.util.function.Supplier;
 public class FileObject {
 
     /**
+     * 文件所在的文件服务的类型
+     */
+    private String serverType;
+
+    /**
+     * 文件所在的文件服务的唯一标识
+     */
+    private String serverId;
+
+    /**
      * 文件所属组、所属bucket
      */
     private String part;
@@ -38,7 +48,6 @@ public class FileObject {
 
     public static Builder builder() {
         return new Builder();
-
     }
 
     public static class Builder {
