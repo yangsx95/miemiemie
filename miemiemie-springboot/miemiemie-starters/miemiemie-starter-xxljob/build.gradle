@@ -3,6 +3,6 @@ xxl-job封装
 '''
 
 dependencies {
-    api project(':miemiemie-projects:miemiemie-autoconfigure')
+    api project(':miemiemie-springboot:miemiemie-autoconfigure')
     api 'com.xuxueli:xxl-job-core'
 }

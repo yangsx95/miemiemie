@@ -1,7 +1,6 @@
 package com.miemiemie.starter.mybatisplus.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.miemiemie.starter.mybatisplus.entity.BaseEntity;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.time.LocalDateTime;

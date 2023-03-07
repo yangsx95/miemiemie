@@ -3,7 +3,7 @@ swagger相关封装
 '''
 
 dependencies {
-    api project(":miemiemie-projects:miemiemie-autoconfigure")
+    api project(":miemiemie-springboot:miemiemie-autoconfigure")
 
     api 'io.springfox:springfox-boot-starter'
     implementation 'com.github.xiaoymin:knife4j-spring-boot-starter'

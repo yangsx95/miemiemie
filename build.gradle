@@ -26,9 +26,11 @@ allprojects {
 }
 
 ext {
-    javaProjects = project(":miemiemie-projects").getSubprojects().findAll {
+    def isJavaProject = {
         it.file("build.gradle").exists()
     }
+    javaProjects = project(":miemiemie-projects").getSubprojects().findAll(isJavaProject)
+    javaProjects.addAll(project(":miemiemie-springboot").getSubprojects().findAll(isJavaProject))
     javaProjects.add(project(":miemiemie-demo"))
 }
 

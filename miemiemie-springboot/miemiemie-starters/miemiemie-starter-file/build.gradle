@@ -3,6 +3,6 @@ file自动配置后的starter包
 '''
 
 dependencies {
-    api project(':miemiemie-projects:miemiemie-autoconfigure')
+    api project(':miemiemie-springboot:miemiemie-autoconfigure')
     api project(":miemiemie-projects:miemiemie-file")
 }

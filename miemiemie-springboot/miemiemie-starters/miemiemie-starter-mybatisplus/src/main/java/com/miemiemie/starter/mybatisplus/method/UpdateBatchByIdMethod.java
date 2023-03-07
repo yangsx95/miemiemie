@@ -1,12 +1,9 @@
 package com.miemiemie.starter.mybatisplus.method;
 
 import com.baomidou.mybatisplus.core.injector.AbstractMethod;
-import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
-
-import java.util.List;
 
 /**
  * 通过id进行批量更新的方法
