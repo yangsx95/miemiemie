@@ -1,4 +1,4 @@
-package com.miemiemie.starter.swagger.request;
+package com.miemiemie.starter.openapi.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,7 +24,7 @@ public class User {
     @ApiModelProperty
     private String name;
 
-    @ApiModelProperty(required = false, example = "20")
+    @ApiModelProperty(example = "20")
     private int age;
 
 }

@@ -1,6 +1,6 @@
-package com.miemiemie.starter.swagger.controller;
+package com.miemiemie.starter.openapi.controller;
 
-import com.miemiemie.starter.swagger.request.User;
+import com.miemiemie.starter.openapi.request.User;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +29,7 @@ import java.util.*;
 @Api(tags = {"用户操作"})
 public class UserController {
 
-    private static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+    private static final Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
     static {
         users.put(1L, new User(1L, "张三", 33));

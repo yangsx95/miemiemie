@@ -1,7 +1,7 @@
-package com.miemiemie.starter.swagger;
+package com.miemiemie.starter.openapi;
 
-import com.miemiemie.starter.swagger.plugin.CommonEnumModelPropertyBuilderPlugin;
-import com.miemiemie.starter.swagger.plugin.CommonEnumParameterPlugin;
+import com.miemiemie.starter.openapi.plugin.CommonEnumModelPropertyBuilderPlugin;
+import com.miemiemie.starter.openapi.plugin.CommonEnumParameterPlugin;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableOpenApi
 @EnableConfigurationProperties
 @Configuration
-@Import({SwaggerWebMvcConfig.class, CommonEnumParameterPlugin.class, CommonEnumModelPropertyBuilderPlugin.class})
-public class SwaggerAutoConfiguration {
+@Import({OpenApiWebMvcConfig.class, CommonEnumParameterPlugin.class, CommonEnumModelPropertyBuilderPlugin.class})
+public class OpenApiAutoConfiguration {
 
 }

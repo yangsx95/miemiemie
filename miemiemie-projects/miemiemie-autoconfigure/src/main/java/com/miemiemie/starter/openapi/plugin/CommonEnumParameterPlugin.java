@@ -1,7 +1,7 @@
-package com.miemiemie.starter.swagger.plugin;
+package com.miemiemie.starter.openapi.plugin;
 
 import com.miemiemie.core.enums.CommonEnum;
-import com.miemiemie.starter.swagger.util.SwaggerUtil;
+import com.miemiemie.starter.openapi.OpenApiUtil;
 import org.springframework.lang.NonNull;
 import springfox.documentation.builders.RequestParameterBuilder;
 import springfox.documentation.service.ResolvedMethodParameter;
@@ -34,10 +34,10 @@ public class CommonEnumParameterPlugin implements ParameterBuilderPlugin {
                 .filter(p -> CommonEnum.class.isAssignableFrom(p.getParameterType().getErasedType()))
                 .forEach(p -> {
                     RequestParameterBuilder builder = parameterContext.requestParameterBuilder();
-                    String description = SwaggerUtil.getFiledVale(builder, "description")
-                            + " (" + String.join("; ", SwaggerUtil.commonEnumConstantsDescList(p.getParameterType().getErasedType())) + ")";
+                    String description = OpenApiUtil.getFiledVale(builder, "description")
+                            + " (" + String.join("; ", OpenApiUtil.commonEnumConstantsDescList(p.getParameterType().getErasedType())) + ")";
                     builder.description(description);
-                    builder.query(sb -> sb.enumerationFacet(e -> e.allowedValues(SwaggerUtil.commonEnumConstantAvailable(p.getParameterType().getErasedType()))));
+                    builder.query(sb -> sb.enumerationFacet(e -> e.allowedValues(OpenApiUtil.commonEnumConstantAvailable(p.getParameterType().getErasedType()))));
                 });
     }
 }

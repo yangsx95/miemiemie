@@ -1,4 +1,4 @@
-package com.miemiemie.starter.swagger;
+package com.miemiemie.starter.openapi;
 
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;

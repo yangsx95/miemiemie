@@ -1,4 +1,4 @@
-package com.miemiemie.starter.swagger.enums;
+package com.miemiemie.starter.openapi.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.miemiemie.core.enums.CommonEnum;

@@ -1,4 +1,4 @@
-package com.miemiemie.starter.swagger.util;
+package com.miemiemie.starter.openapi;
 
 import com.miemiemie.core.enums.CommonEnum;
 import org.springframework.util.Assert;
@@ -12,9 +12,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class SwaggerUtil {
+/**
+ * @author yangshunxiang
+ * @since 2023/1/19
+ */
+public class OpenApiUtil {
 
-    private SwaggerUtil() throws IllegalAccessException {
+    private OpenApiUtil() throws IllegalAccessException {
         throw new IllegalAccessException();
     }
 
@@ -36,7 +40,7 @@ public class SwaggerUtil {
         Method getCode = ReflectionUtils.findMethod(enumClass, "getCode");
         Assert.notNull(getCode, "CommonEnum no getCode Method");
 
-        return new AllowableListValues(values, "LIST" );
+        return new AllowableListValues(values, "LIST");
     }
 
     public static Object getFiledVale(Object targetObject, String filedName) {

@@ -1,6 +1,6 @@
-package com.miemiemie.starter.swagger.request;
+package com.miemiemie.starter.openapi.request;
 
-import com.miemiemie.starter.swagger.enums.TypeEnum;
+import com.miemiemie.starter.openapi.enums.TypeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

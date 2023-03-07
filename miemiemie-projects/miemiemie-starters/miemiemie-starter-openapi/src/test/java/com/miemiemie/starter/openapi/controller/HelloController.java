@@ -1,7 +1,7 @@
-package com.miemiemie.starter.swagger.controller;
+package com.miemiemie.starter.openapi.controller;
 
-import com.miemiemie.starter.swagger.enums.TypeEnum;
-import com.miemiemie.starter.swagger.request.PeopleSayHelloRequest;
+import com.miemiemie.starter.openapi.enums.TypeEnum;
+import com.miemiemie.starter.openapi.request.PeopleSayHelloRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

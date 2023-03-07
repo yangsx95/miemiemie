@@ -1,8 +1,8 @@
-package com.miemiemie.starter.swagger.plugin;
+package com.miemiemie.starter.openapi.plugin;
 
 import com.fasterxml.jackson.databind.introspect.BeanPropertyDefinition;
 import com.miemiemie.core.enums.CommonEnum;
-import com.miemiemie.starter.swagger.util.SwaggerUtil;
+import com.miemiemie.starter.openapi.OpenApiUtil;
 import org.springframework.lang.NonNull;
 import springfox.documentation.builders.PropertySpecificationBuilder;
 import springfox.documentation.spi.DocumentationType;
@@ -42,13 +42,13 @@ public class CommonEnumModelPropertyBuilderPlugin implements ModelPropertyBuilde
             return;
         }
 
-        List<String> displayDescList = SwaggerUtil.commonEnumConstantsDescList(fieldType);
+        List<String> displayDescList = OpenApiUtil.commonEnumConstantsDescList(fieldType);
 
         PropertySpecificationBuilder builder = context.getSpecificationBuilder();
-        String joinText = SwaggerUtil.getFiledVale(builder, "description")
+        String joinText = OpenApiUtil.getFiledVale(builder, "description")
                 + " (" + String.join("; ", displayDescList) + ")";
 
         builder.description(joinText);
-        builder.enumerationFacet(eefb -> eefb.allowedValues(SwaggerUtil.commonEnumConstantAvailable(fieldType)));
+        builder.enumerationFacet(eefb -> eefb.allowedValues(OpenApiUtil.commonEnumConstantAvailable(fieldType)));
     }
 }

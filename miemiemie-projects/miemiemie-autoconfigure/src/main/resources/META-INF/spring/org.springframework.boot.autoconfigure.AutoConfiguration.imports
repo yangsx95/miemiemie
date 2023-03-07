@@ -1,3 +1,4 @@
 com.miemiemie.starter.feign.FeignAutoConfiguration
 com.miemiemie.starter.file.FileAutoConfiguration
 com.miemiemie.starter.xxljob.XxlJobAutoConfig
+com.miemiemie.starter.openapi.OpenApiAutoConfiguration

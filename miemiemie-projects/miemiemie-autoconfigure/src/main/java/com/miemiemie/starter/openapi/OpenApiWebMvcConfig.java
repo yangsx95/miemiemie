@@ -1,4 +1,4 @@
-package com.miemiemie.starter.swagger;
+package com.miemiemie.starter.openapi;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @Configuration
 @ConditionalOnWebApplication
-public class SwaggerWebMvcConfig implements WebMvcConfigurer {
+public class OpenApiWebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(@NonNull ResourceHandlerRegistry registry) {

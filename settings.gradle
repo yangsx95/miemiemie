@@ -9,10 +9,11 @@ void includePath(String path) {
 includePath 'miemiemie-projects:miemiemie-file'
 includePath 'miemiemie-projects:miemiemie-core'
 includePath 'miemiemie-projects:miemiemie-autoconfigure'
+includePath 'miemiemie-projects:miemiemie-validation'
 
 // spring boot starter
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-web'
-includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-swagger'
+includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-openapi'
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-feign'
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-mybatisplus'
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-file'
