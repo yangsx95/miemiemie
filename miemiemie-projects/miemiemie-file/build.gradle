@@ -14,6 +14,8 @@ dependencies {
     // fastDFS
     compileOnly 'net.oschina.zcx7878:fastdfs-client-java'
 
+    compileOnly 'org.springframework.boot:spring-boot-starter-data-redis'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'cn.hutool:hutool-all'
     testImplementation 'com.amazonaws:aws-java-sdk-s3'

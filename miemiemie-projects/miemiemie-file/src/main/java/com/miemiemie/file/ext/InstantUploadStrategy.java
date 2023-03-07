@@ -1,6 +1,8 @@
 package com.miemiemie.file.ext;
 
+import com.miemiemie.file.FileMetadata;
 import com.miemiemie.file.FileObject;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -32,13 +34,19 @@ public interface InstantUploadStrategy {
      *
      * @param key 文件唯一标识
      */
-    void deleteRecord(String key);
+    void clear(String key, FileObject fileObject);
 
     /**
-     * 获取唯一标识在文件元数据中的字段名
+     * 从元数据中获取文件内容唯一值
      *
      * @return 字段名
      */
-    String getKeyNameInMetaData();
+    default Optional<String> getKeyFromMetaData(FileMetadata fileMetadata) {
+        String md5 = fileMetadata.get(FileMetadata.MD5);
+        if (!StringUtils.hasText(md5)) {
+            return Optional.empty();
+        }
+        return Optional.of(md5);
+    }
 
 }

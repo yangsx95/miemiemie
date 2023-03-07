@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -31,16 +32,6 @@ public class InstantUploadFileClient implements FileClient {
         this.instantUploadStrategy = instantUploadStrategy;
     }
 
-    private FileObject putFileTemplate(FileMetadata fileMetadata, Supplier<FileObject> fileUploadFunction) {
-        Optional<FileObject> fileObjectOptional = instantUploadStrategy.existAndGet(fileMetadata.get(FileMetadata.MD5));
-        if (fileObjectOptional.isPresent()) {
-            return fileObjectOptional.get();
-        }
-        FileObject fileObject = fileUploadFunction.get();
-        instantUploadStrategy.record(fileObject.getFileMetadata().get(FileMetadata.MD5), fileObject);
-        return fileObject;
-    }
-
     @Override
     public FileObject putFile(String part, InputStream content, String filepath, FileMetadata fileMetaData) throws FileClientException {
         return putFileTemplate(fileMetaData, () -> originFileClient.putFile(part, content, filepath, fileMetaData));
@@ -49,7 +40,6 @@ public class InstantUploadFileClient implements FileClient {
     @Override
     public FileObject putFile(String part, InputStream content, FileMetadata fileMetaData) throws FileClientException {
         return putFileTemplate(fileMetaData, () -> originFileClient.putFile(part, content, fileMetaData));
-
     }
 
     @Override
@@ -75,6 +65,21 @@ public class InstantUploadFileClient implements FileClient {
     @Override
     public FileObject putFile(InputStream content) throws FileClientException {
         return originFileClient.putFile(content);
+    }
+
+    private FileObject putFileTemplate(FileMetadata fileMetadata, Supplier<FileObject> fileUploadFunction) {
+        Optional<String> onlyKey = instantUploadStrategy.getKeyFromMetaData(fileMetadata);
+        if (!onlyKey.isPresent()) {
+            return fileUploadFunction.get();
+        }
+
+        Optional<FileObject> fileObjectOptional = instantUploadStrategy.existAndGet(onlyKey.get());
+        if (fileObjectOptional.isPresent()) {
+            return fileObjectOptional.get();
+        }
+        FileObject fileObject = fileUploadFunction.get();
+        instantUploadStrategy.record(onlyKey.get(), fileObject);
+        return fileObject;
     }
 
     @Override
@@ -110,17 +115,27 @@ public class InstantUploadFileClient implements FileClient {
     @Override
     public void deleteFile(String part, String filepath) throws FileClientException {
         Optional<FileObject> file = getFile(part, filepath);
-        String md5 = file.map(FileObject::getFileMetadata).map(e -> e.get(FileMetadata.MD5)).orElse(null);
-        if (file.isPresent()) {
-            originFileClient.deleteFile(part, filepath);
+        if (!file.isPresent()) {
+            return;
         }
-        if (StringUtils.hasText(md5)) {
-            instantUploadStrategy.deleteRecord(md5);
-        }
+        FileObject fileObject = file.get();
+        Optional<String> onlyKey = instantUploadStrategy.getKeyFromMetaData(fileObject.getFileMetadata());
+
+        originFileClient.deleteFile(part, filepath);
+        onlyKey.ifPresent(k -> instantUploadStrategy.clear(k, fileObject));
     }
 
     @Override
     public void deleteFile(String filepath) throws FileClientException {
+        Optional<FileObject> file = getFile(filepath);
+        if (!file.isPresent()) {
+            return;
+        }
+        FileObject fileObject = file.get();
+        Optional<String> onlyKey = instantUploadStrategy.getKeyFromMetaData(fileObject.getFileMetadata());
+
         originFileClient.deleteFile(filepath);
+        onlyKey.ifPresent(k -> instantUploadStrategy.clear(k, fileObject));
     }
+
 }
