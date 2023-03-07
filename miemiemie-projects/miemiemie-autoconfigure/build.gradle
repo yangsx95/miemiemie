@@ -20,5 +20,6 @@ dependencies {
     compileOnly 'com.xuxueli:xxl-job-core'
     compileOnly 'io.springfox:springfox-boot-starter'
     compileOnly 'com.github.xiaoymin:knife4j-spring-boot-starter'
+    compileOnly 'org.hibernate.validator:hibernate-validator'
 
 }

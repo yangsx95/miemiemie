@@ -18,7 +18,6 @@ includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-feign'
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-mybatisplus'
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-file'
 includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-xxljob'
-includePath 'miemiemie-projects:miemiemie-starters:miemiemie-starter-validation'
 
 // devops
 includePath 'miemiemie-devops'

@@ -1,15 +1,18 @@
-package com.miemiemie.starter.validation.validator;
+package com.miemiemie.validation.validator;
 
+import com.miemiemie.validation.annotation.FieldMatch;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * FieldMatch字段验证策略
  *
  * @author yangshunxiang
- * @see com.miemiemie.starter.validation.annotation.FieldMatch
+ * @see FieldMatch
  * @since 2023/01/27
  */
 @FunctionalInterface

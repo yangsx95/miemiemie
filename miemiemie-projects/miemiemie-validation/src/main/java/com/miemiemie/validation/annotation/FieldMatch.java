@@ -1,8 +1,8 @@
-package com.miemiemie.starter.validation.annotation;
+package com.miemiemie.validation.annotation;
 
 
-import com.miemiemie.starter.validation.validator.FieldMatchStrategy;
-import com.miemiemie.starter.validation.validator.FieldMatchValidator;
+import com.miemiemie.validation.validator.FieldMatchStrategy;
+import com.miemiemie.validation.validator.FieldMatchValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

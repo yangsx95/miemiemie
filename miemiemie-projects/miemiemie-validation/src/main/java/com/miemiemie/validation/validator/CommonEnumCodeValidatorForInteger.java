@@ -1,4 +1,4 @@
-package com.miemiemie.starter.validation.validator;
+package com.miemiemie.validation.validator;
 
 /**
  * @author yangshunxiang

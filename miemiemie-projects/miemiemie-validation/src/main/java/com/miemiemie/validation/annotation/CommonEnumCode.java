@@ -1,8 +1,7 @@
-package com.miemiemie.starter.validation.annotation;
+package com.miemiemie.validation.annotation;
 
-import com.miemiemie.starter.validation.validator.CommonEnumCodeValidatorForInteger;
-import com.miemiemie.starter.validation.validator.CommonEnumCodeValidatorForString;
-import org.apache.logging.log4j.util.Strings;
+import com.miemiemie.validation.validator.CommonEnumCodeValidatorForInteger;
+import com.miemiemie.validation.validator.CommonEnumCodeValidatorForString;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

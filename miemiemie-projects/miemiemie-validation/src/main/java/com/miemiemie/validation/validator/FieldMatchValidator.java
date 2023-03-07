@@ -1,7 +1,7 @@
-package com.miemiemie.starter.validation.validator;
+package com.miemiemie.validation.validator;
 
 
-import com.miemiemie.starter.validation.annotation.FieldMatch;
+import com.miemiemie.validation.annotation.FieldMatch;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 

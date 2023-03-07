@@ -1,0 +1,9 @@
+description '''
+校验扩展
+'''
+
+dependencies {
+
+    api project(":miemiemie-projects:miemiemie-core")
+    compileOnly 'org.hibernate.validator:hibernate-validator'
+}

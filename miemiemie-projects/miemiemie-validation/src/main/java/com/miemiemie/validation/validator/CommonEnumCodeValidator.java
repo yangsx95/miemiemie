@@ -1,6 +1,6 @@
-package com.miemiemie.starter.validation.validator;
+package com.miemiemie.validation.validator;
 
-import com.miemiemie.starter.validation.annotation.CommonEnumCode;
+import com.miemiemie.validation.annotation.CommonEnumCode;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
