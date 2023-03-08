@@ -3,6 +3,7 @@ description '''
 '''
 
 dependencies {
+
     api project(":miemiemie-projects:miemiemie-core")
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

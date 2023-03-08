@@ -1,4 +1,4 @@
-package com.miemiemie.validation.annotation;
+package com.miemiemie.validation.constraints;
 
 import com.miemiemie.validation.validator.CommonEnumCodeValidatorForInteger;
 import com.miemiemie.validation.validator.CommonEnumCodeValidatorForString;
@@ -25,7 +25,7 @@ public @interface CommonEnumCode {
      *
      * @return 提示消息
      */
-    String message() default "{javax.validation.constraints.CommonEnum.message}";
+    String message() default "{com.miemiemie.validation.annotation.CommonEnumCode.message}";
 
     /**
      * 对应的枚举类

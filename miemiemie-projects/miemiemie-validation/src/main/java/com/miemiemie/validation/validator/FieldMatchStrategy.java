@@ -1,7 +1,7 @@
 package com.miemiemie.validation.validator;
 
-import com.miemiemie.validation.annotation.FieldMatch;
-import org.springframework.util.StringUtils;
+import cn.hutool.core.util.StrUtil;
+import com.miemiemie.validation.constraints.FieldMatch;
 
 import java.lang.reflect.Array;
 import java.util.Collection;
@@ -102,7 +102,7 @@ public interface FieldMatchStrategy {
                 return false;
             }
             if (value instanceof CharSequence) {
-                return StringUtils.hasLength((CharSequence) value);
+                return StrUtil.isNotEmpty((CharSequence) value);
             } else if (value instanceof Collection) {
                 return ((Collection<?>) value).size() > 0;
             } else if (value instanceof Map) {
@@ -133,7 +133,7 @@ public interface FieldMatchStrategy {
                 return false;
             }
             if (value instanceof CharSequence) {
-                return StringUtils.hasText((CharSequence) value);
+                return StrUtil.isNotBlank((CharSequence) value);
             }
             return true;
         }

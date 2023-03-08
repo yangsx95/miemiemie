@@ -3,7 +3,8 @@ description '''
 '''
 
 dependencies {
-    api 'org.springframework:spring-context'
+    compileOnly 'org.springframework:spring-context'
+    api 'cn.hutool:hutool-all'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

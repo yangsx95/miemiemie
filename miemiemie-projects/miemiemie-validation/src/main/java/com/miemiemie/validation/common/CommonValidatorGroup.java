@@ -1,4 +1,4 @@
-package com.miemiemie.validation.util;
+package com.miemiemie.validation.common;
 
 import javax.validation.groups.Default;
 

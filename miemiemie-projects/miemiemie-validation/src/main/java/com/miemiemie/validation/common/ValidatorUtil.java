@@ -1,9 +1,9 @@
-package com.miemiemie.validation.util;
+package com.miemiemie.validation.common;
 
+import cn.hutool.core.collection.CollUtil;
 import com.miemiemie.core.enums.ResultStatusEnum;
 import com.miemiemie.core.exception.BizException;
 import org.hibernate.validator.HibernateValidator;
-import org.springframework.util.CollectionUtils;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -74,7 +74,7 @@ public final class ValidatorUtil {
             } else {
                 validateSet = validator.validate(object, clazz);
             }
-            if (CollectionUtils.isEmpty(validateSet)) {
+            if (CollUtil.isEmpty(validateSet)) {
                 return;
             }
 

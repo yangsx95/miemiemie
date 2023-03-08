@@ -6,4 +6,5 @@ dependencies {
 
     api project(":miemiemie-projects:miemiemie-core")
     compileOnly 'org.hibernate.validator:hibernate-validator'
+
 }

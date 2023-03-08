@@ -1,9 +1,9 @@
 package com.miemiemie.validation.validator;
 
 
-import com.miemiemie.validation.annotation.FieldMatch;
-import org.springframework.util.Assert;
-import org.springframework.util.ReflectionUtils;
+import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.ReflectUtil;
+import com.miemiemie.validation.constraints.FieldMatch;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -29,9 +29,9 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
 
         List<Object> values = new ArrayList<>();
         for (String propertyName : targets) {
-            Field field = ReflectionUtils.findField(obj.getClass(), propertyName);
+            Field field = ReflectUtil.getField(obj.getClass(), propertyName);
             Assert.notNull(field, "target field " + propertyName + " not exist");
-            values.add(ReflectionUtils.getField(field, values));
+            values.add(ReflectUtil.getFieldValue(obj, field));
         }
 
         try {

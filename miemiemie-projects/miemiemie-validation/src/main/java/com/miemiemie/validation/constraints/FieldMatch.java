@@ -1,4 +1,4 @@
-package com.miemiemie.validation.annotation;
+package com.miemiemie.validation.constraints;
 
 
 import com.miemiemie.validation.validator.FieldMatchStrategy;
@@ -15,6 +15,12 @@ import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * 多字段联合校验
+ *
+ * @author yangshunxiang
+ * @since 2023/3/7
+ */
 @Target({TYPE, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = FieldMatchValidator.class)
@@ -22,7 +28,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Repeatable(FieldMatch.List.class)
 public @interface FieldMatch {
 
-    String message() default "{constraints.fieldmatch}";
+    String message() default "{com.miemiemie.validation.annotation.FieldMatch.message}";
 
     Class<?>[] groups() default {};
 
