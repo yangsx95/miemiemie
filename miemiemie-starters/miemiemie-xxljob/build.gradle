@@ -1,0 +1,9 @@
+description '''
+xxl-job封装
+'''
+
+dependencies {
+    api project(':miemiemie-starters:miemiemie-core')
+    api 'com.xuxueli:xxl-job-core'
+    compileOnly 'org.springframework.cloud:spring-cloud-commons'
+}

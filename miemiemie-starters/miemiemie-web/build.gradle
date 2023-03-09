@@ -1,0 +1,14 @@
+description '''
+web项目相关封装
+'''
+
+dependencies {
+    api project(":miemiemie-starters:miemiemie-core")
+    api project(":miemiemie-starters:miemiemie-validation")
+
+    api 'org.springframework.boot:spring-boot-starter-web'
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    api 'com.github.f4b6a3:ulid-creator'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

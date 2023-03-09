@@ -1,0 +1,10 @@
+description '''
+文件通用客户端
+'''
+
+dependencies {
+
+    api project(":miemiemie-starters:miemiemie-core")
+    api 'org.springframework.boot:spring-boot-starter-validation'
+
+}

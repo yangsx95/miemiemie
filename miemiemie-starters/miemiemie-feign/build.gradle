@@ -1,0 +1,10 @@
+description '''
+feign相关封装
+'''
+
+dependencies {
+    api project(':miemiemie-starters:miemiemie-core')
+    compileOnly 'com.fasterxml.jackson.core:jackson-core'
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind'
+    api 'org.springframework.cloud:spring-cloud-starter-openfeign'
+}

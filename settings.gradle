@@ -5,19 +5,16 @@ void includePath(String path) {
     findProject(path)?.name = path.substring(path.lastIndexOf(':') >= 0 ? path.lastIndexOf(':') : 0)
 }
 
-// java ext
-includePath 'miemiemie-projects:miemiemie-file'
-includePath 'miemiemie-projects:miemiemie-core'
-includePath 'miemiemie-projects:miemiemie-validation'
-
-// spring boot
-includePath 'miemiemie-springboot:miemiemie-autoconfigure'
-includePath 'miemiemie-springboot:miemiemie-starters:miemiemie-starter-web'
-includePath 'miemiemie-springboot:miemiemie-starters:miemiemie-starter-openapi'
-includePath 'miemiemie-springboot:miemiemie-starters:miemiemie-starter-feign'
-includePath 'miemiemie-springboot:miemiemie-starters:miemiemie-starter-mybatisplus'
-includePath 'miemiemie-springboot:miemiemie-starters:miemiemie-starter-file'
-includePath 'miemiemie-springboot:miemiemie-starters:miemiemie-starter-xxljob'
+// spring ext
+includePath 'miemiemie-starters:miemiemie-core'
+includePath 'miemiemie-starters:miemiemie-file'
+includePath 'miemiemie-starters:miemiemie-feign'
+includePath 'miemiemie-starters:miemiemie-validation'
+includePath 'miemiemie-starters:miemiemie-web'
+includePath 'miemiemie-starters:miemiemie-openapi'
+includePath 'miemiemie-starters:miemiemie-mybatisplus'
+includePath 'miemiemie-starters:miemiemie-file'
+includePath 'miemiemie-starters:miemiemie-xxljob'
 
 // devops
 includePath 'miemiemie-devops'
@@ -26,5 +23,5 @@ includePath 'miemiemie-devops:docker-compose'
 includePath 'miemiemie-devops:helm-charts'
 includePath 'miemiemie-devops:miemiemie-devops-kubesphere'
 
-includePath 'miemiemie-demo'
+//includePath 'miemiemie-demo'
 includePath 'miemiemie-doc'

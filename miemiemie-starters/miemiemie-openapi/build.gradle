@@ -1,0 +1,14 @@
+description '''
+open api 扩展封装
+'''
+
+dependencies {
+
+    api project(":miemiemie-starters:miemiemie-core")
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    api 'io.springfox:springfox-boot-starter'
+    api 'com.github.xiaoymin:knife4j-spring-boot-starter'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+
+}

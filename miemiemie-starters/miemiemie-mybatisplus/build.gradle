@@ -1,0 +1,14 @@
+description '''
+mybatis相关封装
+'''
+
+dependencies {
+    api project(":miemiemie-starters:miemiemie-core")
+
+    api 'org.mybatis.spring.boot:mybatis-spring-boot-starter'
+    api 'com.baomidou:mybatis-plus-boot-starter'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'mysql:mysql-connector-java:8.0.31'
+
+}

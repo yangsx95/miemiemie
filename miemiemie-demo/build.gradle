@@ -3,8 +3,8 @@ description '''
 '''
 
 dependencies {
-    implementation project(":miemiemie-springboot:miemiemie-starters:miemiemie-starter-web")
-    implementation project(":miemiemie-springboot:miemiemie-starters:miemiemie-starter-mybatisplus")
+    implementation project(":miemiemie-starters:miemiemie-web")
+    implementation project(":miemiemie-starters:miemiemie-mybatisplus")
     implementation 'mysql:mysql-connector-java:8.0.31'
-    implementation project(":miemiemie-springboot:miemiemie-starters:miemiemie-starter-xxljob")
+    implementation project(":miemiemie-starters:miemiemie-xxljob")
 }
