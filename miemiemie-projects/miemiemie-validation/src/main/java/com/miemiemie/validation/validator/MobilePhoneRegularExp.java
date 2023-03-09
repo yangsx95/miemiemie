@@ -1,15 +1,20 @@
 package com.miemiemie.validation.validator;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Objects;
+import java.util.regex.Pattern;
+
 /**
- * 注解校验器
+ * 各种地区手机号码校验枚举
  *
  * @author yangshunxiang
  * @since 2023/3/7
  */
-public enum MobileRegularExp {
+@AllArgsConstructor
+public enum MobilePhoneRegularExp {
 
     CN("中国", "^(\\+?0?86\\-?)?1[345789]\\d{9}$"),
     TW("台湾", "^(\\+?886\\-?|0)?9\\d{8}$"),
@@ -65,9 +70,13 @@ public enum MobileRegularExp {
     @Getter
     private final String regularExp;
 
-    MobileRegularExp(String national, String regularExp) {
-        this.national = national;
-        this.regularExp = regularExp;
+
+    public boolean validate(String phoneNumber) {
+        if (Objects.isNull(phoneNumber) || phoneNumber.isEmpty()) {
+            return false;
+        }
+        return Pattern.compile(this.getRegularExp()).matcher(phoneNumber).matches();
     }
+
 
 }

@@ -4,7 +4,6 @@ import com.miemiemie.validation.constraints.MobilePhone;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.regex.Pattern;
 
 /**
  * 手机号码校验
@@ -15,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class MobilePhoneValidator implements ConstraintValidator<MobilePhone, String> {
 
-    private MobileRegularExp regionCode;
+    private MobilePhoneRegularExp regionCode;
 
     @Override
     public void initialize(MobilePhone constraintAnnotation) {
@@ -27,8 +26,7 @@ public class MobilePhoneValidator implements ConstraintValidator<MobilePhone, St
         if (s == null) {
             return true;
         }
-
-        return Pattern.compile(regionCode.getRegularExp()).matcher(s).matches();
+        return regionCode.validate(s);
     }
 
 }

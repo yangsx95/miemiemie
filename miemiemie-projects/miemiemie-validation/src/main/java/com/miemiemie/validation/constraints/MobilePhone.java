@@ -1,6 +1,6 @@
 package com.miemiemie.validation.constraints;
 
-import com.miemiemie.validation.validator.MobileRegularExp;
+import com.miemiemie.validation.validator.MobilePhoneRegularExp;
 import com.miemiemie.validation.validator.MobilePhoneValidator;
 
 import javax.validation.Constraint;
@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MobilePhone {
 
-    MobileRegularExp regionCode() default MobileRegularExp.CN;
+    MobilePhoneRegularExp regionCode() default MobilePhoneRegularExp.CN;
 
     String message() default "{com.miemiemie.validation.constraints.Mobile.message}";
 
