@@ -98,6 +98,7 @@ public class OpenApiProperties {
         return group;
     }
 
+
     @Setter
     @Getter
     public static class GlobalOperationParameter {
