@@ -1,8 +1,12 @@
 package com.miemiemie.starter.openapi;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.lang.annotation.Annotation;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -48,36 +52,7 @@ public class OpenApiProperties {
          */
         private Selector selector = new Selector();
 
-        /**
-         * swagger会解析的包路径
-         **/
-        private String basePackage = "";
-        private String basePath = "/";
-        /**
-         * swagger会解析的url规则
-         **/
-        private List<String> includePath = new ArrayList<>();
-
-        /**
-         * 在includePath基础上需要排除的url规则
-         **/
-        private List<String> excludePath = new ArrayList<>();
-
         private List<GlobalOperationParameter> globalOperationParameters;
-        /**
-         * 全局统一鉴权配置
-         **/
-        private Authorization authorization;
-        /**
-         *
-         */
-        private List<ApiKey> apiKeys = new ArrayList<>();
-
-        /**
-         * 排序
-         */
-        private Integer order = 1;
-
     }
 
     @Data
@@ -130,50 +105,37 @@ public class OpenApiProperties {
          * 联系人email
          **/
         private String email = "";
-
     }
 
     /**
      * Api选择器
      */
+    @Data
     public static class Selector {
 
+        private Apis apis = new Apis();
+
+        private Paths paths = new Paths();
+
+        @Data
+        public static class Apis {
+            private String basePackage;
+            private Class<? extends Annotation> withMethodAnnotation;
+        }
+
+        @Data
+        public static class Paths {
+            private String regex;
+            private String ant;
+        }
     }
 
-    /**
-     * swagger会解析的包路径
-     **/
-    private String basePackage = "top.tangyh.basic";
-    /**
-     * 扩展swagger 基础路径
-     */
-    private String basePath = "/";
-
-    /**
-     * SpringSecurity 全局统一鉴权配置
-     **/
-    private Authorization authorization;
-
-    /**
-     *
-     */
-    private List<ApiKey> apiKeys = new ArrayList<>();
-
-    /**
-     * swagger会解析的url规则
-     **/
-    private List<String> includePath = new ArrayList<>();
-
-    /**
-     * 在includePath基础上需要排除的url规则
-     **/
-    private List<String> excludePath = new ArrayList<>();
-
-    /**
-     * 分组文档
-     **/
-    private Map<String, DocketInfo> docket = new LinkedHashMap<>();
-
+    @Data
+    public static class SecurityScheme {
+        private String name;
+        private String type;
+        private String description;
+    }
 
 
     /**

@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("rawtypes")
-@Configuration
+//@Configuration
 public class SwaggerConfiguration {
 
     /**
      * 创建Docket对象
      */
-    @Bean
+//    @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 // 设置API的基本信息
