@@ -6,8 +6,8 @@ dependencies {
 
     api project(":miemiemie-starters:miemiemie-core")
     compileOnly 'org.springframework.boot:spring-boot-starter-web'
-    api 'io.springfox:springfox-boot-starter'
-    api 'com.github.xiaoymin:knife4j-spring-boot-starter'
+    api 'org.springdoc:springdoc-openapi-ui'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-web'
 

@@ -1,0 +1,10 @@
+springdoc:
+  api-docs:
+    enabled: true
+    groups:
+      enabled: true
+  group-configs:
+    - display-name: "hello"
+      group: "hello"
+      paths-to-match:
+        - "/**"

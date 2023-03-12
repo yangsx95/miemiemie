@@ -14,14 +14,13 @@ ext {
             "ulidCreator"          : "5.1.0",
             "aliyunOss"            : "3.15.2",
             "xxlJobCore"           : "2.3.1",
-            "springfox"            : "3.0.0",
-            "knife4j"              : "3.0.3",
             "easyExcel"            : "3.1.5",
             "awsS3"                : "1.12.395",
             "commonPool2"          : "2.11.1",
             "commonNet"            : "3.6",
             "fastDFS"              : "1.27.0.0",
-            "hutool"              : "5.8.12",
+            "hutool"               : "5.8.12",
+            "springdocopenapiui"   : "1.6.15",
     ]
 
     dependencies = [
@@ -33,8 +32,7 @@ ext {
             "ulidCreator"       : "com.github.f4b6a3:ulid-creator:${versions.ulidCreator}",
             "aliyunOss"         : "com.aliyun.oss:aliyun-sdk-oss:${versions.aliyunOss}",
             "xxlJobCore"        : "com.xuxueli:xxl-job-core:${versions.xxlJobCore}",
-            "springfox"         : "io.springfox:springfox-boot-starter:${versions.springfox}",
-            "knife4j"           : "com.github.xiaoymin:knife4j-spring-boot-starter:${versions.knife4j}",
+            "springdocopenapiui": "org.springdoc:springdoc-openapi-ui:${versions.springdocopenapiui}",
             "easyExcel"         : "com.alibaba:easyexcel:${versions.easyExcel}",
             "awsS3"             : "com.amazonaws:aws-java-sdk-s3:${versions.awsS3}",
             "commonPool2"       : "org.apache.commons:commons-pool2:${versions.commonPool2}",
