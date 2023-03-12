@@ -29,10 +29,6 @@ public class FileMetadata extends TreeMap<String, String> {
 
     public static String MD5 = "MD5";
 
-    public static String FILE_SLICE_START_POS = "FileSliceStartPos";
-
-    public static String FILE_SLICE_SIZE = "FileSliceSize";
-
     public static FileMetadata EMPTY = new FileMetadata();
 
     public FileMetadata() {
@@ -59,7 +55,7 @@ public class FileMetadata extends TreeMap<String, String> {
         public Builder filename(String filename) {
             fileMetadata.put(FILE_NAME, filename);
             return this;
-        }
+            }
 
         public Builder ofFilename(String filename) {
             String fileExtension = Util.getFileExtension(filename);

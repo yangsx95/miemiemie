@@ -10,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @SpringBootApplication
 @EnableWebMvc
-public class SwaggerWebApp {
+public class OpenApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SwaggerWebApp.class, args);
+        SpringApplication.run(OpenApiApplication.class, args);
     }
 
 }

@@ -1,0 +1,10 @@
+description '''
+数据保护模块
+'''
+
+dependencies {
+    api project(':miemiemie-starters:miemiemie-core')
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compileOnly 'org.mybatis:mybatis'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+}
