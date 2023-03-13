@@ -1,5 +1,6 @@
 package com.miemiemie.starter.data.protection.support.web;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.miemiemie.starter.core.enums.ResultStatusEnum;
 import com.miemiemie.starter.core.exception.BizException;
 import com.miemiemie.starter.data.protection.DataProtection;
@@ -52,11 +53,11 @@ public class DataProtectionResponseBodyAdvice implements ResponseBodyAdvice<Obje
             DataProtection dataProtection = field.getAnnotation(DataProtection.class);
             ProtectionStrategy strategy;
             try {
-                strategy = dataProtection.strategy().newInstance();
+                strategy = SpringUtil.getBean(dataProtection.strategy());
                 field.setAccessible(true);
                 Object value = field.get(body);
                 field.set(body, strategy.protect(value));
-            } catch (InstantiationException | IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 throw new BizException(ResultStatusEnum.SERVER_ERROR.getCode(), "数据保护处理失败", e);
             }
         }

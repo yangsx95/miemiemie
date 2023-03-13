@@ -12,14 +12,14 @@ import org.springframework.util.StringUtils;
 public class MobileProtectionStrategy implements ProtectionStrategy {
 
     @Override
-    public Object protect(Object object) {
-        if (object == null) {
+    public Object protect(Object data) {
+        if (data == null) {
             return null;
         }
-        if (!(object instanceof String)) {
-            return object;
+        if (!(data instanceof String)) {
+            return data;
         }
-        return desensitizePhoneNumber((String) object);
+        return desensitizePhoneNumber((String) data);
     }
 
     public static String desensitizePhoneNumber(String phoneNumber) {

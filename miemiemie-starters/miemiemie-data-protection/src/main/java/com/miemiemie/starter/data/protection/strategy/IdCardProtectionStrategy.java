@@ -11,14 +11,14 @@ import com.miemiemie.starter.data.protection.ProtectionStrategy;
 public class IdCardProtectionStrategy implements ProtectionStrategy {
 
     @Override
-    public Object protect(Object object) {
-        if (object == null) {
+    public Object protect(Object data) {
+        if (data == null) {
             return null;
         }
-        if (!(object instanceof String)) {
-            return object;
+        if (!(data instanceof String)) {
+            return data;
         }
-        return maskIdCard((String) object);
+        return maskIdCard((String) data);
     }
 
     public static String maskIdCard(String idCard) {

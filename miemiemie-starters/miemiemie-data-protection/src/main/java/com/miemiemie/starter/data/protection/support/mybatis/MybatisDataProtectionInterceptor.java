@@ -1,5 +1,6 @@
 package com.miemiemie.starter.data.protection.support.mybatis;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.miemiemie.starter.data.protection.DataProtection;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -60,7 +61,7 @@ public class MybatisDataProtectionInterceptor implements Interceptor {
                 continue;
             }
 
-            value = dataProtection.strategy().newInstance().protect(value);
+            value = SpringUtil.getBean(dataProtection.strategy());
             setField(field, parameterObject, value);
         }
         return invocation.proceed();
