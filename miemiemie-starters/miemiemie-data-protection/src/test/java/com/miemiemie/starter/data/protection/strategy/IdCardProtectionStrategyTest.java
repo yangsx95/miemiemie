@@ -1,9 +1,8 @@
 package com.miemiemie.starter.data.protection.strategy;
 
-import com.miemiemie.starter.data.protection.DataProtectionConfiguration;
+import com.miemiemie.starter.data.protection.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
@@ -11,8 +10,7 @@ import javax.annotation.Resource;
  * @author yangshunxiang
  * @since 2023/3/13
  */
-@SpringBootTest(classes = DataProtectionConfiguration.class)
-public class IdCardProtectionStrategyTest {
+public class IdCardProtectionStrategyTest extends BaseTest {
 
     @Resource
     private IdCardProtectionStrategy strategy;

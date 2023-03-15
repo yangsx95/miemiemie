@@ -1,36 +1,25 @@
 package com.miemiemie.starter.data.protection.strategy;
 
+import com.miemiemie.starter.data.protection.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import javax.annotation.Resource;
 
 /**
  * @author yangshunxiang
  * @since 2023/3/13
  */
-public class Md5ProtectionStrategyTest {
+public class Md5ProtectionStrategyTest extends BaseTest {
 
-    private final IdCardProtectionStrategy strategy = new IdCardProtectionStrategy();
+    @Resource
+    private Md5ProtectionStrategy strategy;
 
     @Test
     public void protect() {
         Object protect = strategy.protect("320305199509020000");
         System.out.println(protect);
-        Assertions.assertEquals(protect, "320305********0000");
-    }
-
-    @Test
-    public void protectErrorIdCard() {
-        Object protect = strategy.protect("320305199509020000111111111");
-        System.out.println(protect);
-        protect = strategy.protect("32030519950902");
-        System.out.println(protect);
-    }
-
-    @Test
-    public void protectDataNotString() {
-        Object object = new Object();
-        Object protect = strategy.protect(object);
-        Assertions.assertEquals(protect, object);
+        Assertions.assertEquals(protect, "27e52cd6c012d192ad53aaf8043e61dc");
     }
 
     @Test

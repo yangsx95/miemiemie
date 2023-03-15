@@ -1,9 +1,10 @@
 package com.miemiemie.starter.data.protection.strategy;
 
+import com.miemiemie.starter.data.protection.BaseTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class MobileProtectionStrategyTest {
+class MobileProtectionStrategyTest extends BaseTest {
 
     private final MobileProtectionStrategy strategy = new MobileProtectionStrategy();
 

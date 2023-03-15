@@ -1,13 +1,13 @@
 package com.miemiemie.starter.data.protection;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author yangshunxiang
- * @since 2023/3/13
+ * @since 2023/3/14
  */
-@Configuration
+@SpringBootTest(classes = BaseTest.class)
 @EnableAutoConfiguration
-public class DataProtectionConfiguration {
+public class BaseTest {
 }

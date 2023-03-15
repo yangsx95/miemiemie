@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.miemiemie.starter.data.protection.DataProtectionAutoConfiguration
