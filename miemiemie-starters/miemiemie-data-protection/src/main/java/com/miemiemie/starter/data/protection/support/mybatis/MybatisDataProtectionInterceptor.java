@@ -1,5 +1,6 @@
 package com.miemiemie.starter.data.protection.support.mybatis;
 
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.miemiemie.starter.data.protection.DataProtection;
 import org.apache.ibatis.executor.statement.StatementHandler;
@@ -11,8 +12,8 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 
-import java.beans.Statement;
 import java.lang.reflect.Field;
+import java.sql.Connection;
 import java.util.Properties;
 
 /**
@@ -20,8 +21,7 @@ import java.util.Properties;
  * @since 2023/3/12
  */
 @Intercepts({
-        @Signature(type = StatementHandler.class, method = "update", args = {Statement.class}),
-        @Signature(type = StatementHandler.class, method = "batch", args = {Statement.class})
+        @Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class}),
 })
 public class MybatisDataProtectionInterceptor implements Interceptor {
 
@@ -56,46 +56,15 @@ public class MybatisDataProtectionInterceptor implements Interceptor {
                 continue;
             }
             // 如果有注解，获取该字段原值，并做保护处理，设置为新的值
-            Object value = getField(field, parameterObject);
+            Object value = ReflectUtil.getFieldValue(parameterObject, field.getName());
             if (value == null) {
                 continue;
             }
 
-            value = SpringUtil.getBean(dataProtection.strategy());
-            setField(field, parameterObject, value);
+            Object protectedValue = SpringUtil.getBean(dataProtection.strategy()).protect(value);
+            ReflectUtil.setFieldValue(parameterObject, field.getName(), protectedValue);
         }
         return invocation.proceed();
-    }
-
-    /**
-     * 获取字段值
-     *
-     * @param field  字段
-     * @param target 目标类
-     * @return 字段值
-     * @throws IllegalAccessException 非法访问异常
-     */
-    private Object getField(Field field, Object target) throws IllegalAccessException {
-        boolean accessible = field.isAccessible();
-        field.setAccessible(true);
-        Object value = field.get(target);
-        field.setAccessible(accessible);
-        return value;
-    }
-
-    /**
-     * 设置字段值
-     *
-     * @param field  字段
-     * @param target 目标类
-     * @param value  字段值
-     * @throws IllegalAccessException 非法访问异常
-     */
-    private void setField(Field field, Object target, Object value) throws IllegalAccessException {
-        boolean accessible = field.isAccessible();
-        field.setAccessible(true);
-        field.set(target, value);
-        field.setAccessible(accessible);
     }
 
     @Override

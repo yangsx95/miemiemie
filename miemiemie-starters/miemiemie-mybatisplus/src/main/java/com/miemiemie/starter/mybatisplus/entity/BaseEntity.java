@@ -34,9 +34,21 @@ public abstract class BaseEntity implements Serializable {
     private LocalDateTime createTime;
 
     /**
+     * 创建人
+     */
+    @TableField(updateStrategy = FieldStrategy.NEVER, fill = FieldFill.INSERT)
+    private Long createBy;
+
+    /**
      * 更新时间
      */
     @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
+
+    /**
+     * 更新人
+     */
+    @TableField(fill = FieldFill.UPDATE)
+    private Long updateBy;
 
 }

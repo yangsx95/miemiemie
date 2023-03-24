@@ -5,13 +5,10 @@ import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusPropertiesCustomizer;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
-import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.miemiemie.starter.mybatisplus.config.GenericEnumTypeHandler;
-import com.miemiemie.starter.mybatisplus.config.MyBatisLogInterceptor;
-import com.miemiemie.starter.mybatisplus.config.MyMetaObjectHandler;
 import com.miemiemie.starter.mybatisplus.config.MySqlInjector;
 import com.miemiemie.starter.mybatisplus.enums.DeletedEnum;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,16 +63,6 @@ public class MybatisPlusAutoConfig {
         return new OptimisticLockerInnerInterceptor();
     }
 
-    /**
-     * 添加字段自动填充处理器
-     *
-     * @return 字段自动填充处理器
-     */
-    @Bean
-    public MetaObjectHandler myMetaObjectHandler() {
-        return new MyMetaObjectHandler();
-    }
-
     @Bean
     public MybatisPlusPropertiesCustomizer mybatisPlusPropertiesCustomizer() {
         return properties -> {
@@ -91,12 +78,9 @@ public class MybatisPlusAutoConfig {
 
             MybatisConfiguration configuration = new MybatisConfiguration();
             configuration.setDefaultEnumTypeHandler(GenericEnumTypeHandler.class);
+            configuration.setLogImpl(org.apache.ibatis.logging.stdout.StdOutImpl.class);
             properties.setConfiguration(configuration);
         };
     }
 
-    @Bean
-    MyBatisLogInterceptor myBatisLogInterceptor() {
-        return new MyBatisLogInterceptor();
-    }
 }
