@@ -3,6 +3,7 @@ package com.miemiemie.starter.data.protection.support.mybatis;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import com.miemiemie.starter.data.protection.DataProtection;
+import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
@@ -46,6 +47,16 @@ public class MybatisDataProtectionInterceptor implements Interceptor {
         Object parameterObject = statementHandler.getBoundSql().getParameterObject();
         if (parameterObject == null) {
             return invocation.proceed();
+        }
+        // 如果参数类型为ParamMap
+        if (parameterObject instanceof MapperMethod.ParamMap) {
+            @SuppressWarnings("rawtypes")
+            MapperMethod.ParamMap paramMap = (MapperMethod.ParamMap) parameterObject;
+
+            // 支持mybatis-plus的updateById方法
+            if (paramMap.containsKey("et")) {
+                parameterObject = paramMap.get("et");
+            }
         }
 
         // 通过实体对象类型获取他的所有字段，并找出需要保护的字段
