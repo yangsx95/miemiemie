@@ -1,8 +1,6 @@
 package com.miemiemie.starter.data.protection.support.mybatis;
 
-import cn.hutool.core.util.ReflectUtil;
-import cn.hutool.extra.spring.SpringUtil;
-import com.miemiemie.starter.data.protection.DataProtection;
+import com.miemiemie.starter.data.protection.support.DataProtectionUtil;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -13,7 +11,6 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -59,22 +56,9 @@ public class MybatisDataProtectionInterceptor implements Interceptor {
             }
         }
 
-        // 通过实体对象类型获取他的所有字段，并找出需要保护的字段
-        Field[] fields = parameterObject.getClass().getDeclaredFields();
-        for (Field field : fields) {
-            DataProtection dataProtection = field.getAnnotation(DataProtection.class);
-            if (dataProtection == null) {
-                continue;
-            }
-            // 如果有注解，获取该字段原值，并做保护处理，设置为新的值
-            Object value = ReflectUtil.getFieldValue(parameterObject, field.getName());
-            if (value == null) {
-                continue;
-            }
+        // 处理bean中的敏感数据
+        DataProtectionUtil.searchAndProtectBean(parameterObject);
 
-            Object protectedValue = SpringUtil.getBean(dataProtection.strategy()).protect(value);
-            ReflectUtil.setFieldValue(parameterObject, field.getName(), protectedValue);
-        }
         return invocation.proceed();
     }
 

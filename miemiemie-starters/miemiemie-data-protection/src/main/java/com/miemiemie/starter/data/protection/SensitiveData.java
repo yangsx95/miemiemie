@@ -6,14 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 数据保护策略标记，加到对应的字段上可以实现数据保护
+ * 敏感数据标记，被标记的字段会被进行加密或者脱敏的处理
  *
  * @author yangshunxiang
  * @since 2023/3/12
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface DataProtection {
+public @interface SensitiveData {
 
     /**
      * 数据保护策略，可以是脱敏，也可以是加密

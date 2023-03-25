@@ -1,6 +1,6 @@
 package com.miemiemie.starter.data.protection.support.mybatis;
 
-import com.miemiemie.starter.data.protection.DataProtection;
+import com.miemiemie.starter.data.protection.SensitiveData;
 import com.miemiemie.starter.data.protection.strategy.IdCardProtectionStrategy;
 import com.miemiemie.starter.mybatisplus.entity.BaseEntity;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class Person extends BaseEntity {
 
     private Integer belief;
 
-    @DataProtection(strategy = IdCardProtectionStrategy.class)
+    @SensitiveData(strategy = IdCardProtectionStrategy.class)
     private String cardNo;
 
 }

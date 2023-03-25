@@ -9,7 +9,7 @@ import javax.annotation.Resource;
  * @author yangshunxiang
  * @since 2023/3/24
  */
-public class DataProtectionMybatisTest extends BaseTest {
+public class SensitiveDataMybatisTest extends BaseTest {
 
     @Resource
     private PersonMapper personMapper;

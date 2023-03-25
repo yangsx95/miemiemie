@@ -1,6 +1,6 @@
 package com.miemiemie.starter.data.protection.support.web;
 
-import com.miemiemie.starter.data.protection.DataProtection;
+import com.miemiemie.starter.data.protection.SensitiveData;
 import com.miemiemie.starter.data.protection.strategy.IdCardProtectionStrategy;
 import com.miemiemie.starter.data.protection.strategy.MobileProtectionStrategy;
 import lombok.AllArgsConstructor;
@@ -28,10 +28,10 @@ public class DataProtectionWebController {
 
         private String username;
 
-        @DataProtection(strategy = IdCardProtectionStrategy.class)
+        @SensitiveData(strategy = IdCardProtectionStrategy.class)
         private String idCard;
 
-        @DataProtection(strategy = MobileProtectionStrategy.class)
+        @SensitiveData(strategy = MobileProtectionStrategy.class)
         private String mobile;
 
     }
