@@ -8,7 +8,7 @@ void includePath(String path) {
 // spring ext
 includePath 'miemiemie-starters:test-unit-env'
 includePath 'miemiemie-starters:miemiemie-core'
-includePath 'miemiemie-starters:miemiemie-data-protection'
+includePath 'miemiemie-starters:miemiemie-protection'
 includePath 'miemiemie-starters:miemiemie-file'
 includePath 'miemiemie-starters:miemiemie-feign'
 includePath 'miemiemie-starters:miemiemie-validation'

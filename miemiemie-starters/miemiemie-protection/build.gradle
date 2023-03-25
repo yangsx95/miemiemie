@@ -1,0 +1,15 @@
+description '''
+保护模块，包含 API安全性保护、数据安全性保护、编码解码、加密解密、签名验签等功能
+'''
+
+dependencies {
+    api project(':miemiemie-starters:miemiemie-core')
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compileOnly 'org.mybatis:mybatis'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation project(':miemiemie-starters:miemiemie-mybatisplus')
+    testImplementation 'mysql:mysql-connector-java:8.0.31'
+}
