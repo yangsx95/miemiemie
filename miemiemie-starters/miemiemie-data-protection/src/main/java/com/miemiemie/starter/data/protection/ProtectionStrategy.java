@@ -16,13 +16,4 @@ public interface ProtectionStrategy {
      */
     Object protect(Object data);
 
-    /**
-     * 数据复原（前提是数据是可复原的）
-     *
-     * @param data 数据复原
-     * @return 原数据
-     */
-    default Object restore(Object data) {
-        return data;
-    }
 }

@@ -1,4 +1,4 @@
-package com.miemiemie.starter.data.protection.strategy;
+package com.miemiemie.starter.data.protection.strategy.protection;
 
 import com.miemiemie.starter.data.protection.ProtectionStrategy;
 

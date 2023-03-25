@@ -1,8 +1,8 @@
 package com.miemiemie.starter.data.protection.support.web;
 
 import com.miemiemie.starter.data.protection.SensitiveData;
-import com.miemiemie.starter.data.protection.strategy.IdCardProtectionStrategy;
-import com.miemiemie.starter.data.protection.strategy.MobileProtectionStrategy;
+import com.miemiemie.starter.data.protection.strategy.protection.IdCardProtectionStrategy;
+import com.miemiemie.starter.data.protection.strategy.protection.MobileProtectionStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.web.bind.annotation.GetMapping;

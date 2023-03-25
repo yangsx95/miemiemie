@@ -1,6 +1,7 @@
 package com.miemiemie.starter.data.protection.strategy;
 
 import com.miemiemie.starter.data.protection.BaseTest;
+import com.miemiemie.starter.data.protection.strategy.encryption.Md5EncryptionStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +11,10 @@ import javax.annotation.Resource;
  * @author yangshunxiang
  * @since 2023/3/13
  */
-public class Md5ProtectionStrategyTest extends BaseTest {
+public class Md5EncryptionStrategyTest extends BaseTest {
 
     @Resource
-    private Md5ProtectionStrategy strategy;
+    private Md5EncryptionStrategy strategy;
 
     @Test
     public void protect() {

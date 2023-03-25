@@ -1,7 +1,7 @@
 package com.miemiemie.starter.data.protection.support.mybatis;
 
 import com.miemiemie.starter.data.protection.SensitiveData;
-import com.miemiemie.starter.data.protection.strategy.IdCardProtectionStrategy;
+import com.miemiemie.starter.data.protection.strategy.protection.IdCardProtectionStrategy;
 import com.miemiemie.starter.mybatisplus.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

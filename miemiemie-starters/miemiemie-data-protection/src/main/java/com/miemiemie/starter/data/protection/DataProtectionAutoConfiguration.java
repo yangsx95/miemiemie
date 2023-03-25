@@ -1,8 +1,8 @@
 package com.miemiemie.starter.data.protection;
 
-import com.miemiemie.starter.data.protection.strategy.IdCardProtectionStrategy;
-import com.miemiemie.starter.data.protection.strategy.Md5ProtectionStrategy;
-import com.miemiemie.starter.data.protection.strategy.MobileProtectionStrategy;
+import com.miemiemie.starter.data.protection.strategy.encryption.Md5EncryptionStrategy;
+import com.miemiemie.starter.data.protection.strategy.protection.IdCardProtectionStrategy;
+import com.miemiemie.starter.data.protection.strategy.protection.MobileProtectionStrategy;
 import com.miemiemie.starter.data.protection.support.mybatis.MybatisDataProtectionInterceptor;
 import com.miemiemie.starter.data.protection.support.web.DataProtectionResponseBodyAdvice;
 import org.apache.ibatis.plugin.Interceptor;
@@ -55,8 +55,7 @@ public class DataProtectionAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(name = PROPERTIES_PREFIX_ENABLE, havingValue = "true")
-    public Md5ProtectionStrategy md5ProtectionStrategy(DataProtectionProperties dataProtectionProperties) {
-        String salt = dataProtectionProperties.getStrategy().getMd5().getSalt();
-        return new Md5ProtectionStrategy(salt);
+    public Md5EncryptionStrategy md5ProtectionStrategy() {
+        return new Md5EncryptionStrategy();
     }
 }

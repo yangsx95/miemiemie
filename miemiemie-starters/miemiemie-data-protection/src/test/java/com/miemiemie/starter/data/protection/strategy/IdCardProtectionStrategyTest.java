@@ -1,6 +1,7 @@
 package com.miemiemie.starter.data.protection.strategy;
 
 import com.miemiemie.starter.data.protection.BaseTest;
+import com.miemiemie.starter.data.protection.strategy.protection.IdCardProtectionStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
