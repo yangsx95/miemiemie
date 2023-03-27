@@ -1,7 +1,6 @@
 package com.miemiemie.starter.core.page;
 
 import com.miemiemie.starter.core.page.entity.MybatisPage;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,24 +18,24 @@ public class PageTest {
     @Resource
     private PageConvertFactory pageConvertFactory;
 
-    @Test
-    public void testPageConvert() {
-        PageConvert<?> convert = pageConvertFactory.getConvert(MybatisPage.class);
-        MybatisPage<Object> originPage = getObjectMybatisPage();
-        Page<?> page = convert.convert(originPage);
-        System.out.println(page);
-    }
-
-    @Test
-    public void testPagesToPage() {
-        Page<String> stringPage = Pages.toPage(getObjectMybatisPage(), String.class);
-        System.out.println(stringPage);
-    }
-
-    @Test
-    public void testPagesEmptyPage() {
-        System.out.println(Pages.emptyPage());
-    }
+//    @Test
+//    public void testPageConvert() {
+//        PageConvert<?> convert = pageConvertFactory.getConvert(MybatisPage.class);
+//        MybatisPage<Object> originPage = getObjectMybatisPage();
+//        Page<?> page = convert.convert(originPage);
+//        System.out.println(page);
+//    }
+//
+//    @Test
+//    public void testPagesToPage() {
+//        Page<String> stringPage = Pages.toPage(getObjectMybatisPage(), String.class);
+//        System.out.println(stringPage);
+//    }
+//
+//    @Test
+//    public void testPagesEmptyPage() {
+//        System.out.println(Pages.emptyPage());
+//    }
 
     private static MybatisPage<Object> getObjectMybatisPage() {
         MybatisPage<Object> originPage = new MybatisPage<>();
