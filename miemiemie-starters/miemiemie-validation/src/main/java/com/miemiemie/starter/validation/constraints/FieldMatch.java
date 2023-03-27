@@ -1,12 +1,11 @@
 package com.miemiemie.starter.validation.constraints;
 
 
-
 import com.miemiemie.starter.validation.validator.FieldMatchStrategy;
 import com.miemiemie.starter.validation.validator.FieldMatchValidator;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;

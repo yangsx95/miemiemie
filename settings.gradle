@@ -25,5 +25,4 @@ includePath 'miemiemie-devops:docker-compose'
 includePath 'miemiemie-devops:helm-charts'
 includePath 'miemiemie-devops:miemiemie-devops-kubesphere'
 
-//includePath 'miemiemie-demo'
 includePath 'miemiemie-doc'

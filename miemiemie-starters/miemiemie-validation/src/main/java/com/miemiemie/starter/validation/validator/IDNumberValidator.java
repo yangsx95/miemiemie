@@ -1,9 +1,8 @@
 package com.miemiemie.starter.validation.validator;
 
 import com.miemiemie.starter.validation.constraints.IDNumber;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * 各种证件号校验器，多个类型只要有一个类型校验成功就成功

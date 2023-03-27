@@ -1,6 +1,7 @@
 package com.miemiemie.starter.web.config;
 
 import com.miemiemie.starter.web.convert.CommonEnumConvertFactory;
+import jakarta.annotation.Resource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -8,7 +9,6 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 import static org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication.Type;

@@ -4,10 +4,11 @@ package com.miemiemie.starter.validation.validator;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.ReflectUtil;
 import com.miemiemie.starter.validation.constraints.FieldMatch;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +36,10 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         }
 
         try {
-            FieldMatchStrategy fieldMatchStrategy = strategy.newInstance();
+            FieldMatchStrategy fieldMatchStrategy = strategy.getDeclaredConstructor().newInstance();
             return fieldMatchStrategy.valid(values);
-        } catch (InstantiationException | IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                 InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }

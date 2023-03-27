@@ -1,12 +1,12 @@
 // 依赖版本管理
 ext {
-    jdkVersion = 8
-    projectVersion = '1.0.0-SNAPSHOT'
+    jdkVersion = 17
+    projectVersion = '3.0.0-SNAPSHOT'
 
     versions = [
-            "springBoot"           : "2.6.3",
-            "springCloud"          : "2021.0.1",
-            "springCloudAlibaba"   : "2021.0.1.0",
+            "springBoot"           : "3.0.0",
+            "springCloud"          : "2022.0.0",
+            "springCloudAlibaba"   : "2022.0.0.0-RC1",
             "junitJupiter"         : "5.8.1",
             "lombok"               : "1.18.22",
             "mybatis"              : "3.5.11",
@@ -20,7 +20,7 @@ ext {
             "commonPool2"          : "2.11.1",
             "commonNet"            : "3.6",
             "fastDFS"              : "1.27.0.0",
-            "hutool"               : "5.8.12",
+            "hutool"               : "5.8.16",
             "springdocopenapiui"   : "1.6.15",
     ]
 

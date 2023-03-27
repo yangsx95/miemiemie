@@ -2,8 +2,8 @@ package com.miemiemie.starter.protection.strategy;
 
 import com.miemiemie.starter.protection.BaseTest;
 import com.miemiemie.starter.protection.encryption.Md5Encryptor;
+import jakarta.annotation.Resource;
 
-import javax.annotation.Resource;
 
 /**
  * @author yangshunxiang

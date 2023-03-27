@@ -2,8 +2,8 @@ package com.miemiemie.starter.mybatisplus.util;
 
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.miemiemie.starter.core.lang.Holder;
 
-import javax.xml.ws.Holder;
 import java.util.Objects;
 
 import static com.baomidou.mybatisplus.core.metadata.TableInfoHelper.getTableInfo;
