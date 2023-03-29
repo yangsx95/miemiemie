@@ -1,0 +1,39 @@
+description '''
+    maven bom 依赖
+'''
+
+dependencies {
+    constraints {
+        for (depJar in rootProject.ext.dependencies) {
+            api depJar.value
+        }
+
+        project(":miemiemie-starters").subprojects {
+            if (it.name != "miemiemie-dependencies" && it.file("build.gradle").exists()) {
+                api it
+            }
+        }
+    }
+}
+
+def otherPoms = [
+        "org.springframework.boot:spring-boot-dependencies:${rootProject.ext.versions.springBoot}",
+        "org.springframework.cloud:spring-cloud-dependencies:${rootProject.ext.versions.springCloud}",
+        "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${rootProject.ext.versions.springCloudAlibaba}",
+]
+
+dependencies {
+    otherPoms.each {
+        api platform(it)
+    }
+}
+
+javaPlatform {
+    allowDependencies()
+    dependencies {
+        otherPoms.each {
+            enforcedPlatform(it)
+        }
+    }
+}
+

@@ -1,7 +1,7 @@
 // 依赖版本管理
 ext {
     jdkVersion = 17
-    projectVersion = '3.0.0-SNAPSHOT'
+    projectVersion = '1.0.0-S3-SNAPSHOT'
 
     versions = [
             "springBoot"           : "3.0.0",
@@ -41,7 +41,5 @@ ext {
             "commonNet"            : "commons-net:commons-net:${versions.commonNet}",
             "fastDFS"              : "net.oschina.zcx7878:fastdfs-client-java:${versions.fastDFS}",
             "hutool"               : "cn.hutool:hutool-all:${versions.hutool}",
-
-
     ]
 }
