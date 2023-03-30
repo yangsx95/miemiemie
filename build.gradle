@@ -44,7 +44,7 @@ configure(allStarters) { prj ->
         mavenCentral()
     }
 
-    apply plugin: 'maven-publish'
+    apply from: "${rootProject.rootDir}/publish.gradle"
 
 }
 
@@ -79,6 +79,7 @@ configure(libraryJars) { prj ->
 
     jar {
         enabled = true
+        archiveClassifier = ''
     }
 
     bootJar {
@@ -117,64 +118,8 @@ configure(libraryJars) { prj ->
         useJUnitPlatform()
     }
 
-    // 推送到maven仓库
-    afterEvaluate {
-
-        publishing {
-            publications {
-                mavenJar(MavenPublication) {
-                    artifact jar
-                }
-            }
-            repositories {
-                maven {
-                    url = 'https://packages.aliyun.com/maven/repository/2356847-release-GEkWvm/'
-                    credentials {
-                        username = '642128fb7dcfe0feff36066d'
-                        password = 'Z70[Sgf-C3m3'
-                    }
-                }
-                maven {
-                    url = 'https://packages.aliyun.com/maven/repository/2356847-snapshot-yzo5Mk/'
-                    credentials {
-                        username = '642128fb7dcfe0feff36066d'
-                        password = 'Z70[Sgf-C3m3'
-                    }
-                }
-            }
-        }
-    }
 }
 
 configure(depPom) { prj ->
-
     apply plugin: 'java-platform'
-
-    // 推送到maven仓库
-    afterEvaluate {
-        publishing {
-            publications {
-                mavenPom(MavenPublication) {
-                    from components.javaPlatform
-                }
-            }
-            repositories {
-                maven {
-                    url = 'https://packages.aliyun.com/maven/repository/2356847-release-GEkWvm/'
-                    credentials {
-                        username = '642128fb7dcfe0feff36066d'
-                        password = 'Z70[Sgf-C3m3'
-                    }
-                }
-                maven {
-                    url = 'https://packages.aliyun.com/maven/repository/2356847-snapshot-yzo5Mk/'
-                    credentials {
-                        username = '642128fb7dcfe0feff36066d'
-                        password = 'Z70[Sgf-C3m3'
-                    }
-                }
-            }
-        }
-    }
-
 }

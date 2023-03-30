@@ -1,0 +1,36 @@
+apply plugin: 'maven-publish'
+
+def publishProperties = new Properties()
+publishProperties.load(new FileInputStream(rootProject.file("publish.properties")))
+
+afterEvaluate {
+    publishing {
+        publications {
+            if (project.plugins.findPlugin('java') != null && project.plugins.findPlugin('java-library') != null) {
+                mavenPublication(MavenPublication) {
+                    artifact jar
+                }
+            } else if (project.plugins.findPlugin('java-platform') != null) {
+                mavenJava(MavenPublication) {
+                    from components.javaPlatform
+                }
+            }
+        }
+        repositories {
+            maven {
+                url = publishProperties.getProperty("maven.publish.release.url")
+                credentials {
+                    username = publishProperties.getProperty("maven.publish.release.username")
+                    password = publishProperties.getProperty("maven.publish.release.password")
+                }
+            }
+            maven {
+                url = publishProperties.getProperty("maven.publish.snapshot.url")
+                credentials {
+                    username = publishProperties.getProperty("maven.publish.snapshot.username")
+                    password = publishProperties.get("maven.publish.snapshot.password")
+                }
+            }
+        }
+    }
+}
