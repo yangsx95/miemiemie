@@ -1,10 +1,8 @@
 /**
- * 包装扩展
- *
  * @author yangshunxiang
- * @since 2023/2/24
+ * @since 2023/4/2
  */
 @NonNullApi
-package com.miemiemie.starter.file.ext;
+package com.miemiemie.starter.xss.filter;
 
 import org.springframework.lang.NonNullApi;

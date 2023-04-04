@@ -1,0 +1,10 @@
+description '''
+防xss攻击
+'''
+
+dependencies {
+    api project(":miemiemie-starters:miemiemie-core")
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api'
+    implementation 'org.owasp.antisamy:antisamy'
+}

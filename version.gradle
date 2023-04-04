@@ -7,7 +7,6 @@ ext {
             "springBoot"           : "3.0.0",
             "springCloud"          : "2022.0.0",
             "springCloudAlibaba"   : "2022.0.0.0-RC1",
-            "junitJupiter"         : "5.8.1",
             "lombok"               : "1.18.22",
             "mybatis"              : "3.5.11",
             "mybatisSpringBoot"    : "2.3.0",
@@ -22,11 +21,10 @@ ext {
             "fastDFS"              : "1.27.0.0",
             "hutool"               : "5.8.16",
             "springdocopenapiui"   : "1.6.15",
+            "antisamy"             : "1.7.2",
     ]
 
     dependencies = [
-            "junitJupiterApi"      : "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}",
-            "junitJupiterEngine"   : "org.junit.jupiter:junit-jupiter-engine:${versions.junitJupiter}",
             "lombok"               : "org.projectlombok:lombok:${versions.lombok}",
             "mybatis"              : "org.mybatis:mybatis:${versions.mybatis}",
             "mybatisSpringBoot"    : "org.mybatis.spring.boot:mybatis-spring-boot-starter:${versions.mybatisSpringBoot}",
@@ -41,5 +39,6 @@ ext {
             "commonNet"            : "commons-net:commons-net:${versions.commonNet}",
             "fastDFS"              : "net.oschina.zcx7878:fastdfs-client-java:${versions.fastDFS}",
             "hutool"               : "cn.hutool:hutool-all:${versions.hutool}",
+            "antisamy"             : "org.owasp.antisamy:antisamy:${versions.antisamy}",
     ]
 }

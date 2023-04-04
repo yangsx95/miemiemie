@@ -18,6 +18,7 @@ includePath 'miemiemie-starters:miemiemie-openapi'
 includePath 'miemiemie-starters:miemiemie-mybatisplus'
 includePath 'miemiemie-starters:miemiemie-file'
 includePath 'miemiemie-starters:miemiemie-xxljob'
+includePath 'miemiemie-starters:miemiemie-xss'
 
 // devops
 includePath 'miemiemie-devops'
