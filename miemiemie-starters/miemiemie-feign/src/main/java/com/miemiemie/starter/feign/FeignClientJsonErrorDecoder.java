@@ -40,7 +40,7 @@ public class FeignClientJsonErrorDecoder extends ErrorDecoder.Default {
         }
 
         // 如果响应体为空
-        if (!((FeignException) exception).responseBody().isPresent()) {
+        if (((FeignException) exception).responseBody().isEmpty()) {
             return exception;
         }
 

@@ -1,4 +1,4 @@
-package com.miemiemie.starter.web.aspect;
+package com.miemiemie.starter.log.aspect;
 
 import com.github.f4b6a3.ulid.Ulid;
 import jakarta.servlet.ServletRequest;
@@ -11,7 +11,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.MDC;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -27,8 +26,7 @@ import java.util.stream.Collectors;
  */
 @Aspect
 @Slf4j
-@Component
-public class LogAspect {
+public class ControllerLogAspect {
 
     public static final String TRACE_ID = "trace-id";
 
@@ -36,8 +34,7 @@ public class LogAspect {
      * 所有的controller方法
      */
     @Pointcut(" @within(org.springframework.stereotype.Controller) " +
-            "|| @within(org.springframework.web.bind.annotation.RestController) " +
-            "|| @within(com.miemiemie.starter.web.annotation.PathRestController)"
+            "|| @within(org.springframework.web.bind.annotation.RestController) "
     )
     public void restLog() {
     }

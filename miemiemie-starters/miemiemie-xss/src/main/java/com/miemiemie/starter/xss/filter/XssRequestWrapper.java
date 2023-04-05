@@ -112,19 +112,15 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
     public String inputHandlers(ServletInputStream servletInputStream) {
         StringBuilder sb = new StringBuilder();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(servletInputStream, StandardCharsets.UTF_8))) {
+        try (servletInputStream;
+             BufferedReader reader = new BufferedReader(new InputStreamReader(servletInputStream, StandardCharsets.UTF_8))
+        ) {
             String line;
             while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
         } catch (IOException e) {
             log.error("xss防护出现异常", e);
-        } finally {
-            try {
-                servletInputStream.close();
-            } catch (IOException e) {
-                log.error("xss防护出现异常", e);
-            }
         }
         return Optional.ofNullable(XssUtil.cleanXss(sb.toString(), xssPolicy)).orElse("");
     }

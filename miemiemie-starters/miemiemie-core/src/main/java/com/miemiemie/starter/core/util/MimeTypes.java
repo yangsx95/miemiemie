@@ -116,7 +116,7 @@ public class MimeTypes {
     private static final HashMap<String, String> mimeTypeMapping;
 
     static {
-        mimeTypeMapping = new HashMap<String, String>(200) {
+        mimeTypeMapping = new HashMap<>(200) {
             private void put1(String key, String value) {
                 if (put(key, value) != null) {
                     throw new IllegalArgumentException("Duplicated extension: " + key);
