@@ -6,5 +6,9 @@ dependencies {
     api project(":miemiemie-starters:miemiemie-core")
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     compileOnly 'jakarta.servlet:jakarta.servlet-api'
-    implementation 'org.owasp.antisamy:antisamy'
+    api 'org.owasp.antisamy:antisamy'
+
+    testAnnotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
