@@ -1,21 +1,15 @@
 package com.miemiemie.starter.log.aspect;
 
-import cn.hutool.extra.spring.SpringUtil;
-import com.miemiemie.starter.log.LogHandler;
-import com.miemiemie.starter.log.LogRecord;
 import com.miemiemie.starter.log.annotations.MethodLog;
-import com.miemiemie.starter.log.handler.DefaultLogHandler;
+import com.miemiemie.starter.log.entity.LogRecord;
+import com.miemiemie.starter.log.enums.LogTypeEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.context.ApplicationContext;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Objects;
 
 /**
  * @author yangshunxiang
@@ -23,62 +17,59 @@ import java.util.Objects;
  */
 @Aspect
 @Slf4j
-public class MethodLogAspect {
+public class MethodLogAspect extends AbstractLogAspect {
+
+    public MethodLogAspect(ApplicationContext applicationContext) {
+        super(applicationContext);
+    }
 
     @Pointcut("@annotation(com.miemiemie.starter.log.annotations.MethodLog)")
     public void methodLogPointcut() {
     }
 
-    @SuppressWarnings("unchecked")
-    @Around("methodLogPointcut()")
-    public Object aroundMethodLog(ProceedingJoinPoint pjp) throws Throwable {
-        Throwable throwable = null;
-        long startTime = System.currentTimeMillis();
-        long endTime;
-        Object result = null;
-        try {
-            result = pjp.proceed();
-        } catch (Throwable e) {
-            throwable = e;
-            throw e;
-        } finally {
-            endTime = System.currentTimeMillis();
-            Method method = pjp.getSignature().getDeclaringType().getMethod(pjp.getSignature().getName(), ((MethodSignature) pjp.getSignature()).getParameterTypes());
+    @Before("methodLogPointcut()")
+    public void beforeMethodLog(JoinPoint joinPoint) {
+        tryCatch(() -> {
+            MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+            Method method = signature.getMethod();
             MethodLog methodLog = method.getAnnotation(MethodLog.class);
-            LogRecord logRecord = new LogRecord(pjp.getThis(),
-                    pjp.getTarget().getClass(),
-                    methodLog,
-                    method,
-                    pjp.getArgs(),
-                    result,
-                    throwable,
-                    startTime,
-                    endTime);
-            Class<? extends LogHandler>[] handlers = methodLog.handlers();
-            if (handlers.length == 0) {
-                handlers = new Class[]{DefaultLogHandler.class};
+            if (methodLog == null) {
+                methodLog = joinPoint.getTarget().getClass().getAnnotation(MethodLog.class);
             }
-            for (Class<? extends LogHandler> handlerClass : handlers) {
-                doHandler(logRecord, handlerClass);
-            }
-        }
-        return result;
+
+            LogRecord logRecord = new LogRecord();
+            logRecord.setLogTypeEnum(LogTypeEnum.METHOD);
+            logRecord.setLevel(methodLog.level());
+            logRecord.setMessage(methodLog.message());
+            logRecord.setStartTime(System.currentTimeMillis());
+            logRecord.getMethodInfo().setMethod(method);
+            logRecord.getMethodInfo().setArgs(joinPoint.getArgs());
+
+            setLogRecord(logRecord);
+        });
     }
 
-    private static void doHandler(LogRecord logRecord, Class<? extends LogHandler> aClass)
-            throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        // 如果spring容器中没有handler示例，则通过反射创建实例，如果没有无参构造器，则抛出异常
-        LogHandler logHandler = SpringUtil.getBean(aClass);
-        if (Objects.isNull(logHandler)) {
-            try {
-                Constructor<? extends LogHandler> noArgsConstructor = aClass.getDeclaredConstructor();
-                logHandler = noArgsConstructor.newInstance();
-            } catch (NoSuchMethodException e) {
-                log.error("If LogHandler not in Spring IoC，then LogHandler must have no-arg constructor", e);
-                throw e;
-            }
-        }
-
-        logHandler.handle(logRecord);
+    @AfterReturning(value = "methodLogPointcut()", returning = "returnObject")
+    public void afterReturningMethodLog(Object returnObject) {
+        tryCatch(() -> {
+            LogRecord logRecord = getLogRecord();
+            logRecord.setEndTime(System.currentTimeMillis());
+            logRecord.getMethodInfo().setSuccess(true);
+            logRecord.getMethodInfo().setResult(returnObject);
+            publishLogEvent(logRecord);
+        });
     }
+
+    @AfterThrowing(value = "methodLogPointcut()", throwing = "throwable")
+    public void afterThrowingMethodLog(Throwable throwable) {
+        tryCatch(() -> {
+            LogRecord logRecord = getLogRecord();
+            logRecord.setEndTime(System.currentTimeMillis());
+            logRecord.getMethodInfo().setSuccess(false);
+            logRecord.getMethodInfo().setThrowable(throwable);
+
+            publishLogEvent(logRecord);
+        });
+    }
+
 }

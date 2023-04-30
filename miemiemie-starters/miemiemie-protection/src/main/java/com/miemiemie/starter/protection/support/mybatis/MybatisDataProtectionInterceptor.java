@@ -26,11 +26,10 @@ public class MybatisDataProtectionInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         Object target = invocation.getTarget();
-        if (!(target instanceof StatementHandler)) {
+        if (!(target instanceof StatementHandler statementHandler)) {
             return invocation.proceed();
         }
 
-        StatementHandler statementHandler = (StatementHandler) target;
         MetaObject metaObject = MetaObject.forObject(statementHandler, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(), new DefaultReflectorFactory());
         MappedStatement mappedStatement = (MappedStatement) metaObject.getValue("delegate.mappedStatement");
 
@@ -46,9 +45,7 @@ public class MybatisDataProtectionInterceptor implements Interceptor {
             return invocation.proceed();
         }
         // 如果参数类型为ParamMap
-        if (parameterObject instanceof MapperMethod.ParamMap) {
-            @SuppressWarnings("rawtypes")
-            MapperMethod.ParamMap paramMap = (MapperMethod.ParamMap) parameterObject;
+        if (parameterObject instanceof @SuppressWarnings("rawtypes")MapperMethod.ParamMap paramMap) {
 
             // 支持mybatis-plus的updateById方法
             if (paramMap.containsKey("et")) {

@@ -1,6 +1,5 @@
 package com.miemiemie.starter.log;
 
-import com.miemiemie.starter.log.handler.Slf4jLogHandler;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -32,7 +31,7 @@ public class LogProperties {
         /**
          * 默认日志处理器
          */
-        private Class<? extends LogHandler> defaultHandler = Slf4jLogHandler.class;
+        private Class<? extends LogHandler> defaultHandler;
 
     }
 
@@ -43,10 +42,14 @@ public class LogProperties {
     public static class Controller {
 
         /**
-         * 是否启用controller日志记录
+         * 是否启用自动的controller日志记录
          */
         private boolean enable = true;
 
+        /**
+         * 是否自动开启Controller日志打印
+         */
+        private boolean auto = true;
     }
 
 }

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.owasp.validator.html.Policy;
 
 import java.io.InputStream;
-import java.net.URL;
 
 public class XssUtilTest {
 
