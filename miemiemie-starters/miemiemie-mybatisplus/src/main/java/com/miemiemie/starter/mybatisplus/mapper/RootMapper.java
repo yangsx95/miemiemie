@@ -100,6 +100,24 @@ public interface RootMapper<T> extends BaseMapper<T> {
     }
 
     /**
+     * 如果主键值为空，插入；如果主键值不为空，进行更新操作
+     *
+     * @param entity 目标实体
+     */
+    default int insertOrUpdate(T entity) {
+        if (entity == null) {
+            throw new NullPointerException("entity is null");
+        }
+
+        Object primaryKey = MybatisUtil.getEntityPrimaryKey(new Holder<>(), entity);
+        if (Objects.isNull(primaryKey)) {
+            return insert(entity);
+        } else {
+            return updateById(entity);
+        }
+    }
+
+    /**
      * 批量插入实体
      *
      * @param entityList 实体列表
