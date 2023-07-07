@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author yangshunxiang
  * @since 2023/3/14
  */
-public class CompareUtil {
+public class EqualsUtil {
 
     @Data
     public static class GroupListData<S, T> {
@@ -42,11 +42,11 @@ public class CompareUtil {
         private T target;
     }
 
-    public static <S, T> GroupListData<S, T> compareAndGroup(List<S> sourceList,
-                                                             List<T> targetList,
-                                                             Function<S, Object> sourceHashGenerator,
-                                                             Function<T, Object> targetHashGenerator) {
-        return compareAndGroup(sourceList, targetList, sourceHashGenerator, targetHashGenerator, (o1, o2) -> true);
+    public static <S, T> GroupListData<S, T> equalsAndGroup(List<S> sourceList,
+                                                            List<T> targetList,
+                                                            Function<S, Object> sourceHashGenerator,
+                                                            Function<T, Object> targetHashGenerator) {
+        return equalsAndGroup(sourceList, targetList, sourceHashGenerator, targetHashGenerator, (o1, o2) -> true);
     }
 
     /**
@@ -60,11 +60,11 @@ public class CompareUtil {
      * @param <T>                 元素类型
      * @return 分组信息
      */
-    public static <S, T> GroupListData<S, T> compareAndGroup(List<S> sourceList,
-                                                             List<T> targetList,
-                                                             Function<S, Object> sourceHashGenerator,
-                                                             Function<T, Object> targetHashGenerator,
-                                                             Equator<S, T> equator) {
+    public static <S, T> GroupListData<S, T> equalsAndGroup(List<S> sourceList,
+                                                            List<T> targetList,
+                                                            Function<S, Object> sourceHashGenerator,
+                                                            Function<T, Object> targetHashGenerator,
+                                                            Equator<S, T> equator) {
         Assert.notNull(sourceHashGenerator, "hash生成器不可为null");
         Assert.notNull(targetHashGenerator, "hash生成器不可为null");
         Assert.notNull(equator, "比较器不可为null");
