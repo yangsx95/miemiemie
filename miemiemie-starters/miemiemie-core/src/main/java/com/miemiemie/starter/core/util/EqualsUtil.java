@@ -54,8 +54,8 @@ public class EqualsUtil {
      *
      * @param sourceList          源List
      * @param targetList          目标List
-     * @param sourceHashGenerator 用作hash比较的hash生成器，他会为每个元素生成hash值
-     * @param targetHashGenerator 用作hash比较的hash生成器，他会为每个元素生成hash值
+     * @param sourceHashGenerator 用作hash比较的hash生成器，他会为每个元素生成hash值，注意，hash值不能是null值
+     * @param targetHashGenerator 用作hash比较的hash生成器，他会为每个元素生成hash值，注意，hash值不能是null值
      * @param equator             用作对象是否修改比较的对象比较器
      * @param <T>                 元素类型
      * @return 分组信息
