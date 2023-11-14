@@ -20,7 +20,7 @@ ext {
             "commonNet"            : "3.6",
             "fastDFS"              : "1.27.0.0",
             "hutool"               : "5.8.16",
-            "springdocopenapiui"   : "1.6.15",
+            "springdocopenapiui"   : "2.2.0",
             "antisamy"             : "1.7.2",
     ]
 
@@ -32,7 +32,7 @@ ext {
             "ulidCreator"          : "com.github.f4b6a3:ulid-creator:${versions.ulidCreator}",
             "aliyunOss"            : "com.aliyun.oss:aliyun-sdk-oss:${versions.aliyunOss}",
             "xxlJobCore"           : "com.xuxueli:xxl-job-core:${versions.xxlJobCore}",
-            "springdocopenapiui"   : "org.springdoc:springdoc-openapi-ui:${versions.springdocopenapiui}",
+            "springdocopenapiui"   : "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.springdocopenapiui}",
             "easyExcel"            : "com.alibaba:easyexcel:${versions.easyExcel}",
             "awsS3"                : "com.amazonaws:aws-java-sdk-s3:${versions.awsS3}",
             "commonPool2"          : "org.apache.commons:commons-pool2:${versions.commonPool2}",
