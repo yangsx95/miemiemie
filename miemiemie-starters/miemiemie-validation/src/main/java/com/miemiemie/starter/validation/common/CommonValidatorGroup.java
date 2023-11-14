@@ -1,6 +1,6 @@
 package com.miemiemie.starter.validation.common;
 
-import javax.validation.groups.Default;
+import jakarta.validation.groups.Default;
 
 /**
  * @author yangshunxiang

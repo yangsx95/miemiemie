@@ -7,16 +7,19 @@ void includePath(String path) {
 
 // spring ext
 includePath 'miemiemie-starters:test-unit-env'
+includePath 'miemiemie-starters:miemiemie-dependencies'
 includePath 'miemiemie-starters:miemiemie-core'
 includePath 'miemiemie-starters:miemiemie-protection'
 includePath 'miemiemie-starters:miemiemie-file'
 includePath 'miemiemie-starters:miemiemie-feign'
 includePath 'miemiemie-starters:miemiemie-validation'
 includePath 'miemiemie-starters:miemiemie-web'
+includePath 'miemiemie-starters:miemiemie-log'
 includePath 'miemiemie-starters:miemiemie-openapi'
 includePath 'miemiemie-starters:miemiemie-mybatisplus'
 includePath 'miemiemie-starters:miemiemie-file'
 includePath 'miemiemie-starters:miemiemie-xxljob'
+includePath 'miemiemie-starters:miemiemie-xss'
 
 // devops
 includePath 'miemiemie-devops'
@@ -25,5 +28,4 @@ includePath 'miemiemie-devops:docker-compose'
 includePath 'miemiemie-devops:helm-charts'
 includePath 'miemiemie-devops:miemiemie-devops-kubesphere'
 
-//includePath 'miemiemie-demo'
 includePath 'miemiemie-doc'

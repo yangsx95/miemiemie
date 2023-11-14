@@ -7,12 +7,12 @@ import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.miemiemie.starter.core.lang.Holder;
 import com.miemiemie.starter.core.page.Page;
 import com.miemiemie.starter.core.page.Pages;
 import com.miemiemie.starter.mybatisplus.util.MybatisUtil;
 import org.apache.ibatis.annotations.Param;
 
-import javax.xml.ws.Holder;
 import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
@@ -96,6 +96,24 @@ public interface RootMapper<T> extends BaseMapper<T> {
                     selectPage(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(page.getCurrentPage(), page.getPageSize()), queryWrapper),
                     null
             );
+        }
+    }
+
+    /**
+     * 如果主键值为空，插入；如果主键值不为空，进行更新操作
+     *
+     * @param entity 目标实体
+     */
+    default int insertOrUpdate(T entity) {
+        if (entity == null) {
+            throw new NullPointerException("entity is null");
+        }
+
+        Object primaryKey = MybatisUtil.getEntityPrimaryKey(new Holder<>(), entity);
+        if (Objects.isNull(primaryKey)) {
+            return insert(entity);
+        } else {
+            return updateById(entity);
         }
     }
 

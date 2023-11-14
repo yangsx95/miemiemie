@@ -24,8 +24,7 @@ public class CustomErrorAttributes extends DefaultErrorAttributes {
     public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
         Map<String, Object> errorAttributes = super.getErrorAttributes(webRequest, options);
         Throwable error = this.getError(webRequest);
-        if (error instanceof BizException) {
-            BizException bizEx = (BizException) error;
+        if (error instanceof BizException bizEx) {
             errorAttributes.put(Result.Fields.code, bizEx.getErrorCode());
             errorAttributes.put(Result.Fields.message, bizEx.getErrorMsg());
         }

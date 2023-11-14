@@ -1,4 +1,4 @@
-description "微服务网约车项目父工程"
+description "miemiemie Spring Boot扩展"
 
 // buildScript必须在build.gradle文件的最顶端，因为需要为执行脚本做准备
 // 通常是构建脚本中某些任务或者插件的依赖相关信息
@@ -26,13 +26,16 @@ allprojects {
 }
 
 ext {
-    def isJavaProject = {
+    allStarters = project(":miemiemie-starters").getSubprojects().findAll({
         it.file("build.gradle").exists()
-    }
-    javaProjects = project(":miemiemie-starters").getSubprojects().findAll(isJavaProject)
+    })
+    libraryJars = project(":miemiemie-starters").getSubprojects().findAll({
+        it.file("build.gradle").exists() && it.file("src/main/java").exists()
+    })
+    depPom = project("miemiemie-starters:miemiemie-dependencies")
 }
 
-configure(javaProjects) { prj ->
+configure(allStarters) { prj ->
 
     repositories {
         mavenLocal()
@@ -40,6 +43,12 @@ configure(javaProjects) { prj ->
         maven { url 'https://repo.spring.io/milestone' }
         mavenCentral()
     }
+
+    apply from: "${rootProject.rootDir}/publish.gradle"
+
+}
+
+configure(libraryJars) { prj ->
 
     // 配置java编译器属性，同类型的还有groovy编译器属性、scala编译器属性、c编译器属性等
     tasks.withType(JavaCompile).tap {
@@ -57,7 +66,6 @@ configure(javaProjects) { prj ->
 
     // 公共插件
     apply plugin: 'java'
-    apply plugin: 'maven-publish'
     apply plugin: 'java-library'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
@@ -71,6 +79,7 @@ configure(javaProjects) { prj ->
 
     jar {
         enabled = true
+        archiveClassifier = ''
     }
 
     bootJar {
@@ -109,31 +118,8 @@ configure(javaProjects) { prj ->
         useJUnitPlatform()
     }
 
-    // 推送到maven仓库
-    afterEvaluate {
+}
 
-        publishing {
-            publications {
-                mavenJar(MavenPublication) {
-                    artifact jar
-                }
-            }
-            repositories {
-                maven {
-                    url = 'https://packages.aliyun.com/maven/repository/2356847-release-GEkWvm/'
-                    credentials {
-                        username = '********'
-                        password = '********'
-                    }
-                }
-                maven {
-                    url = 'https://packages.aliyun.com/maven/repository/2356847-snapshot-yzo5Mk/'
-                    credentials {
-                        username = '********'
-                        password = '********'
-                    }
-                }
-            }
-        }
-    }
+configure(depPom) { prj ->
+    apply plugin: 'java-platform'
 }

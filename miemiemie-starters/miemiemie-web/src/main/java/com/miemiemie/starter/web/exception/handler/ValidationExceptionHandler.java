@@ -2,16 +2,17 @@ package com.miemiemie.starter.web.exception.handler;
 
 import com.miemiemie.starter.core.enums.ResultStatusEnum;
 import com.miemiemie.starter.core.result.Result;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.Set;
+
 
 /**
  * spring-validation 相关异常处理

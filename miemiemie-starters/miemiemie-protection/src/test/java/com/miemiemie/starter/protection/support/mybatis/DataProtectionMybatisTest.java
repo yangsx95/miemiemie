@@ -1,9 +1,8 @@
 package com.miemiemie.starter.protection.support.mybatis;
 
 import com.miemiemie.starter.protection.BaseTest;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.*;
-
-import javax.annotation.Resource;
 
 /**
  * @author yangshunxiang

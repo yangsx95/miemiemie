@@ -1,0 +1,14 @@
+description '''
+日志相关
+'''
+
+dependencies {
+
+    api project(":miemiemie-starters:miemiemie-core")
+    api 'org.springframework.boot:spring-boot-starter-logging'
+    api 'org.springframework.boot:spring-boot-starter-aop'
+    annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    api 'com.github.f4b6a3:ulid-creator'
+
+}

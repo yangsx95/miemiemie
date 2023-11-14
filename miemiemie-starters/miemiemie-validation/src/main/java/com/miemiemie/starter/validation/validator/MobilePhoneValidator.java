@@ -1,9 +1,8 @@
 package com.miemiemie.starter.validation.validator;
 
 import com.miemiemie.starter.validation.constraints.MobilePhone;
-
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * 手机号码校验

@@ -3,9 +3,9 @@ package com.miemiemie.starter.validation.constraints;
 
 import com.miemiemie.starter.validation.validator.CommonEnumCodeValidatorForInteger;
 import com.miemiemie.starter.validation.validator.CommonEnumCodeValidatorForString;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**

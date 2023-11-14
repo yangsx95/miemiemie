@@ -5,11 +5,11 @@ import com.miemiemie.starter.mybatisplus.entity.Person;
 import com.miemiemie.starter.mybatisplus.enums.Belief;
 import com.miemiemie.starter.mybatisplus.enums.Gender;
 import com.miemiemie.starter.mybatisplus.mapper.PersonMapper;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

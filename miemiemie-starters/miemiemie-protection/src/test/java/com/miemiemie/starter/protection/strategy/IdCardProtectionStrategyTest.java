@@ -2,10 +2,9 @@ package com.miemiemie.starter.protection.strategy;
 
 import com.miemiemie.starter.protection.BaseTest;
 import com.miemiemie.starter.protection.masking.IdNoMasking;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import javax.annotation.Resource;
 
 /**
  * @author yangshunxiang

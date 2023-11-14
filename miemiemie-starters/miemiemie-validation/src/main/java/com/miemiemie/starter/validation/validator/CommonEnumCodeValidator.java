@@ -3,14 +3,13 @@ package com.miemiemie.starter.validation.validator;
 
 import com.miemiemie.starter.core.enums.CommonEnum;
 import com.miemiemie.starter.validation.constraints.CommonEnumCode;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.constraints.NotEmpty;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.constraints.NotEmpty;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * 注解校验器
@@ -56,7 +55,7 @@ public class CommonEnumCodeValidator<C> implements ConstraintValidator<CommonEnu
         List<? extends CommonEnum<?, ?>> commonEnumList = Arrays.stream(targetEnumClass.getEnumConstants())
                 .map(e -> (CommonEnum<?, ?>) e)
                 .filter(e -> Objects.equals(e.getCode(), context))
-                .collect(Collectors.toList());
+                .toList();
 
         return !commonEnumList.isEmpty();
     }

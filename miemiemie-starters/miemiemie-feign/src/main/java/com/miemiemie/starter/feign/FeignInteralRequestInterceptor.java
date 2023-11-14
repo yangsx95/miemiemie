@@ -19,5 +19,4 @@ public class FeignInteralRequestInterceptor implements RequestInterceptor {
         template.header(InnerHttpHeaders.Fields._MMM_SERVICE_TYPE, InnerHttpHeaders.ServiceTypeEnum.SERVICE.getCode());
     }
 
-
 }

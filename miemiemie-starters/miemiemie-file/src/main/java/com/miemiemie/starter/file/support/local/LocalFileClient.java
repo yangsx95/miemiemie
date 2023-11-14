@@ -2,9 +2,9 @@ package com.miemiemie.starter.file.support.local;
 
 import com.miemiemie.starter.file.FileMetadata;
 import com.miemiemie.starter.file.FileObject;
+import com.miemiemie.starter.file.FilePathGenerator;
 import com.miemiemie.starter.file.exception.FileClientException;
 import com.miemiemie.starter.file.support.AbstractFileClient;
-import com.miemiemie.starter.file.FilePathGenerator;
 import lombok.Getter;
 
 import java.io.*;
@@ -57,7 +57,7 @@ public class LocalFileClient extends AbstractFileClient {
             }
         }
 
-        try (FileOutputStream fos = new FileOutputStream(file)) {
+        try (content; FileOutputStream fos = new FileOutputStream(file)) {
             byte[] buffer = new byte[1024];
             int index;
             while ((index = content.read(buffer)) != -1) {
@@ -66,11 +66,6 @@ public class LocalFileClient extends AbstractFileClient {
             }
         } catch (IOException e) {
             throw new FileClientException("file put failed", e);
-        } finally {
-            try {
-                content.close();
-            } catch (IOException ignore) {
-            }
         }
         return generateFileObjectFromFile(part, filepath, file);
     }

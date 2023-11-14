@@ -3,6 +3,8 @@ package com.miemiemie.starter.core.exception;
 import com.miemiemie.starter.core.enums.ResultStatus;
 import lombok.Getter;
 
+import java.io.Serial;
+
 /**
  * 业务异常
  *
@@ -12,6 +14,7 @@ import lombok.Getter;
 @Getter
 public class BizException extends RuntimeException {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     protected int errorCode;

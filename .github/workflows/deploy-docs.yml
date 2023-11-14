@@ -27,6 +27,8 @@ jobs:
           node-version: "10.X"
       - name: install gitbook-cli
         run: npm install gitbook-cli -g
+      - name: copy readme
+        run: cp README.md miemiemie-doc/
       - name: gitbook build
         run: gitbook build miemiemie-doc miemiemie-doc/build
       - name: upload pages artifact
