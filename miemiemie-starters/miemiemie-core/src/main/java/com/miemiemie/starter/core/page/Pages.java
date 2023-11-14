@@ -2,7 +2,9 @@ package com.miemiemie.starter.core.page;
 
 import cn.hutool.extra.spring.SpringUtil;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,6 +25,33 @@ public final class Pages {
     @SuppressWarnings("unchecked")
     public static <D> Page<D> emptyPage() {
         return EMPTY_PAGE;
+    }
+
+    /**
+     * 根据内存数据（List）创建分页
+     * @param allRecords 所有数据
+     * @param pageSize 每页几条
+     * @param currentPage 生成第几页的数据
+     * @return 分页对象
+     * @param <D> 数据类型
+     */
+    public static <D> Page<D> pageFromList(List<D> allRecords, int pageSize, int currentPage) {
+        Assert.isTrue(pageSize > 0, "每页条数必须大于0");
+        Assert.isTrue(currentPage > 0, "当前页数必须大于0");
+        Page<D> page = new Page<>();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(pageSize);
+
+        if (CollectionUtils.isEmpty(allRecords)) {
+            page.setTotalCount(0);
+            return page;
+        }
+
+        page.setTotalCount(allRecords.size());
+        int startIndex = (currentPage - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, allRecords.size());
+        page.setRecords(allRecords.subList(startIndex, endIndex));
+        return page;
     }
 
     @SuppressWarnings({"unchecked", "unused"})
@@ -48,7 +77,7 @@ public final class Pages {
      * @return 有数据将返回true
      */
     public static <D> boolean hasRecords(Page<D> page) {
-        return page == null || page.getRecords() == null || page.getRecords().size() == 0;
+        return page == null || page.getRecords() == null || page.getRecords().isEmpty();
     }
 
     /**

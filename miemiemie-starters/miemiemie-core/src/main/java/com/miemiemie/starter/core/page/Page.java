@@ -36,7 +36,7 @@ public class Page<T> implements Serializable, Iterator<T> {
         this.totalCount = totalCount;
         this.pageSize = pageSize;
         this.currentPage = currentPage;
-        if (Objects.nonNull(records) && records.size() > 0) {
+        if (Objects.nonNull(records) && !records.isEmpty()) {
             this.records = records;
         }
     }
