@@ -9,4 +9,4 @@ miemiemie目前主要分为两个大模块：
 1. miemiemie-starter
 2. miemiemie-devops
 
-其中，starter包主要是针对spring boot、spring cloud 以及相关的功能的封装，是框架的主要核心。 而miemiemie-devops中是为了快速构建devops环境而做准备的，他包含了一些常用的环境脚本。
+其中，starter包主要是针对spring boot、spring cloud 以及相关的功能的封装，是框架的主要核心，也是为了项目快速进行初始化。 而miemiemie-devops中是为了快速构建devops环境而做准备的，他包含了一些常用的环境脚本。
