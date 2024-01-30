@@ -1,14 +1,12 @@
 description '''
-日志相关
+方法监控服务，监测方法的执行状态，并记录执行日志
 '''
 
 dependencies {
-
     api project(":miemiemie-starters:miemiemie-core")
-    api 'org.springframework.boot:spring-boot-starter-logging'
     api 'org.springframework.boot:spring-boot-starter-aop'
     annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
     compileOnly 'org.springframework.boot:spring-boot-starter-web'
-    api 'com.github.f4b6a3:ulid-creator'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
