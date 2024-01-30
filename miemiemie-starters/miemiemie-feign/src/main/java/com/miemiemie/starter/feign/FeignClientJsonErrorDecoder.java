@@ -8,8 +8,6 @@ import feign.FeignException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Configuration;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
@@ -24,8 +22,6 @@ import static com.miemiemie.starter.core.enums.ResultStatusEnum.INVOKE_INTERNAL_
  * @since 2023/1/13
  */
 @Slf4j
-@Configuration
-@ConditionalOnClass(ObjectMapper.class)
 public class FeignClientJsonErrorDecoder extends ErrorDecoder.Default {
 
     @Override
