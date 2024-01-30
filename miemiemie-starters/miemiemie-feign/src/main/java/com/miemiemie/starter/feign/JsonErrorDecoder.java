@@ -22,7 +22,7 @@ import static com.miemiemie.starter.core.enums.ResultStatusEnum.INVOKE_INTERNAL_
  * @since 2023/1/13
  */
 @Slf4j
-public class FeignClientJsonErrorDecoder extends ErrorDecoder.Default {
+public class JsonErrorDecoder extends ErrorDecoder.Default {
 
     @Override
     public Exception decode(String methodKey, Response response) {

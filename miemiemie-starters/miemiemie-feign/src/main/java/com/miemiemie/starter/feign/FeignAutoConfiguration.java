@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
  * @since 2022/07/31
  */
 @Configuration
-@Import({FeignInteralRequestInterceptor.class})
 public class FeignAutoConfiguration {
 
     @Bean
@@ -21,8 +20,13 @@ public class FeignAutoConfiguration {
     }
 
     @Bean
-    public FeignClientJsonErrorDecoder errorDecoder() {
-        return new FeignClientJsonErrorDecoder();
+    public JsonErrorDecoder errorDecoder() {
+        return new JsonErrorDecoder();
+    }
+
+    @Bean
+    public FeignLogger feignLogger() {
+        return new FeignLogger();
     }
 
 }

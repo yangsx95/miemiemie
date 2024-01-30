@@ -1,7 +1,6 @@
 package com.miemiemie.starter.web.result;
 
 import com.miemiemie.starter.web.annotation.NoPackage;
-import com.miemiemie.starter.core.constants.InnerHttpHeaders;
 import com.miemiemie.starter.core.enums.ResultStatusEnum;
 import com.miemiemie.starter.core.result.Result;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -53,11 +52,6 @@ public class ResultPackageHandler implements ResponseBodyAdvice<Object> {
             return body;
         }
 
-        InnerHttpHeaders innerHttpHeaders = InnerHttpHeaders.build(request.getHeaders().toSingleValueMap());
-        // 内部服务不包装Result
-        if (innerHttpHeaders.getServiceTypeEnum() == InnerHttpHeaders.ServiceTypeEnum.SERVICE) {
-            return body;
-        }
         return Result.success(body);
     }
 }
