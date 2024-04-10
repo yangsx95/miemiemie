@@ -3,6 +3,8 @@ package com.miemiemie.starter.validation.common;
 import jakarta.validation.groups.Default;
 
 /**
+ * 通用的预定义校验组
+ *
  * @author yangshunxiang
  * @since 2023/1/18
  */
@@ -27,7 +29,7 @@ public interface CommonValidatorGroup {
     }
 
     /**
-     * 通用单挑查询校验组
+     * 通用单条查询校验组
      */
     interface SelectOne extends Default {
     }
