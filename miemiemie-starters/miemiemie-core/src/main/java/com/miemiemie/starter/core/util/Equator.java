@@ -34,7 +34,7 @@ public interface Equator<S, T> {
     }
 
     default Equator<S, T> thenEqualing(Equator<? super S, ? super T> other) {
-        return (c1, c2) -> !equals(c1, c2) && other.equals(c1, c2);
+        return (c1, c2) -> equals(c1, c2) && other.equals(c1, c2);
     }
 
     default <SU, TU> Equator<S, T> thenEqualing(

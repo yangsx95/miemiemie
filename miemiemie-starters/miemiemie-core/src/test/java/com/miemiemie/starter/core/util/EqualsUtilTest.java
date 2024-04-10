@@ -47,11 +47,15 @@ class EqualsUtilTest {
 
         List<B> targetList = new ArrayList<>();
         targetList.add(new B(1L, "张三", 18));
-        targetList.add(new B(2L, "李四", null));
-        targetList.add(new B(null, "赵大傻", null));
+        targetList.add(new B(2L, "李四", 89));
+        targetList.add(new B(4L, "赵大傻", null));
 
 
-        EqualsUtil.GroupListData<A, B> group = EqualsUtil.equalsAndGroup(sourceList, targetList, A::getName, B::getName, Equator.equaling(A::getName, B::getName).thenEqualing(A::getAge, B::getAge));
+        EqualsUtil.GroupListData<A, B> group = EqualsUtil.equalsAndGroup(sourceList, targetList, A::getId, B::getBobbyId,
+                Equator.equaling(A::getId, B::getBobbyId)
+                        .thenEqualing(A::getName, B::getName)
+                        .thenEqualing(A::getAge, B::getAge)
+        );
         System.out.println(group);
 
     }
