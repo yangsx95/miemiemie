@@ -8,7 +8,16 @@ afterEvaluate {
         publications {
             if (project.plugins.findPlugin('java') != null && project.plugins.findPlugin('java-library') != null) {
                 mavenPublication(MavenPublication) {
-                    artifact jar
+                    from components.java
+                    // 增加版本映射，如果不加，会不知道pom中的版本是什么，这里设置为自动解析
+                    versionMapping {
+                        usage('java-api') {
+                            fromResolutionResult()
+                        }
+                        usage('java-runtime') {
+                            fromResolutionResult()
+                        }
+                    }
                 }
             } else if (project.plugins.findPlugin('java-platform') != null) {
                 mavenJava(MavenPublication) {

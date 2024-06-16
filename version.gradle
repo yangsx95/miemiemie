@@ -6,6 +6,7 @@ ext {
     versions = [
             "springBoot"           : "3.0.0",
             "springCloud"          : "2022.0.0",
+            "shadowPlugin"         : "7.1.2",
             "springCloudAlibaba"   : "2022.0.0.0-RC1",
             "lombok"               : "1.18.22",
             "mybatis"              : "3.5.11",
