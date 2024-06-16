@@ -12,7 +12,10 @@ import org.springframework.context.annotation.Import;
  */
 @ConditionalOnWebApplication
 @Configuration
-@Import({CommonEnumPropertyCustomizer.class, CommonEnumParameterCustomizer.class})
+@Import({
+        CommonEnumPropertyCustomizer.class,
+        CommonEnumParameterCustomizer.class,
+        PrintOpenApiInfoCommandLineRunner.class
+})
 public class OpenApiAutoConfiguration {
-
 }

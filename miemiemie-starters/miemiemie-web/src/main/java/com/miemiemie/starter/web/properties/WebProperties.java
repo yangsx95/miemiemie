@@ -3,7 +3,6 @@ package com.miemiemie.starter.web.properties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +14,9 @@ import java.util.List;
 public class WebProperties {
 
     /**
-     * 响应结果包装白名单
+     * 响应结果包装白名单，默认添加了OpenApi3的白名单
+     * 如果有需要请重新设置
      */
-    private List<String> resultPackageWhiteList = new ArrayList<>();
+    private List<String> resultPackageWhiteList = List.of("/v3/api-docs/**");
 
 }
