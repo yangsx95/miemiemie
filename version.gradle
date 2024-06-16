@@ -4,7 +4,7 @@ ext {
     projectVersion = '1.0.0-S3-SNAPSHOT'
 
     versions = [
-            "springBoot"           : "3.0.0",
+            "springBoot"           : "3.2.0",
             "springCloud"          : "2022.0.0",
             "springCloudAlibaba"   : "2022.0.0.0-RC1",
             "lombok"               : "1.18.22",
@@ -20,7 +20,7 @@ ext {
             "commonNet"            : "3.6",
             "fastDFS"              : "1.27.0.0",
             "hutool"               : "5.8.16",
-            "springdocopenapiui"   : "2.2.0",
+            "springdocopenapiui"   : "2.5.0",
             "antisamy"             : "1.7.2",
     ]
 

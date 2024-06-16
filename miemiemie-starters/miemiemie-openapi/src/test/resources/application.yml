@@ -8,3 +8,10 @@ springdoc:
       group: "hello"
       paths-to-match:
         - "/**"
+  swagger-ui:
+    disable-swagger-default-url: true
+
+miemiemie:
+  web:
+    result-package-white-list:
+      - /v3/api-docs/**
