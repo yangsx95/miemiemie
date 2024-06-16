@@ -28,19 +28,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     /**
-     * 处理参数校验异常
-     *
-     * @param req 请求对象
-     * @param e   异常对象
-     * @return 返回体
-     */
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public Result<Void> checkExceptionHandler(HttpServletRequest req, MethodArgumentNotValidException e) {
-        log.error("接口 {} 字段验证不通过：{}", req.getRequestURI(), e.getMessage());
-        return Result.build(ResultStatusEnum.PARAMETER_CHECK_FAIL.getCode(), generateFieldValidErrMsg(e.getBindingResult()));
-    }
-
-    /**
      * 处理参数绑定异常
      *
      * @param req 请求对象
@@ -49,7 +36,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = BindException.class)
     public Result<Void> bindExceptionHandler(HttpServletRequest req, BindException e) {
-        log.error("接口 {} 字段验证不通过：{}", req.getRequestURI(), e.getMessage());
+        log.warn("接口 {} 字段验证不通过：{}", req.getRequestURI(), e.getMessage(), e);
         return Result.build(ResultStatusEnum.PARAMETER_CHECK_FAIL.getCode(), generateFieldValidErrMsg(e.getBindingResult()));
     }
 
@@ -75,7 +62,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = BizException.class)
     public Result<Void> bizExceptionHandler(HttpServletRequest req, BizException e) {
-        log.error("接口 {} 发生业务异常：{}", req.getRequestURI(), e.getErrorMsg());
+        log.error("接口 {} 发生业务异常：{}", req.getRequestURI(), e.getErrorMsg(), e);
         return Result.build(e.getErrorCode(), e.getErrorMsg());
     }
 

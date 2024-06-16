@@ -2,6 +2,7 @@ package com.miemiemie.starter.mybatisplus;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
 import com.baomidou.mybatisplus.autoconfigure.MybatisPlusPropertiesCustomizer;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
@@ -76,7 +77,7 @@ public class MybatisPlusAutoConfig {
             globalConfig.getDbConfig().setLogicNotDeleteValue(DeletedEnum.NOT_DELETED.getCode().toString());
             globalConfig.getDbConfig().setLogicDeleteValue(DeletedEnum.DELETED.getCode().toString());
 
-            MybatisConfiguration configuration = new MybatisConfiguration();
+            MybatisPlusProperties.CoreConfiguration configuration = new MybatisPlusProperties.CoreConfiguration();
             configuration.setDefaultEnumTypeHandler(GenericEnumTypeHandler.class);
             configuration.setLogImpl(org.apache.ibatis.logging.stdout.StdOutImpl.class);
             properties.setConfiguration(configuration);

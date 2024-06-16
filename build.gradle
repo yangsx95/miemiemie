@@ -15,8 +15,6 @@ buildscript {
 
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${rootProject.ext.versions.springBoot}"
-        classpath "com.github.johnrengelman.shadow:com.github.johnrengelman.shadow.gradle.plugin:${rootProject.ext.versions.shadowPlugin}"
-
     }
 }
 
@@ -72,7 +70,6 @@ configure(libraryJars) { prj ->
     apply plugin: 'java-library'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'com.github.johnrengelman.shadow'
 
     // 公共插件配置
     java {
@@ -88,11 +85,6 @@ configure(libraryJars) { prj ->
 
     bootJar {
         enabled = false
-    }
-
-    // 生成一个带有传递依赖（transitive dependencies）的fat jar
-    shadowJar {
-        archiveClassifier = '' // 可选，移除默认的classifier，使得生成的jar名为.jar而不是-shadow.jar
     }
 
     // spring dependency-management 插件提供的功能

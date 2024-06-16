@@ -1,6 +1,7 @@
 package com.miemiemie.starter.mybatisplus.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.miemiemie.starter.mybatisplus.enums.DeletedEnum;
 import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 
@@ -21,11 +22,11 @@ public abstract class BaseEntity implements Serializable {
     private Long id;
 
     /**
-     * 是否删除，0：未删除 1：已删除
+     * 是否删除
      */
     @TableField
     @TableLogic
-    private Integer deleted;
+    private DeletedEnum deleted;
 
     /**
      * 创建时间
