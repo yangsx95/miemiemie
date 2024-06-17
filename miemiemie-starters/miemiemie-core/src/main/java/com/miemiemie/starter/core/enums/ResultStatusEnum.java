@@ -39,6 +39,11 @@ public enum ResultStatusEnum implements ResultStatus {
     AUTH_FAIL(403, "认证失败"),
 
     /**
+     * 资源找不到
+     */
+    NOT_FOUND(404, "未找到对应的资源"),
+
+    /**
      * 系统未知错误
      */
     SERVER_ERROR(500, "服务器内部错误"),
