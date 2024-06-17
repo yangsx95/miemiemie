@@ -3,6 +3,7 @@ package com.miemiemie.starter.file.support.fastdfs;
 import com.miemiemie.starter.file.pool.FileClientPoolProperties;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author yangshunxiang
@@ -10,6 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ConfigurationProperties(prefix = "miemiemie.file.")
 public class FastDfsFileClientProperties {
 
     private int connectTimeoutInSeconds = 30;

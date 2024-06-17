@@ -1,10 +1,10 @@
 package com.miemiemie.starter.validation;
 
 import org.hibernate.validator.BaseHibernateValidatorConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.validation.MessageInterpolatorFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
  * @author yangshunxiang
  * @since 2023/1/13
  */
-@Configuration
+@AutoConfiguration
 public class ValidationAutoConfiguration {
 
     @Bean

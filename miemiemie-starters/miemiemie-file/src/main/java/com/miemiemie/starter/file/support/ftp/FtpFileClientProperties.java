@@ -3,6 +3,7 @@ package com.miemiemie.starter.file.support.ftp;
 import com.miemiemie.starter.file.pool.FileClientPoolProperties;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.io.File;
 
@@ -14,6 +15,7 @@ import java.io.File;
  */
 @Getter
 @Setter
+@ConfigurationProperties(prefix = "miemiemie.file.ftp")
 public class FtpFileClientProperties {
 
     /**

@@ -2,6 +2,7 @@ package com.miemiemie.starter.file.support.local;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -14,6 +15,7 @@ import java.nio.file.Paths;
  */
 @Getter
 @Setter
+@ConfigurationProperties(prefix = "miemiemie.file.local")
 public class LocalFileClientProperties {
 
     public static final LocalFileClientProperties DEFAULT = new LocalFileClientProperties();

@@ -2,6 +2,7 @@ package com.miemiemie.starter.file.support.s3;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * s3文件客户端配置
@@ -11,6 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ConfigurationProperties(prefix = "miemiemie.file.fastdfs")
 public class S3FileClientProperties {
 
     /**

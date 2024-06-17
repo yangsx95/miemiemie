@@ -1,19 +1,18 @@
 package com.miemiemie.starter.xxljob;
 
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * xxl-job 自动配置
@@ -21,7 +20,7 @@ import java.util.stream.Collectors;
  * @author yangshunxiang
  * @since 2022/12/19
  */
-@Configuration
+@AutoConfiguration
 @EnableConfigurationProperties(XxlJobProperties.class)
 public class XxlJobAutoConfig {
 
@@ -92,7 +91,7 @@ public class XxlJobAutoConfig {
                 .stream()
                 .filter(StringUtils::hasText)
                 .filter(s -> s.equals(finalAddress))
-                .collect(Collectors.toList());
+                .toList();
         if (CollectionUtils.isEmpty(jobServers)) {
             return null;
         }

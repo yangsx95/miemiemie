@@ -6,19 +6,19 @@ import com.miemiemie.starter.protection.masking.MobileMasking;
 import com.miemiemie.starter.protection.support.mybatis.MybatisDataProtectionInterceptor;
 import com.miemiemie.starter.protection.support.web.DataProtectionResponseBodyAdvice;
 import org.apache.ibatis.plugin.Interceptor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author yangshunxiang
  * @since 2023/3/12
  */
-@Configuration
+@AutoConfiguration
 @EnableConfigurationProperties(ProtectionProperties.class)
 public class ProtectionAutoConfiguration {
 

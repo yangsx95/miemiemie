@@ -9,12 +9,12 @@ import com.miemiemie.starter.file.support.local.LocalFileClient;
 import com.miemiemie.starter.file.support.s3.S3FileClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.csource.fastdfs.TrackerClient;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 文件客户端自动配置
@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @author yangshunxiang
  * @since 2023/3/2
  */
-@Configuration
+@AutoConfiguration
 @EnableConfigurationProperties(FileClientProperties.class)
 public class FileAutoConfiguration {
 

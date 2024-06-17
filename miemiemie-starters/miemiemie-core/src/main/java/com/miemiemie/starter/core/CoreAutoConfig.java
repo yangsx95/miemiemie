@@ -1,10 +1,10 @@
 package com.miemiemie.starter.core;
 
 import com.miemiemie.starter.core.page.PageConvertFactory;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Import;
 
-@Configuration
+@AutoConfiguration
 @Import(PageConvertFactory.class)
 public class CoreAutoConfig {
 }
