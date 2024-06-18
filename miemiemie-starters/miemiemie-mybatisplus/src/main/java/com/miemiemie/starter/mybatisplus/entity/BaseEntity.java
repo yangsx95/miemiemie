@@ -31,7 +31,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(updateStrategy = FieldStrategy.NEVER, fill = FieldFill.INSERT)
+    @TableField(updateStrategy = FieldStrategy.NEVER)
     private LocalDateTime createTime;
 
     /**
@@ -43,7 +43,7 @@ public abstract class BaseEntity implements Serializable {
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(updateStrategy = FieldStrategy.NEVER)
     private LocalDateTime updateTime;
 
     /**
