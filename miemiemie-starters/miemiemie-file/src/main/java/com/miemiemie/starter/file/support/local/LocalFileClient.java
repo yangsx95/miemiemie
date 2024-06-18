@@ -1,5 +1,6 @@
 package com.miemiemie.starter.file.support.local;
 
+import com.miemiemie.starter.file.FileClientProperties;
 import com.miemiemie.starter.file.FileMetadata;
 import com.miemiemie.starter.file.FileObject;
 import com.miemiemie.starter.file.FilePathGenerator;
@@ -22,13 +23,13 @@ import java.util.function.Supplier;
 public class LocalFileClient extends AbstractFileClient {
 
     @Getter
-    private LocalFileClientProperties localFileClientProperties = LocalFileClientProperties.DEFAULT;
+    private FileClientProperties.LocalFileClientProperties localFileClientProperties = FileClientProperties.LocalFileClientProperties.DEFAULT;
 
     public LocalFileClient(FilePathGenerator filePathGenerator) {
         super(filePathGenerator);
     }
 
-    public LocalFileClient(LocalFileClientProperties localFileClientProperties, FilePathGenerator filePathGenerator) {
+    public LocalFileClient(FileClientProperties.LocalFileClientProperties localFileClientProperties, FilePathGenerator filePathGenerator) {
         super(filePathGenerator);
         this.localFileClientProperties = localFileClientProperties;
     }

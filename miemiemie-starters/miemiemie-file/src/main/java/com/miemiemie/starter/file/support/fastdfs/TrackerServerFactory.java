@@ -1,5 +1,6 @@
 package com.miemiemie.starter.file.support.fastdfs;
 
+import com.miemiemie.starter.file.FileClientProperties;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
@@ -16,13 +17,13 @@ import java.util.Properties;
  */
 public class TrackerServerFactory extends BasePooledObjectFactory<TrackerServer> {
 
-    private final FastDfsFileClientProperties properties;
+    private final FileClientProperties.FastDfsFileClientProperties properties;
 
-    public TrackerServerFactory(FastDfsFileClientProperties properties) {
+    public TrackerServerFactory(FileClientProperties.FastDfsFileClientProperties properties) {
         this.properties = properties;
     }
 
-    private void initClientGlobal(FastDfsFileClientProperties fastDfsFileClientProperties) throws Exception {
+    private void initClientGlobal(FileClientProperties.FastDfsFileClientProperties fastDfsFileClientProperties) throws Exception {
         Properties properties = new Properties();
         properties.put(ClientGlobal.PROP_KEY_CONNECT_TIMEOUT_IN_SECONDS, fastDfsFileClientProperties.getConnectTimeoutInSeconds());
         properties.put(ClientGlobal.PROP_KEY_NETWORK_TIMEOUT_IN_SECONDS, fastDfsFileClientProperties.getNetworkTimeoutInSeconds());

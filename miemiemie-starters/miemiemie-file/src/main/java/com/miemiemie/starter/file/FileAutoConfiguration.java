@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
@@ -23,7 +24,8 @@ import org.springframework.context.annotation.Bean;
  * @since 2023/3/2
  */
 @AutoConfiguration
-@EnableConfigurationProperties(FileClientProperties.class)
+@EnableConfigurationProperties
+@ConfigurationPropertiesScan(basePackages = "com.miemiemie.starter.file")
 public class FileAutoConfiguration {
 
     @ConditionalOnMissingBean(FilePathGenerator.class)
@@ -32,14 +34,14 @@ public class FileAutoConfiguration {
         return new SimpleUuidFilepathGenerator();
     }
 
-    @ConditionalOnProperty("miemiemie.file.local")
+    @ConditionalOnProperty(value = "miemiemie.file.local.enabled", havingValue = "true")
     @ConditionalOnMissingBean(LocalFileClient.class)
     @Bean
     public LocalFileClient localFileClient(FileClientProperties properties, FilePathGenerator filePathGenerator) {
         return new LocalFileClient(properties.getLocal(), filePathGenerator);
     }
 
-    @ConditionalOnProperty("miemiemie.file.ftp")
+    @ConditionalOnProperty(value = "miemiemie.file.ftp.enabled", havingValue = "true")
     @ConditionalOnMissingBean(FtpFileClient.class)
     @ConditionalOnClass(FTPFile.class)
     @Bean
@@ -47,7 +49,7 @@ public class FileAutoConfiguration {
         return new FtpFileClient(properties.getFtp(), filePathGenerator);
     }
 
-    @ConditionalOnProperty("miemiemie.file.fast-dfs")
+    @ConditionalOnProperty(value = "miemiemie.file.fast-dfs.enabled", havingValue = "true")
     @ConditionalOnMissingBean(FastDfsFileClient.class)
     @ConditionalOnClass(TrackerClient.class)
     @Bean
@@ -55,7 +57,7 @@ public class FileAutoConfiguration {
         return new FastDfsFileClient(properties.getFastDfs(), new EmptyFilepathGenerator());
     }
 
-    @ConditionalOnProperty("miemiemie.file.s3")
+    @ConditionalOnProperty(value = "miemiemie.file.s3.enabled", havingValue = "true")
     @ConditionalOnMissingBean(S3FileClient.class)
     @ConditionalOnClass(AmazonS3.class)
     @Bean

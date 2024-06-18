@@ -1,5 +1,6 @@
 package com.miemiemie.starter.file.support.ftp;
 
+import com.miemiemie.starter.file.FileClientProperties;
 import com.miemiemie.starter.file.FileMetadata;
 import com.miemiemie.starter.file.FileObject;
 import com.miemiemie.starter.file.FilePathGenerator;
@@ -27,14 +28,14 @@ public class FtpFileClient extends AbstractPooledFileClient<FTPClient> {
 
     public static final String ROOT_PATH = "/";
     @Getter
-    private final FtpFileClientProperties properties;
+    private final FileClientProperties.FtpFileClientProperties properties;
 
-    public FtpFileClient(FtpFileClientProperties properties,
+    public FtpFileClient(FileClientProperties.FtpFileClientProperties properties,
                          FilePathGenerator filePathGenerator) {
         this(properties, filePathGenerator, new FtpClientFactory(properties));
     }
 
-    public FtpFileClient(FtpFileClientProperties properties,
+    public FtpFileClient(FileClientProperties.FtpFileClientProperties properties,
                          FilePathGenerator filePathGenerator,
                          PooledObjectFactory<FTPClient> factory) {
         super(filePathGenerator, properties.getPool(), factory);

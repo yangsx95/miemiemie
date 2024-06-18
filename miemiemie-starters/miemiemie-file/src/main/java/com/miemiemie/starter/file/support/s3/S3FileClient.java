@@ -11,6 +11,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.miemiemie.starter.file.FileClientProperties;
 import com.miemiemie.starter.file.FileMetadata;
 import com.miemiemie.starter.file.FileObject;
 import com.miemiemie.starter.file.FilePathGenerator;
@@ -32,18 +33,18 @@ import java.util.Optional;
 public class S3FileClient extends AbstractFileClient {
 
     @Getter
-    private final S3FileClientProperties s3FileClientProperties;
+    private final FileClientProperties.S3FileClientProperties s3FileClientProperties;
 
     @Getter
     private final AmazonS3 amazonS3;
 
-    public S3FileClient(S3FileClientProperties s3FileClientProperties, FilePathGenerator filePathGenerator) {
+    public S3FileClient(FileClientProperties.S3FileClientProperties s3FileClientProperties, FilePathGenerator filePathGenerator) {
         super(filePathGenerator);
         this.s3FileClientProperties = s3FileClientProperties;
         amazonS3 = initAmazonS3(s3FileClientProperties);
     }
 
-    public AmazonS3 initAmazonS3(S3FileClientProperties s3FileClientProperties) {
+    public AmazonS3 initAmazonS3(FileClientProperties.S3FileClientProperties s3FileClientProperties) {
         ClientConfiguration clientConfiguration = new ClientConfiguration();
         AwsClientBuilder.EndpointConfiguration endpointConfiguration = new AwsClientBuilder.EndpointConfiguration(
                 s3FileClientProperties.getEndpoint(),

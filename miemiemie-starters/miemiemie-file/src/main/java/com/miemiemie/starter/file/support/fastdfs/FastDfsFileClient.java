@@ -1,5 +1,6 @@
 package com.miemiemie.starter.file.support.fastdfs;
 
+import com.miemiemie.starter.file.FileClientProperties;
 import com.miemiemie.starter.file.FileMetadata;
 import com.miemiemie.starter.file.FileObject;
 import com.miemiemie.starter.file.FilePathGenerator;
@@ -23,7 +24,6 @@ import java.net.URI;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * @author yangshunxiang
@@ -34,14 +34,14 @@ public class FastDfsFileClient extends AbstractPooledFileClient<TrackerServer> {
     public static String NULL_GROUP = "";
 
     @Getter
-    private final FastDfsFileClientProperties fastDfsFileClientProperties;
+    private final FileClientProperties.FastDfsFileClientProperties fastDfsFileClientProperties;
 
-    public FastDfsFileClient(FastDfsFileClientProperties fastDfsFileClientProperties,
+    public FastDfsFileClient(FileClientProperties.FastDfsFileClientProperties fastDfsFileClientProperties,
                              FilePathGenerator filePathGenerator) {
         this(fastDfsFileClientProperties, filePathGenerator, new TrackerServerFactory(fastDfsFileClientProperties));
     }
 
-    public FastDfsFileClient(FastDfsFileClientProperties fastDfsFileClientProperties,
+    public FastDfsFileClient(FileClientProperties.FastDfsFileClientProperties fastDfsFileClientProperties,
                              FilePathGenerator filePathGenerator,
                              PooledObjectFactory<TrackerServer> factory) {
         super(filePathGenerator, fastDfsFileClientProperties.getPool(), factory);
@@ -94,7 +94,7 @@ public class FastDfsFileClient extends AbstractPooledFileClient<TrackerServer> {
                     pair.setValue(data.getValue());
                     return pair;
                 })
-                .collect(Collectors.toList())
+                .toList()
                 .toArray(nameValuePairs);
         return nameValuePairs;
     }

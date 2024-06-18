@@ -1,5 +1,6 @@
 package com.miemiemie.starter.file.support.ftp;
 
+import com.miemiemie.starter.file.FileClientProperties;
 import com.miemiemie.starter.file.exception.FileClientException;
 import lombok.Getter;
 import org.apache.commons.net.ftp.FTPClient;
@@ -20,9 +21,9 @@ import java.io.IOException;
 public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 
     @Getter
-    private final FtpFileClientProperties ftpFileClientProperties;
+    private final FileClientProperties.FtpFileClientProperties ftpFileClientProperties;
 
-    public FtpClientFactory(FtpFileClientProperties ftpFileClientProperties) {
+    public FtpClientFactory(FileClientProperties.FtpFileClientProperties ftpFileClientProperties) {
         this.ftpFileClientProperties = ftpFileClientProperties;
     }
 
