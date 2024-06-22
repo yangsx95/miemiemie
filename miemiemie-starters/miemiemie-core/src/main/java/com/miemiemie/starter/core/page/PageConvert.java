@@ -5,6 +5,8 @@ import org.springframework.util.Assert;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * page对象转换，将其他类型的page对象转换为core包的Page对象
@@ -28,5 +30,14 @@ public interface PageConvert<P> extends InitializingBean {
         }
         Assert.notNull(pt, "PageConvert Type Arguments is null");
         PageConvertFactory.registryConvert((Class<?>) pt.getRawType(), this);
+
+        // 将他的子类，实现类也注册到这个转换器上
+        // 本来打算做扫描子类与实现类的，但是考虑到性能，所以采取了手动指定的方式
+        registrySubClass().forEach(clazz -> PageConvertFactory.registryConvert(clazz, this));
     }
+
+    default Set<Class<?>> registrySubClass() {
+        return Collections.emptySet();
+    }
+
 }
