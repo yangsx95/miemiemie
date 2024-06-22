@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,7 +23,10 @@ import static java.util.stream.Collectors.toList;
 @Getter
 @Setter
 @ToString
-public class Page<T> implements Serializable, Iterator<T> {
+public class Page<T> extends PageInfo implements Iterator<T> {
+
+    @Serial
+    private static final long serialVersionUID = 159904578854328173L;
 
     public Page() {
     }
@@ -33,9 +36,8 @@ public class Page<T> implements Serializable, Iterator<T> {
     }
 
     public Page(long totalCount, long pageSize, long currentPage, List<T> records) {
+        super(pageSize, currentPage);
         this.totalCount = totalCount;
-        this.pageSize = pageSize;
-        this.currentPage = currentPage;
         if (Objects.nonNull(records) && !records.isEmpty()) {
             this.records = records;
         }
@@ -45,16 +47,6 @@ public class Page<T> implements Serializable, Iterator<T> {
      * 总条数
      */
     private long totalCount;
-
-    /**
-     * 每页条数
-     */
-    private long pageSize = 10;
-
-    /**
-     * 当前页数
-     */
-    private long currentPage;
 
     /**
      * 分页数据记录
