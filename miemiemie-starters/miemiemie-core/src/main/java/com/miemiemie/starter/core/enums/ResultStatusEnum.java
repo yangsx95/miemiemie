@@ -44,6 +44,11 @@ public enum ResultStatusEnum implements ResultStatus {
     NOT_FOUND(404, "未找到对应的资源"),
 
     /**
+     * 错误的HTTP方法
+     */
+    METHOD_NOT_ALLOW(405, "错误的HTTP方法"),
+
+    /**
      * 系统未知错误
      */
     SERVER_ERROR(500, "服务器内部错误"),
