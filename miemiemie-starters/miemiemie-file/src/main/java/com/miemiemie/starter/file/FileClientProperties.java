@@ -1,10 +1,13 @@
 package com.miemiemie.starter.file;
 
 import com.miemiemie.starter.file.pool.FileClientPoolProperties;
+import com.miemiemie.starter.file.support.local.LocalFileClient;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -133,16 +136,24 @@ public class FileClientProperties {
      */
     @Getter
     @Setter
+    @Validated
+    @NoArgsConstructor
     public static class LocalFileClientProperties {
 
-        public static final LocalFileClientProperties DEFAULT = new LocalFileClientProperties();
+        public static final String DEFAULT_PATH = System.getProperties().get("user.home").toString() + File.separator + ".data";
+
+        public static final LocalFileClientProperties DEFAULT = new LocalFileClientProperties(DEFAULT_PATH);
+
+        public LocalFileClientProperties(String baseDir) {
+            this.baseDir = baseDir;
+        }
 
         private boolean enabled = false;
 
         /**
          * 文件存储的根路径
          */
-        private String baseDir = Paths.get(File.separator, "data").toAbsolutePath().toString();
+        private String baseDir;
 
     }
 
