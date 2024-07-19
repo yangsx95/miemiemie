@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.miemiemie.starter.core.lang.Holder;
 import com.miemiemie.starter.core.page.Page;
+import com.miemiemie.starter.core.page.PageInfo;
 import com.miemiemie.starter.core.page.Pages;
 import com.miemiemie.starter.mybatisplus.util.MybatisUtil;
 import org.apache.ibatis.annotations.Param;
@@ -88,7 +89,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * @return 查询结果
      */
     @SuppressWarnings("unchecked")
-    default <P extends Page<T>> P selectPageAndConvert(P page, Wrapper<T> queryWrapper) {
+    default <P extends Page<T>> P selectPageAndConvert(PageInfo page, Wrapper<T> queryWrapper) {
         if (page == null) {
             return (P) Pages.toPage(selectPage(null, queryWrapper), null);
         } else {

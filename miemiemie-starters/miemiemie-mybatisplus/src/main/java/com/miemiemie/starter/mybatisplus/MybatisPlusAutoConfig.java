@@ -11,9 +11,11 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import com.miemiemie.starter.mybatisplus.config.GenericEnumTypeHandler;
 import com.miemiemie.starter.mybatisplus.config.MySqlInjector;
 import com.miemiemie.starter.mybatisplus.enums.DeletedEnum;
+import com.miemiemie.starter.mybatisplus.page.MybatisPlusPageConvert;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 @AutoConfiguration
 public class MybatisPlusAutoConfig {
@@ -81,6 +83,11 @@ public class MybatisPlusAutoConfig {
             configuration.setLogImpl(org.apache.ibatis.logging.stdout.StdOutImpl.class);
             properties.setConfiguration(configuration);
         };
+    }
+
+    @Bean
+    public MybatisPlusPageConvert mybatisPlusPageConvert() {
+        return new MybatisPlusPageConvert();
     }
 
 }

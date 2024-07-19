@@ -4,12 +4,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.miemiemie.starter.core.page.Page;
 import com.miemiemie.starter.core.page.PageConvert;
 import com.miemiemie.starter.core.page.Pages;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
 
-@Component
 public class MybatisPlusPageConvert implements PageConvert<IPage<?>> {
 
     @SuppressWarnings("unchecked")
@@ -28,5 +28,10 @@ public class MybatisPlusPageConvert implements PageConvert<IPage<?>> {
         result.setTotalPage(rPage.getPages());
         result.setRecords(rPage.getRecords());
         return result;
+    }
+
+    @Override
+    public Set<Class<?>> registrySubClass() {
+        return Collections.singleton(com.baomidou.mybatisplus.extension.plugins.pagination.Page.class);
     }
 }

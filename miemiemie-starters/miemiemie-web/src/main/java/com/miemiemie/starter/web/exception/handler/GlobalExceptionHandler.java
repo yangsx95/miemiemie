@@ -10,11 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
+
+import static com.miemiemie.starter.core.enums.ResultStatusEnum.METHOD_NOT_ALLOW;
 
 
 /**
@@ -77,6 +79,13 @@ public class GlobalExceptionHandler {
     public Result<Void> bizExceptionHandler(HttpServletRequest req, BizException e) {
         log.error("接口 {} 发生业务异常：{}", req.getRequestURI(), e.getErrorMsg(), e);
         return Result.build(e.getErrorCode(), e.getErrorMsg());
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public Result<Void> httpRequestMethodNotSupportedExceptionHandler(HttpServletRequest req, HttpRequestMethodNotSupportedException e) {
+        log.error("接口 {} 发生错误请求类型异常：{}", req.getRequestURI(), e.getMessage(), e);
+        return Result.build(METHOD_NOT_ALLOW.getCode(), e.getMessage());
     }
 
     /**

@@ -7,6 +7,7 @@ import com.miemiemie.starter.file.FilePathGenerator;
 import com.miemiemie.starter.file.exception.FileClientException;
 import com.miemiemie.starter.file.support.AbstractFileClient;
 import lombok.Getter;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.net.URI;
@@ -32,6 +33,10 @@ public class LocalFileClient extends AbstractFileClient {
     public LocalFileClient(FileClientProperties.LocalFileClientProperties localFileClientProperties, FilePathGenerator filePathGenerator) {
         super(filePathGenerator);
         this.localFileClientProperties = localFileClientProperties;
+
+        if (!StringUtils.hasText(localFileClientProperties.getBaseDir())) {
+            throw new IllegalArgumentException("Base dir must not be empty");
+        }
     }
 
     private static void createFile(File file) throws IOException {

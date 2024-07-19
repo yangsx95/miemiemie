@@ -9,6 +9,12 @@ afterEvaluate {
             if (project.plugins.findPlugin('java') != null && project.plugins.findPlugin('java-library') != null) {
                 mavenPublication(MavenPublication) {
                     from components.java
+
+                    // 添加源码Jar到出版物
+                    artifact(tasks.named('sourcesJar')) {
+                        classifier 'sources'
+                    }
+
                     // 增加版本映射，如果不加，会不知道pom中的版本是什么，这里设置为自动解析
                     versionMapping {
                         usage('java-api') {

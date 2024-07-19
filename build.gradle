@@ -83,6 +83,12 @@ configure(libraryJars) { prj ->
         archiveClassifier = ''
     }
 
+    // 生成源代码
+    tasks.register('sourcesJar', Jar) {
+        archiveClassifier.set('sources');
+        from sourceSets.main.allSource
+    }
+
     bootJar {
         enabled = false
     }
