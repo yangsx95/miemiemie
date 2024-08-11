@@ -5,6 +5,7 @@ import com.miemiemie.starter.mybatisplus.enums.DeletedEnum;
 import lombok.Data;
 import lombok.experimental.FieldNameConstants;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -14,6 +15,9 @@ import java.time.LocalDateTime;
 @Data
 @FieldNameConstants
 public abstract class BaseEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 4935519255380622171L;
 
     /**
      * 主键
