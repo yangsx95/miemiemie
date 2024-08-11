@@ -16,7 +16,7 @@ public class SimpleUuidFilepathGenerator implements FilePathGenerator {
     public String generate(FileMetadata fileMetaData) {
         String ext = fileMetaData.get(FileMetadata.FILE_EXTENSION);
         if (StringUtils.hasText(ext)) {
-            return UUID.randomUUID() + "." + fileMetaData.get(ext.trim());
+            return UUID.randomUUID() + "." + ext;
         }
         return UUID.randomUUID().toString();
     }
