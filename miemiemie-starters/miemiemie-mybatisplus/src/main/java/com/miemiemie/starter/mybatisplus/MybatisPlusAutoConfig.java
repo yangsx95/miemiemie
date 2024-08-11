@@ -15,7 +15,8 @@ import com.miemiemie.starter.mybatisplus.page.MybatisPlusPageConvert;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
+
+import java.util.Optional;
 
 @AutoConfiguration
 public class MybatisPlusAutoConfig {
@@ -76,7 +77,11 @@ public class MybatisPlusAutoConfig {
             globalConfig.getDbConfig().setUpdateStrategy(FieldStrategy.NOT_EMPTY);
             globalConfig.getDbConfig().setWhereStrategy(FieldStrategy.NOT_EMPTY);
             globalConfig.getDbConfig().setLogicNotDeleteValue(DeletedEnum.NOT_DELETED.getCode().toString());
-            globalConfig.getDbConfig().setLogicDeleteValue(DeletedEnum.DELETED.getCode().toString());
+            globalConfig.getDbConfig().setLogicDeleteValue(Optional.of(DeletedEnum.DELETED)
+                    .map(DeletedEnum::getCode)
+                    .map(Object::toString)
+                    .orElse("null")
+            );
 
             MybatisPlusProperties.CoreConfiguration configuration = new MybatisPlusProperties.CoreConfiguration();
             configuration.setDefaultEnumTypeHandler(GenericEnumTypeHandler.class);

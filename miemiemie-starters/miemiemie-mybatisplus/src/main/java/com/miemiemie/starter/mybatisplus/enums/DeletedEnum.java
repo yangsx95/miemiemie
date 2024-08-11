@@ -15,7 +15,7 @@ public enum DeletedEnum implements CommonEnum<Integer, String> {
     /**
      * 已删除
      */
-    DELETED(1, "已删除"),
+    DELETED(null, "已删除"),
     ;
 
     private final Integer code;
