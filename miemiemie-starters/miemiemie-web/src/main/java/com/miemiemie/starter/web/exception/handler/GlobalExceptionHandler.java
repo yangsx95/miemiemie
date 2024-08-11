@@ -58,12 +58,12 @@ public class GlobalExceptionHandler {
     /**
      * 处理找不到资源异常
      *
-     * @param e 异常对象
+     * @param ignoredE 异常对象
      * @return 返回体
      */
     @ExceptionHandler(value = NoResourceFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Result<Void> noResourceFoundExceptionHandler(NoResourceFoundException e) {
+    public Result<Void> noResourceFoundExceptionHandler(NoResourceFoundException ignoredE) {
         return Result.build(ResultStatusEnum.NOT_FOUND);
     }
 
@@ -115,6 +115,5 @@ public class GlobalExceptionHandler {
         log.error("接口 {} 发生未知异常:", req.getRequestURI(), e);
         return Result.fail(ResultStatusEnum.SERVER_ERROR);
     }
-
 
 }
