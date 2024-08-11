@@ -43,7 +43,7 @@ public class PrintOpenApiInfoCommandLineRunner implements CommandLineRunner {
                 ip = "127.0.0.1";
             }
 
-            log.info("Swagger UI is available at http://{}:{}{}{}", ip, port, contextPath, swaggerPath);
+            log.info("[MIEMIEMIE] Swagger UI is available at http://{}:{}{}{}", ip, port, contextPath, swaggerPath);
         } catch (Exception e) {
             log.info("Swagger UI not enable");
         }
