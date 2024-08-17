@@ -1,6 +1,7 @@
 package com.miemiemie.starter.core.exception;
 
 import com.miemiemie.starter.core.enums.ResultStatus;
+import com.miemiemie.starter.core.enums.ResultStatusEnum;
 import lombok.Getter;
 
 import java.io.Serial;
@@ -39,6 +40,7 @@ public class BizException extends RuntimeException {
 
     public BizException(String errorMsg) {
         super(errorMsg);
+        this.errorCode = ResultStatusEnum.SERVER_ERROR.getCode();
         this.errorMsg = errorMsg;
     }
 
