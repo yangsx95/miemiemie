@@ -26,9 +26,8 @@ public interface TreeNodeCapable {
      * 如果实现类需要嵌套记录父节点，就需要实现该方法
      *
      * @param parent 父节点
-     * @param <T>    父节点类型
      */
-    default <T extends TreeNodeCapable> void putParent(T parent) {
+    default void putParent(Object parent) {
 
     }
 
@@ -36,9 +35,8 @@ public interface TreeNodeCapable {
      * 如果实现类需要嵌套记录子节点，就需要实现该方法
      *
      * @param child 子节点
-     * @param <T>   子节点类型
      */
-    default <T extends TreeNodeCapable> void addChild(T child) {
+    default void addChild(Object child) {
 
     }
 
