@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author yangshunxiang
  * @since 2023/3/14
  */
-public class EqualsUtil {
+public final class EqualsUtil {
 
     @Data
     public static class GroupListData<S, T> {
