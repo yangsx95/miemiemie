@@ -5,7 +5,6 @@ import com.miemiemie.starter.mybatisplus.entity.BaseEntity;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * @author yangshunxiang
@@ -19,15 +18,15 @@ public abstract class AbstractMybatisColumnHandler implements MetaObjectHandler 
         this.strictInsertFill(metaObject, BaseEntity.Fields.createTime, LocalDateTime.class, now);
         this.strictInsertFill(metaObject, BaseEntity.Fields.updateTime, LocalDateTime.class, now);
 
-        String currentUserId = Optional.ofNullable(getCurrentUserId()).map(String::valueOf).orElse(null);
-        this.strictInsertFill(metaObject, BaseEntity.Fields.createBy, String.class, currentUserId);
-        this.strictUpdateFill(metaObject, BaseEntity.Fields.updateBy, String.class, currentUserId);
+        Long currentUserId = getCurrentUserId();
+        this.strictInsertFill(metaObject, BaseEntity.Fields.createBy, Long.class, currentUserId);
+        this.strictUpdateFill(metaObject, BaseEntity.Fields.updateBy, Long.class, currentUserId);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         this.strictUpdateFill(metaObject, BaseEntity.Fields.updateTime, LocalDateTime.class, LocalDateTime.now());
-        this.strictUpdateFill(metaObject, BaseEntity.Fields.updateBy, String.class, Optional.ofNullable(getCurrentUserId()).map(String::valueOf).orElse(null));
+        this.strictUpdateFill(metaObject, BaseEntity.Fields.updateBy, Long.class, getCurrentUserId());
     }
 
     /**
