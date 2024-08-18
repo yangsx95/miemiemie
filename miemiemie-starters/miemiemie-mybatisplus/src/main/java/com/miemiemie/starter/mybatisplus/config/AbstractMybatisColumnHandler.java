@@ -16,11 +16,7 @@ public abstract class AbstractMybatisColumnHandler implements MetaObjectHandler 
     public void insertFill(MetaObject metaObject) {
         LocalDateTime now = LocalDateTime.now();
         this.strictInsertFill(metaObject, BaseEntity.Fields.createTime, LocalDateTime.class, now);
-        this.strictInsertFill(metaObject, BaseEntity.Fields.updateTime, LocalDateTime.class, now);
-
-        Long currentUserId = getCurrentUserId();
-        this.strictInsertFill(metaObject, BaseEntity.Fields.createBy, Long.class, currentUserId);
-        this.strictUpdateFill(metaObject, BaseEntity.Fields.updateBy, Long.class, currentUserId);
+        this.strictInsertFill(metaObject, BaseEntity.Fields.createBy, Long.class, getCurrentUserId());
     }
 
     @Override
