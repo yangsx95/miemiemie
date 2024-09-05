@@ -3,8 +3,7 @@ package com.miemiemie.starter.core.util.tree;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 树节点
@@ -31,7 +30,7 @@ public class TreeNode<T extends TreeNodeCapable> {
     /**
      * 树节点的子节点
      */
-    private final List<TreeNode<T>> children = new ArrayList<>();
+    private final TreeSet<TreeNode<T>> children = new TreeSet<>(Comparator.comparingInt(TreeNode::getOrdinal));
 
     public TreeNode(T value) {
         this.value = value;
@@ -46,4 +45,10 @@ public class TreeNode<T extends TreeNodeCapable> {
         this.children.add(childTreeNode);
     }
 
+    public int getOrdinal() {
+        if (Objects.nonNull(value)) {
+            return value.obtainOrdinal();
+        }
+        return 0;
+    }
 }

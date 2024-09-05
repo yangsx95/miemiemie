@@ -14,8 +14,9 @@ import java.util.*;
 public class Tree <T extends TreeNodeCapable> {
 
     @Getter
-    private final List<TreeNode<T>> rootNodes = new ArrayList<>();
+    private final TreeSet<TreeNode<T>> rootNodes = new TreeSet<>(Comparator.comparingInt(TreeNode::getOrdinal));
 
+    @Getter
     private final List<TreeNode<T>> allNodes = new ArrayList<>();
 
     private final Map<Object, TreeNode<T>> keyNodeMap = new HashMap<>();
@@ -49,7 +50,10 @@ public class Tree <T extends TreeNodeCapable> {
     }
 
     public List<T> getRoots() {
-        return rootNodes.stream().map(TreeNode::getValue).toList();
+        return rootNodes.stream()
+                .map(TreeNode::getValue)
+                .sorted(Comparator.comparingInt(TreeNodeCapable::obtainOrdinal))
+                .toList();
     }
 
 }

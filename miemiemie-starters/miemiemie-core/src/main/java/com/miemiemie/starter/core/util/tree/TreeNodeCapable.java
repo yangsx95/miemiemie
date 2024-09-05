@@ -23,6 +23,15 @@ public interface TreeNodeCapable {
     Object obtainParentNodeKey();
 
     /**
+     * 树节点在同级中的排序顺序
+     *
+     * @return 顺序序号
+     */
+    default int obtainOrdinal() {
+        return 0;
+    }
+
+    /**
      * 如果实现类需要嵌套记录父节点，就需要实现该方法
      *
      * @param parent 父节点
