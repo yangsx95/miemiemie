@@ -39,6 +39,11 @@ public enum ResultStatusEnum implements ResultStatus {
     AUTH_FAIL(403, "认证失败"),
 
     /**
+     * 认证过期
+     */
+    AUTH_TIMEOUT(413, "认证过期"),
+
+    /**
      * 资源找不到
      */
     NOT_FOUND(404, "未找到对应的资源"),
