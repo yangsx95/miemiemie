@@ -1,9 +1,12 @@
 package com.miemiemie.starter.core.util.tree;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.TreeSet;
 
 /**
  * 树节点
@@ -12,6 +15,7 @@ import java.util.*;
  * @since 2024/8/17
  */
 @Getter
+@EqualsAndHashCode
 public class TreeNode<T extends TreeNodeCapable> {
 
     /**
@@ -51,4 +55,5 @@ public class TreeNode<T extends TreeNodeCapable> {
         }
         return 0;
     }
+
 }

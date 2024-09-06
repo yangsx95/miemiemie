@@ -1,6 +1,8 @@
 package com.miemiemie.starter.core.util.tree;
 
 import cn.hutool.core.lang.Assert;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 import java.util.*;
@@ -13,8 +15,16 @@ import java.util.*;
  */
 public class Tree <T extends TreeNodeCapable> {
 
+    @SuppressWarnings("ComparatorMethodParameterNotUsed")
     @Getter
-    private final TreeSet<TreeNode<T>> rootNodes = new TreeSet<>(Comparator.comparingInt(TreeNode::getOrdinal));
+    private final TreeSet<TreeNode<T>> rootNodes = new TreeSet<>((o1, o2) -> {
+        // 这里为什么不直接使用  o1.getOrdinal() - o2.getOrdinal() ？
+        // 因为在TreeSet中，如果排序相同（comparator return 0），不会加入到元素中
+        if (Objects.equals(o1.getOrdinal(), o2.getOrdinal())) {
+            return 1;
+        }
+        return o1.getOrdinal() - o2.getOrdinal();
+    });
 
     @Getter
     private final List<TreeNode<T>> allNodes = new ArrayList<>();
