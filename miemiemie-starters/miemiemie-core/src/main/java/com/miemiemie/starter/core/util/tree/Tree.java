@@ -66,4 +66,8 @@ public class Tree <T extends TreeNodeCapable> {
                 .toList();
     }
 
+    public TreeNode<T> getByNodeKey(Object nodeKey) {
+        return keyNodeMap.get(nodeKey);
+    }
+
 }

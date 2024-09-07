@@ -1,12 +1,11 @@
 package com.miemiemie.starter.core.util.tree;
 
+import com.miemiemie.starter.core.result.Result;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * 树节点
@@ -54,6 +53,28 @@ public class TreeNode<T extends TreeNodeCapable> {
             return value.obtainOrdinal();
         }
         return 0;
+    }
+
+    /**
+     * 获取子孙节点列表，将会平铺
+     */
+    public List<TreeNode<T>> getDescendants() {
+        List<TreeNode<T>> descendants = new ArrayList<>();
+        getDescendants(descendants, this);
+        return descendants;
+    }
+
+    private void getDescendants(List<TreeNode<T>> nodes, TreeNode<T> node) {
+        TreeSet<TreeNode<T>> nodeChildren = node.getChildren();
+        if (Objects.nonNull(nodeChildren)) {
+            nodeChildren.forEach(c -> {
+                if (nodes.contains(c)) {
+                    return;
+                }
+                nodes.add(c);
+                getDescendants(nodes, c);
+            });
+        }
     }
 
 }
