@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.util.*;
 
+import static com.miemiemie.starter.core.util.tree.Tree.TREE_NODE_COMPARATOR;
+
 /**
  * 树节点
  *
@@ -33,7 +35,7 @@ public class TreeNode<T extends TreeNodeCapable> {
     /**
      * 树节点的子节点
      */
-    private final TreeSet<TreeNode<T>> children = new TreeSet<>(Comparator.comparingInt(TreeNode::getOrdinal));
+    private final TreeSet<TreeNode<T>> children = new TreeSet<>(TREE_NODE_COMPARATOR);
 
     public TreeNode(T value) {
         this.value = value;
