@@ -1,7 +1,7 @@
 // 依赖版本管理
 ext {
     jdkVersion = 17
-    projectVersion = '1.0.0-S3-SNAPSHOT'
+    projectVersion = '1.0.0-S3-RELEASE'
 
     versions = [
             "springBoot"           : "3.2.0",
