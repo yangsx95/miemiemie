@@ -1,4 +1,4 @@
-package com.miemiemie.starter.core.util.tree;
+package com.miemiemie.starter.core.lang.tree;
 
 /**
  * 树节点能力标记

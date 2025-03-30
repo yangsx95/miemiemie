@@ -1,13 +1,13 @@
-package com.miemiemie.starter.core.util.tree;
+package com.miemiemie.starter.core.lang.tree;
 
-import com.miemiemie.starter.core.result.Result;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.*;
+import java.util.function.Function;
 
-import static com.miemiemie.starter.core.util.tree.Tree.TREE_NODE_COMPARATOR;
+import static com.miemiemie.starter.core.lang.tree.Tree.TREE_NODE_COMPARATOR;
 
 /**
  * 树节点
@@ -25,6 +25,12 @@ public class TreeNode<T extends TreeNodeCapable> {
     private final T value;
 
     /**
+     * 节点深度，根节点的深度为0
+     */
+    @Getter
+    private int depth;
+
+    /**
      * 树节点的父节点
      * -- SETTER --
      * 设置节点的父节点
@@ -39,6 +45,10 @@ public class TreeNode<T extends TreeNodeCapable> {
 
     public TreeNode(T value) {
         this.value = value;
+    }
+
+    void setDepth(int depth) {
+        this.depth = depth;
     }
 
     /**
@@ -77,6 +87,35 @@ public class TreeNode<T extends TreeNodeCapable> {
                 getDescendants(nodes, c);
             });
         }
+    }
+
+    /**
+     * 获取路径
+     *
+     * @param containsRoot 路径是否包含根节点
+     * @param function     路径获取function
+     * @param reverse      是否反转路径，默认根路径在前
+     * @param <P>          路径元素类型
+     * @return 路径List
+     */
+    public <P> List<P> getPath(boolean containsRoot, Function<TreeNode<T>, P> function, boolean reverse) {
+        List<P> path = new ArrayList<>();
+        if (containsRoot) {
+            path.add(function.apply(this));
+        }
+        TreeNode<T> current = this.getParent();
+        while (current != null) {
+            path.add(function.apply(current));
+            current = current.getParent();
+        }
+        if (!reverse) {
+            Collections.reverse(path);
+        }
+        return path;
+    }
+
+    public <P> List<P> getPath(boolean containsRoot, Function<TreeNode<T>, P> function) {
+        return getPath(containsRoot, function, false);
     }
 
 }
