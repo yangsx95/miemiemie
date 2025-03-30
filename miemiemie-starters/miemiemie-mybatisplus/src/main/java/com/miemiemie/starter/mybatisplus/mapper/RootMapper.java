@@ -1,13 +1,14 @@
 package com.miemiemie.starter.mybatisplus.mapper;
 
-import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.miemiemie.starter.core.lang.Holder;
+import com.miemiemie.starter.core.lang.TriConsumer;
 import com.miemiemie.starter.core.page.Page;
 import com.miemiemie.starter.core.page.PageInfo;
 import com.miemiemie.starter.core.page.Pages;
@@ -22,21 +23,26 @@ import java.util.stream.Collectors;
 public interface RootMapper<T> extends BaseMapper<T> {
 
     /**
-     * 重写selectOne，内部使用selectList替换，防止引发selectOne查询出多个结果报错
+     * 查询单条结果，但是不会报错
      *
-     * @param queryWrapper 查询条件
+     * @param queryWrapper        查询条件
+     * @param multiResultConsumer 如果根据条件查出多条时，会走此consumer，用于记录异常表数据
      * @return 查询结果
      */
-    @Override
-    default T selectOne(Wrapper<T> queryWrapper) {
-        if (Objects.nonNull(queryWrapper) && queryWrapper instanceof AbstractWrapper) {
-            ((AbstractWrapper<?, ?, ?>) queryWrapper).last("limit 1");
-        }
-        List<T> list = selectList(queryWrapper);
-        if (list.isEmpty()) {
+    default T selectOneNoException(Wrapper<T> queryWrapper, TriConsumer<TableInfo, Wrapper<T>, Long> multiResultConsumer) {
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<T> page =
+                selectPage(new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>(1, 1), queryWrapper);
+        if (page.getRecords().isEmpty()) {
             return null;
         }
-        return list.get(0);
+        if (page.getTotal() > 1 && multiResultConsumer != null) {
+            multiResultConsumer.accept(MybatisUtil.getTableInfoByMapperClass(this.getClass()), queryWrapper, page.getTotal());
+        }
+        return page.getRecords().get(0);
+    }
+
+    default T selectOneNoException(Wrapper<T> queryWrapper) {
+        return selectOneNoException(queryWrapper, null);
     }
 
     /**
@@ -196,7 +202,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
      * 如果preList的某些元素是curList没有的，且id不为空的，则视为删除的
      * 如果preList与curList都有的，且id不为空的，如果两人equals不等，则视为更新
      * <p>
-     * 注意：调用此方法时一定要加事务
+     * 注意：调用此方法时注意事务
      *
      * @param preList 修改之前的 entity list
      * @param curList 要修改的 entity list
@@ -211,7 +217,7 @@ public interface RootMapper<T> extends BaseMapper<T> {
     /**
      * 批量更新数据
      * <p>
-     * 注意：调用此方法时一定要加事务
+     * 注意：调用此方法时注意事务
      *
      * @param wrapper 要更新的列表数据的查询wrapper
      * @param curList 新的数据
