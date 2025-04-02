@@ -1,3 +1,5 @@
+import java.util.stream.Stream
+
 description "miemiemie Spring Boot扩展"
 
 // buildScript必须在build.gradle文件的最顶端，因为需要为执行脚本做准备
@@ -27,16 +29,19 @@ allprojects {
 }
 
 ext {
-    allStarters = project(":miemiemie-starters").getSubprojects().findAll({
+    def javaProjects = project(":miemiemie-starters").getSubprojects() + project(":miemiemie-toolbox").getSubprojects()
+    javaModules = javaProjects.findAll({
         it.file("build.gradle").exists()
     })
-    libraryJars = project(":miemiemie-starters").getSubprojects().findAll({
+    depPom = javaProjects.findAll({
+        it.name.endsWith('-dependencies')
+    })
+    libraryJars = javaProjects.findAll({
         it.file("build.gradle").exists() && it.file("src/main/java").exists()
     })
-    depPom = project("miemiemie-starters:miemiemie-dependencies")
 }
 
-configure(allStarters) { prj ->
+configure(javaModules) { prj ->
 
     repositories {
         mavenLocal()
