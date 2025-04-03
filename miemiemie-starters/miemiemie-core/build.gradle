@@ -6,6 +6,7 @@ dependencies {
     api 'org.springframework.boot:spring-boot'
     api 'org.springframework.boot:spring-boot-autoconfigure'
     api 'cn.hutool:hutool-all'
+    api 'com.google.code.findbugs:jsr305'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

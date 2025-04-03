@@ -1,5 +1,3 @@
-import java.util.stream.Stream
-
 description "miemiemie Spring Boot扩展"
 
 // buildScript必须在build.gradle文件的最顶端，因为需要为执行脚本做准备
@@ -90,7 +88,7 @@ configure(libraryJars) { prj ->
 
     // 生成源代码
     tasks.register('sourcesJar', Jar) {
-        archiveClassifier.set('sources');
+        archiveClassifier.set('sources')
         from sourceSets.main.allSource
     }
 

@@ -7,7 +7,6 @@ import com.miemiemie.starter.mybatisplus.enums.Gender;
 import com.miemiemie.starter.mybatisplus.mapper.PersonMapper;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
