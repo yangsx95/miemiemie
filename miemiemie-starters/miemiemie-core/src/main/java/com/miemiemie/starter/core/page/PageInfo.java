@@ -3,7 +3,6 @@ package com.miemiemie.starter.core.page;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;

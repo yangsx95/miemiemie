@@ -22,6 +22,7 @@ public @interface DataProtection {
      *
      * @return 保护策略
      */
+    @SuppressWarnings("rawtypes")
     Class<? extends DataMasking> strategy();
 
 }

@@ -5,7 +5,6 @@ import feign.Request;
 import feign.Response;
 import feign.Util;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
@@ -48,7 +47,7 @@ public class FeignLogger extends Logger {
 
     @Override
     protected void log(String configKey, String format, Object... args) {
-        log.info(methodTag(configKey) + String.format(format, args));
+        log.info("{}{}", methodTag(configKey), String.format(format, args));
     }
 
 }

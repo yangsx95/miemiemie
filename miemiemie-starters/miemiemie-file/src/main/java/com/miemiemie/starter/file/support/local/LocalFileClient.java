@@ -21,9 +21,9 @@ import java.util.function.Supplier;
  * @author yangshunxiang
  * @since 2023/2/23
  */
+@Getter
 public class LocalFileClient extends AbstractFileClient {
 
-    @Getter
     private FileClientProperties.LocalFileClientProperties localFileClientProperties = FileClientProperties.LocalFileClientProperties.DEFAULT;
 
     public LocalFileClient(FilePathGenerator filePathGenerator) {

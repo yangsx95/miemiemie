@@ -25,6 +25,7 @@ public class DataProtectionResponseBodyAdvice implements ResponseBodyAdvice<Obje
         return !returnType.getGenericParameterType().equals(String.class);
     }
 
+    @Nullable
     @Override
     public Object beforeBodyWrite(@Nullable Object body, MethodParameter returnType, MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
 

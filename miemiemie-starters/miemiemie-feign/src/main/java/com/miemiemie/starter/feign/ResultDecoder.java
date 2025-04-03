@@ -34,7 +34,7 @@ public class ResultDecoder implements Decoder {
     }
 
     @Override
-    public Object decode(Response response, Type type) throws IOException, DecodeException, FeignException {
+    public Object decode(Response response, Type type) throws IOException, FeignException {
         if (Objects.isNull(response.body())) {
             throw new DecodeException(response.status(), "没有返回的数据信息", response.request());
         }

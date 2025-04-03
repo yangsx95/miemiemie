@@ -19,7 +19,7 @@ public class IdCardProtectionStrategyTest extends BaseTest {
     public void protect() {
         Object protect = strategy.mask("320305199509020000");
         System.out.println(protect);
-        Assertions.assertEquals(protect, "320305********0000");
+        Assertions.assertEquals("320305********0000", protect);
     }
 
     @Test

@@ -10,8 +10,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
-import static com.baomidou.mybatisplus.core.metadata.TableInfoHelper.getTableInfo;
-
 /**
  * @author 杨顺翔
  */

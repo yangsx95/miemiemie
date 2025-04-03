@@ -1,7 +1,6 @@
 package com.miemiemie.starter.file;
 
 import com.miemiemie.starter.file.pool.FileClientPoolProperties;
-import com.miemiemie.starter.file.support.local.LocalFileClient;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 import java.io.File;
-import java.nio.file.Paths;
 
 /**
  * @author yangshunxiang

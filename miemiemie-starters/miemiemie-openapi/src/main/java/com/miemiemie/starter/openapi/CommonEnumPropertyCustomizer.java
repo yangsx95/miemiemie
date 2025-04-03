@@ -32,7 +32,7 @@ public class CommonEnumPropertyCustomizer implements PropertyCustomizer {
         }
 
         Type[] actualTypeArguments = commonEnumType.getActualTypeArguments();
-        if (actualTypeArguments == null || actualTypeArguments.length != 2) {
+        if (actualTypeArguments.length != 2) {
             return property;
         }
 

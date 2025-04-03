@@ -3,6 +3,7 @@ package com.miemiemie.starter.file.support.ftp;
 import com.miemiemie.starter.file.FileClientProperties;
 import com.miemiemie.starter.file.exception.FileClientException;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.pool2.BasePooledObjectFactory;
@@ -18,9 +19,10 @@ import java.io.IOException;
  * @author yangshunxiang
  * @since 2023/2/24
  */
+@Slf4j
+@Getter
 public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 
-    @Getter
     private final FileClientProperties.FtpFileClientProperties ftpFileClientProperties;
 
     public FtpClientFactory(FileClientProperties.FtpFileClientProperties ftpFileClientProperties) {
@@ -86,7 +88,7 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
         try {
             connect = ftpClient.sendNoOp();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("ftp connect error: {}", e.getMessage(), e);
         }
         return connect;
     }

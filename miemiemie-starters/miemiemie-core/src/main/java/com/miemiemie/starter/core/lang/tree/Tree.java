@@ -2,8 +2,15 @@ package com.miemiemie.starter.core.lang.tree;
 
 import cn.hutool.core.lang.Assert;
 import lombok.Getter;
+import org.springframework.lang.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeSet;
 
 /**
  * 树节点
@@ -53,7 +60,7 @@ public class Tree<T extends TreeNodeCapable> {
      * @param eleList  元素列表
      * @param maxDepth 最大深度
      */
-    private Tree(List<T> eleList, Integer maxDepth) {
+    public Tree(List<T> eleList, @Nullable Integer maxDepth) {
         if (Objects.isNull(eleList) || eleList.isEmpty()) {
             return;
         }

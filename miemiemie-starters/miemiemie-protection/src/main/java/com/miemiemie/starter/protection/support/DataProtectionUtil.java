@@ -43,7 +43,8 @@ public class DataProtectionUtil {
                 continue;
             }
 
-            Object protectedValue = SpringUtil.getBean(dataProtection.strategy()).mask(value);
+            @SuppressWarnings("unchecked") Object protectedValue
+                    = SpringUtil.getBean(dataProtection.strategy()).mask(value);
             ReflectUtil.setFieldValue(parameterObject, field.getName(), protectedValue);
         }
     }

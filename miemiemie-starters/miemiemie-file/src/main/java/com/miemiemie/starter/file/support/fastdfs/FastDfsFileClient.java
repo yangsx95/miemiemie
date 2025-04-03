@@ -31,7 +31,7 @@ import java.util.function.Supplier;
  */
 public class FastDfsFileClient extends AbstractPooledFileClient<TrackerServer> {
 
-    public static String NULL_GROUP = "";
+    public static final String NULL_GROUP = "";
 
     @Getter
     private final FileClientProperties.FastDfsFileClientProperties fastDfsFileClientProperties;

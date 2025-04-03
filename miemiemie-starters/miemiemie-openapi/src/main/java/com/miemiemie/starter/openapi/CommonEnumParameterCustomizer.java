@@ -34,7 +34,7 @@ public class CommonEnumParameterCustomizer implements ParameterCustomizer {
         }
 
         Type[] actualTypeArguments = commonEnumType.getActualTypeArguments();
-        if (actualTypeArguments == null || actualTypeArguments.length != 2) {
+        if (actualTypeArguments.length != 2) {
             return parameterModel;
         }
 
@@ -82,7 +82,7 @@ public class CommonEnumParameterCustomizer implements ParameterCustomizer {
                 .filter(e -> e instanceof ParameterizedType)
                 .filter(e -> ((ParameterizedType) e).getRawType() == CommonEnum.class)
                 .map(e -> (ParameterizedType) e)
-                .collect(Collectors.toList());
+                .toList();
         if (commonEnumTypes.isEmpty()) {
             return null;
         }
