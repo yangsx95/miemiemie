@@ -27,7 +27,7 @@ allprojects {
 }
 
 ext {
-    def javaProjects = project(":miemiemie-starters").getSubprojects() + project(":miemiemie-toolbox").getSubprojects()
+    def javaProjects = project(":miemiemie-starters").getSubprojects()
     javaModules = javaProjects.findAll({
         it.file("build.gradle").exists()
     })
