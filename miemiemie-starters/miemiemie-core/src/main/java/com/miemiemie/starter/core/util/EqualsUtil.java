@@ -49,6 +49,24 @@ public final class EqualsUtil {
         return equalsAndGroup(sourceList, targetList, sourceHashGenerator, targetHashGenerator, (o1, o2) -> true);
     }
 
+    public static <E> GroupListData<E, E> equalsAndGroup(List<E> sourceList,
+                                                         List<E> targetList,
+                                                         Function<E, Object> hashGenerator,
+                                                         Equator<E, E> equator) {
+        return equalsAndGroup(sourceList, targetList, hashGenerator, hashGenerator, equator);
+    }
+
+    public static <E> GroupListData<E, E> equalsAndGroup(List<E> sourceList,
+                                                         List<E> targetList,
+                                                         Function<E, Object> hashGenerator) {
+        return equalsAndGroup(sourceList, targetList, hashGenerator, hashGenerator, (o1, o2) -> true);
+    }
+
+    public static <E> GroupListData<E, E> equalsAndGroup(List<E> sourceList,
+                                                         List<E> targetList) {
+        return equalsAndGroup(sourceList, targetList, e -> e, e -> e, (o1, o2) -> true);
+    }
+
     /**
      * 比较并分组
      *
