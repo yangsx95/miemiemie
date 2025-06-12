@@ -1,0 +1,31 @@
+services:
+  openldap:
+    image: registry.cn-beijing.aliyuncs.com/zygpubilc/openldap:2.4.57
+    container_name: openldap
+    restart: always
+    environment:
+      LDAP_ORGANISATION: "${LDAP_ORGANISATION}"
+      LDAP_DOMAIN: "${LDAP_DOMAIN}"
+      LDAP_BASE_DN: "${LDAP_BASE_DN}"
+      LDAP_ADMIN_PASSWORD: "${LDAP_ADMIN_PASSWORD}"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ${LDAP_VOLUME_DATA_PATH}:/var/lib/ldap
+      - ${LDAP_VOLUME_CONF_PATH}:/etc/ldap/slapd.d
+    ports:
+      - "${LDAP_PORT_389}:389"
+      - "${LDAP_PORT_636}:636"
+  ldapadmin:
+    image: registry.cn-beijing.aliyuncs.com/zygpubilc/phpldapadmin:0.8.0
+    container_name: ldapadmin
+    restart: always
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "openldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "${LDAP_ADMIN_PORT}:80"
+    depends_on:
+      - openldap
+    links:
+      - openldap

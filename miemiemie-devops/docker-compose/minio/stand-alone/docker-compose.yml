@@ -11,7 +11,7 @@ services:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     volumes:
-      - ".${MINIO_VOLUME_DATA_PATH}:/data"
+      - "${MINIO_VOLUME_DATA_PATH}:/data"
     command: server --console-address ":${MINIO_PORT_CONSOLE}" /data
     healthcheck:
       test:
