@@ -1,0 +1,10 @@
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "${NGINX_PORT}:80"
+    volumes:
+      - "${NGINX_CONF_PATH}:/etc/nginx/nginx.conf"
+      - "${NGINX_LOG_PATH}:/var/log/nginx"
+      - "${NGINX_HTML_PATH}:/usr/share/nginx/html"
+    restart: always
